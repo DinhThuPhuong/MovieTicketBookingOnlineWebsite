@@ -1,12 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using MovieTickets.Models;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DoAnCoSoTL.Models;
 
-namespace MovieTickets.Services
+namespace DoAnCoSoTL.Repositories
 {
     public class UpdateProfileRepository : IUpdateProfileRepository
     {
@@ -15,13 +9,13 @@ namespace MovieTickets.Services
         {
             db = _db;
         }
-        public User GetById(string id)
+        public ApplicationUser GetById(string id)
         {
             var user = db.Users.FirstOrDefault(x => x.Id == id);
             return user;
         }
         //Update user profile -----------------------
-        public async Task<int> updateAsync(string id, User UpdateUser,List<IFormFile> Image)
+        public async Task<int> updateAsync(string id, ApplicationUser UpdateUser,List<IFormFile> Image)
         {
             foreach (var item in Image)
             {
@@ -30,6 +24,7 @@ namespace MovieTickets.Services
                     using (var stream = new MemoryStream())
                     {
                         await item.CopyToAsync(stream);
+                        // UpdateUser.Image = stream.ToString();
                         UpdateUser.Image = stream.ToArray();
                     }
                 }
@@ -41,13 +36,13 @@ namespace MovieTickets.Services
             {
                 user.Image = UpdateUser.Image;
             }
-            user.Adress = UpdateUser.Adress;
+            user.Address = UpdateUser.Address;
             int raws = db.SaveChanges();
             return raws;
 
         }
         //Add new user ---------------------------------------------------
-        public async Task<int> insert(User NewUser, List<IFormFile> Image)
+        public async Task<int> insert(ApplicationUser NewUser, List<IFormFile> Image)
         {
             foreach (var item in Image)
             {

@@ -1,10 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using MovieTickets.Models;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using DoAnCoSoTL.Models;
 
-namespace MovieTickets.Services
+namespace DoAnCoSoTL.Repositories
 {
     public interface IActorRepository
     {

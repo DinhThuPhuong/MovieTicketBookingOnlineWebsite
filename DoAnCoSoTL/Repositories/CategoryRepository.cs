@@ -1,11 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using MovieTickets.Models;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DoAnCoSoTL.Models;
+using DoAnCoSoTL.Repositories;
 
-namespace MovieTickets.Services
+namespace DoAnCoSoTL.Repositories
 {
     public class CategoryRepository :ICategoryRepository
     {

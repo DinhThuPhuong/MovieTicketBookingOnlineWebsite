@@ -1,12 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using MovieTickets.Models;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DoAnCoSoTL.Models;
 
-namespace MovieTickets.Services
+namespace DoAnCoSoTL.Repositories
 {
     public class ActorRepository : IActorRepository
     {
@@ -31,10 +25,10 @@ namespace MovieTickets.Services
             return db.Actors.SingleOrDefault(n => n.Name == name);
         }
 
-        //public Actor GetByImage(byte[] image)
-        //{
-        //    return db.Actors.SingleOrDefault(n => n.Image == image);
-        //}
+        public Actor GetByImage(byte[] image)
+        {
+            return db.Actors.SingleOrDefault(n => n.Image == image);
+        }
         public async Task<int> insert(Actor newActor, List<IFormFile> Image)
         {
             foreach (var item in Image)

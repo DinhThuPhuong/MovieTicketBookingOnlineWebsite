@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+rVKCIbXLG1sSYAE1UnHMwKgXJVfIGEdmCBdto4Bktouot8DnEb4KtJlEM9I0/24JoYN4Sc69sY6JE6hmr/FOA==",
+  "dgSpecHash": "kySQX2lhMqnaSpv1dYycGQUyi7nu7IeNY6sf/14jZq3HMCC/9LEWSGcvcEZrwv36sQddKBBBdLpkhh8+y8i4mQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Hương\\source\\repos\\DoAnCoSoTL\\DoAnCoSoTL\\DoAnCoSoTL.csproj",
+  "projectFilePath": "C:\\Users\\Hương\\OneDrive\\Hình ảnh\\Máy tính\\DoAnCoSoTL\\DoAnCoSoTL\\DoAnCoSoTL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Hương\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\Hương\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

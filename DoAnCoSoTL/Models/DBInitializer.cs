@@ -1,16 +1,6 @@
-﻿using DoAnCoSoTL.Models;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using TH_Lap3.Models;
+﻿using Microsoft.AspNetCore.Identity;
 
-namespace TH_Lap3.Models
+namespace DoAnCoSoTL.Models
 {
     public class UserRoles
     {

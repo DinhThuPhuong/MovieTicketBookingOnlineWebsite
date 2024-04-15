@@ -1,5 +1,5 @@
-﻿using MovieTickets.Models;
-using MovieTickets.ViewModels;
+﻿using DoAnCoSoTL.Models;
+using DoAnCoSoTL.Repositories;
 
 namespace MovieTickets.Services
 {

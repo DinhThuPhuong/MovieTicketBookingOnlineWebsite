@@ -1,7 +1,6 @@
-﻿using MovieTickets.Models;
-using MovieTickets.ViewModels;
+﻿using DoAnCoSoTL.Models;
 
-namespace MovieTickets.Services
+namespace DoAnCoSoTL.Repositories
 {
     public interface IMovieOrderRepository
     {

@@ -1,7 +1,6 @@
-﻿using MovieTickets.Models;
-using System.Collections.Generic;
+﻿using DoAnCoSoTL.Models;
 
-namespace MovieTickets.Services
+namespace DoAnCoSoTL.Repositories
 {
     public interface IMovieActorRepository
     {

@@ -1,14 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using MovieTickets.Models;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace MovieTickets.Services
+﻿namespace DoAnCoSoTL.Repositories
 {
     public interface IUpdateProfileRepository
     {
-        User GetById(string id);
-        Task<int> insert(User NewUser, List<IFormFile> Image);
-        Task<int> updateAsync(string id, User UpdateUser, List<IFormFile> Image);
+        ApplicationUser GetById(string id);
+        Task<int> insert(ApplicationUser NewUser, List<IFormFile> Image);
+        Task<int> updateAsync(string id, ApplicationUser UpdateUser, List<IFormFile> Image);
     }
 }

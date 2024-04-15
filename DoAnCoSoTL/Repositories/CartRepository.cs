@@ -1,9 +1,6 @@
-﻿using MovieTickets.Models;
-using MovieTickets.ViewModels;
-using System.Collections.Generic;
-using System.Linq;
+﻿using DoAnCoSoTL.Models;
 
-namespace MovieTickets.Services
+namespace DoAnCoSoTL.Repositories
 {
     public class CartRepository : ICartRepository
     {

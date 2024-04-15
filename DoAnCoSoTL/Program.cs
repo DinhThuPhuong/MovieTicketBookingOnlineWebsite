@@ -1,9 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using TH_Lap3.Models;
+using DoAnCoSoTL.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

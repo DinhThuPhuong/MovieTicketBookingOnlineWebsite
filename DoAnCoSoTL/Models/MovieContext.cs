@@ -1,9 +1,7 @@
-﻿using DoAnCoSoTL.Models;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using TH_Lap3.Models;
 
-namespace TH_Lap3.Models
+namespace DoAnCoSoTL.Models
 {
     public class MovieContext : IdentityDbContext<ApplicationUser>
     {

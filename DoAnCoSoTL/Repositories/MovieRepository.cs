@@ -1,12 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using MovieTickets.Models;
-using MovieTickets.Services;
-using MovieTickets.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DoAnCoSoTL.Models;
+using DoAnCoSoTL.Repositories;
+using DoAnCoSoTL.ViewModels;
 
 public class MovieRepository : IMovieRepository
 {
