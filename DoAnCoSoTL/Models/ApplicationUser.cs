@@ -6,7 +6,7 @@ public class ApplicationUser : IdentityUser
     // Thêm các thuộc tính tùy chỉnh của người dùng
     public string? FullName { get; set; }
     public string? Address { get; set; }
-    public byte[] Image { get; set; }
+    //public byte[]? Image { get; set; }
     public int? Age { get; set; }
     public string? Gender { get; set; }
     public virtual List<MovieOrder> MovieOrders { get; set; }

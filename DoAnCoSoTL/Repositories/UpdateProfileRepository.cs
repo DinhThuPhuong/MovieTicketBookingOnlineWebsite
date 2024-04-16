@@ -25,17 +25,17 @@ namespace DoAnCoSoTL.Repositories
                     {
                         await item.CopyToAsync(stream);
                         // UpdateUser.Image = stream.ToString();
-                        UpdateUser.Image = stream.ToArray();
+                        //UpdateUser.Image = stream.ToArray();
                     }
                 }
             }
             var user = db.Users.SingleOrDefault(u => u.Id == id);
            
             user.FullName = UpdateUser.FullName;
-            if (Image.Count != 0)
-            {
-                user.Image = UpdateUser.Image;
-            }
+            //if (Image.Count != 0)
+            //{
+            //    user.Image = UpdateUser.Image;
+            //}
             user.Address = UpdateUser.Address;
             int raws = db.SaveChanges();
             return raws;
@@ -51,7 +51,7 @@ namespace DoAnCoSoTL.Repositories
                     using (var stream = new MemoryStream())
                     {
                         await item.CopyToAsync(stream);
-                        NewUser.Image = stream.ToArray();
+                     //   NewUser.Image = stream.ToArray();
                     }
                 }
             }

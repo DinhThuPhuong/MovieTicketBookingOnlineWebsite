@@ -1,7 +1,7 @@
 ﻿using DoAnCoSoTL.Models;
 using DoAnCoSoTL.Repositories;
 
-namespace MovieTickets.Services
+namespace  DoAnCoSoTL.Repositories
 {
 
     public class MovieOrderRepository : IMovieOrderRepository
