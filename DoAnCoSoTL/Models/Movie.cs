@@ -13,7 +13,7 @@ namespace DoAnCoSoTL.Models
         public string Name { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public byte[] Image { get; set; }
+        public string? Image { get; set; }
         public Double Price { get; set; }
         public string Description { get; set; }
         public string Trailer { get; set; }

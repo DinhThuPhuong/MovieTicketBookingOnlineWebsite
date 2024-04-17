@@ -2,11 +2,11 @@
 
 //namespace DoAnCoSoTL.Models
 //{
-//    public class UserRoles
-//    {
-//        public const string Admin = "Admin";
-//        public const string User = "User";
-//    }
+//    //public class UserRoles
+//    //{
+//    //    public const string Admin = "Admin";
+//    //    public const string User = "User";
+//    //}
 //    public class DBInitializer
 //    {
 //        public static async Task<byte[]> ImageConverter(string imageName)
@@ -21,7 +21,7 @@
 //            }
 //        }
 
-        
+
 
 
 //        public static async Task SeedDB(IApplicationBuilder applicationBuilder)
@@ -115,9 +115,9 @@
 //                    });
 //                }
 
-//                    if (!db.Producers.Any())
-//                    {
-//                        db.Producers.AddRange(new List<Producer>() 
+//                if (!db.Producers.Any())
+//                {
+//                    db.Producers.AddRange(new List<Producer>()
 //                        {
 //                            new Producer()
 //                            {
@@ -132,94 +132,94 @@
 //                                Bio = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 //                            },
 //                        });
-//                    }
+//                }
 //                db.SaveChanges();
 
 
-//                    //Adding Movies Here
+//                //Adding Movies Here
 
-//                    if (!db.Movies.Any())
-//                    {
+//                if (!db.Movies.Any())
+//                {
 //                    //start of adding movie
-//                        Guid guid1 = Guid.NewGuid();
-//                        var movie1 = new Movie()
-//                        {
-//                            Id = guid1,
-//                            Name = "Django Unchained",
-//                            StartDate = new DateTime(2022, 1, 30),
-//                            EndDate = new DateTime(2022, 6, 14),
-//                            Rate = 8,
-//                            Trailer= "https://www.youtube.com/watch?v=eUdM9vrCbow",
-//                            Price = 120,
-//                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-//                            Producer_Id = 2,
-//                            Cat_Id = 6,
-//                            Image = await ImageConverter("movie-1.jpg"),
-//                        };
-//                        db.Movies.Add(movie1);
+//                    Guid guid1 = Guid.NewGuid();
+//                    var movie1 = new Movie()
+//                    {
+//                        Id = guid1,
+//                        Name = "Django Unchained",
+//                        StartDate = new DateTime(2022, 1, 30),
+//                        EndDate = new DateTime(2022, 6, 14),
+//                        Rate = 8,
+//                        Trailer = "https://www.youtube.com/watch?v=eUdM9vrCbow",
+//                        Price = 120,
+//                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+//                        Producer_Id = 2,
+//                        Cat_Id = 6,
+//                        Image = await ImageConverter("movie-1.jpg"),
+//                    };
+//                    db.Movies.Add(movie1);
 //                    var actors1 = new List<int> { 1, 3, 5 };
-//                        foreach (var id in actors1)
+//                    foreach (var id in actors1)
+//                    {
+//                        db.MovieActors.Add(new MovieActor()
 //                        {
-//                            db.MovieActors.Add(new MovieActor()
-//                            {
-//                                MovieId = guid1,
-//                                ActorId = id
-//                            });
-//                        }
+//                            MovieId = guid1,
+//                            ActorId = id
+//                        });
+//                    }
 //                    var cinemas1 = new List<int> { 1, 3, 4 };
 //                    var quantities1 = new List<int> { 50, 40, 30 };
 
-//                        //adding to cinema movies table
-//                        for (var i = 0; i < cinemas1.Count; i++)
+//                    //adding to cinema movies table
+//                    for (var i = 0; i < cinemas1.Count; i++)
+//                    {
+//                        db.MovieInCinemas.Add(new MovieInCinema()
 //                        {
-//                            db.MovieInCinemas.Add(new MovieInCinema()
-//                            {
-//                                Quantity = quantities1[i],
-//                                MovieId = guid1,
-//                                CinemaId = cinemas1[i]
-//                            });
-//                        }
-//                        //end of adding one movie
-                        
-//                        //start of adding movie
-//                        Guid guid2 = Guid.NewGuid();
-//                        var movie2 = new Movie()
-//                        {
-//                            Id = guid2,
-//                            Name = "Tyson's Run (2022)",
-//                            StartDate = new DateTime(2022, 3, 30),
-//                            EndDate = new DateTime(2022, 8, 14),
-//                            Rate = 7,
-//                            Trailer= "https://www.youtube.com/watch?v=hEqSj5esw7k",
-//                            Price = 150,
-//                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-//                            Producer_Id = 1,
-//                            Cat_Id = 5,
-//                            Image = await ImageConverter("movie-2.jpg"),
-//                        };
-//                        db.Movies.Add(movie2);
+//                            Quantity = quantities1[i],
+//                            MovieId = guid1,
+//                            CinemaId = cinemas1[i]
+//                        });
+//                    }
+//                    //end of adding one movie
+
+//                    //start of adding movie
+//                    Guid guid2 = Guid.NewGuid();
+//                    var movie2 = new Movie()
+//                    {
+//                        Id = guid2,
+//                        Name = "Tyson's Run (2022)",
+//                        StartDate = new DateTime(2022, 3, 30),
+//                        EndDate = new DateTime(2022, 8, 14),
+//                        Rate = 7,
+//                        Trailer = "https://www.youtube.com/watch?v=hEqSj5esw7k",
+//                        Price = 150,
+//                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+//                        Producer_Id = 1,
+//                        Cat_Id = 5,
+//                        Image = await ImageConverter("movie-2.jpg"),
+//                    };
+//                    db.Movies.Add(movie2);
 //                    var actors2 = new List<int> { 2, 4, 5 };
-//                        foreach (var id in actors2)
+//                    foreach (var id in actors2)
+//                    {
+//                        db.MovieActors.Add(new MovieActor()
 //                        {
-//                            db.MovieActors.Add(new MovieActor()
-//                            {
-//                                MovieId = guid2,
-//                                ActorId = id
-//                            });
-//                        }
+//                            MovieId = guid2,
+//                            ActorId = id
+//                        });
+//                    }
 //                    var cinemas2 = new List<int> { 2, 4 };
 //                    var quantities2 = new List<int> { 40, 60 };
 
-//                        //adding to cinema movies table
-//                        for (var i = 0; i < cinemas2.Count; i++)
+//                    //adding to cinema movies table
+//                    for (var i = 0; i < cinemas2.Count; i++)
+//                    {
+//                        db.MovieInCinemas.Add(new MovieInCinema()
 //                        {
-//                            db.MovieInCinemas.Add(new MovieInCinema()
-//                            {
-//                                Quantity = quantities2[i],
-//                                MovieId = guid2,
-//                                CinemaId = cinemas2[i]
-//                            });
-//                        }
+//                            Quantity = quantities2[i],
+//                            MovieId = guid2,
+//                            CinemaId = cinemas2[i]
+//                        });
+//                    }
 //                    //end of adding one movie
 
 //                    //start of adding movie
@@ -235,7 +235,7 @@
 //                        Price = 150,
 //                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
 //                        Producer_Id = 2,
-//                        Cat_Id = 5, 
+//                        Cat_Id = 5,
 //                        Image = await ImageConverter("movie-3.jpg"),
 //                    };
 //                    db.Movies.Add(movie3);
@@ -391,61 +391,61 @@
 
 
 //                db.SaveChanges();
-//                }
-
 //            }
-        
 
-
-//        public static async Task CreateUsersAndRolesAsync(IApplicationBuilder applicationBuilder)
-//        {
-//            using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
-//            {
-
-//                //Roles
-//                var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-
-//                if (!await roleManager.RoleExistsAsync(UserRoles.Admin))
-//                    await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
-//                if (!await roleManager.RoleExistsAsync(UserRoles.User))
-//                    await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
-
-//                //Users
-//                var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-//                string adminUserEmail = "admin@emovies.com";
-
-//                var adminUser = await userManager.FindByEmailAsync(adminUserEmail);
-//                if (adminUser == null)
-//                {
-//                    var newAdminUser = new ApplicationUser()
-//                    {
-//                        FullName = "Admin User",
-//                        UserName = "admin-user",
-//                        Email = adminUserEmail,
-//                        EmailConfirmed = true
-//                    };
-//                    await userManager.CreateAsync(newAdminUser, "InitialAdmin@1234?");
-//                    await userManager.AddToRoleAsync(newAdminUser, UserRoles.Admin);
-//                }
-
-
-//                string appUserEmail = "user@emovies.com";
-
-//                var appUser = await userManager.FindByEmailAsync(appUserEmail);
-//                if (appUser == null)
-//                {
-//                    var newAppUser = new ApplicationUser()
-//                    {
-//                        FullName = "Application User",
-//                        UserName = "app-user",
-//                        Email = appUserEmail,
-//                        EmailConfirmed = true
-//                    };
-//                    await userManager.CreateAsync(newAppUser, "InitialUser@1234?");
-//                    await userManager.AddToRoleAsync(newAppUser, UserRoles.User);
-//                }
-//            }
 //        }
+
+
+
+        //public static async Task CreateUsersAndRolesAsync(IApplicationBuilder applicationBuilder)
+        //{
+        //    using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
+        //    {
+
+        //        //Roles
+        //        var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+        //        if (!await roleManager.RoleExistsAsync(UserRoles.Admin))
+        //            await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
+        //        if (!await roleManager.RoleExistsAsync(UserRoles.User))
+        //            await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
+
+        //        //Users
+        //        var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+        //        string adminUserEmail = "admin@emovies.com";
+
+        //        var adminUser = await userManager.FindByEmailAsync(adminUserEmail);
+        //        if (adminUser == null)
+        //        {
+        //            var newAdminUser = new ApplicationUser()
+        //            {
+        //                FullName = "Admin User",
+        //                UserName = "admin-user",
+        //                Email = adminUserEmail,
+        //                EmailConfirmed = true
+        //            };
+        //            await userManager.CreateAsync(newAdminUser, "InitialAdmin@1234?");
+        //            await userManager.AddToRoleAsync(newAdminUser, UserRoles.Admin);
+        //        }
+
+
+        //        string appUserEmail = "user@emovies.com";
+
+        //        var appUser = await userManager.FindByEmailAsync(appUserEmail);
+        //        if (appUser == null)
+        //        {
+        //            var newAppUser = new ApplicationUser()
+        //            {
+        //                FullName = "Application User",
+        //                UserName = "app-user",
+        //                Email = appUserEmail,
+        //                EmailConfirmed = true
+        //            };
+        //            await userManager.CreateAsync(newAppUser, "InitialUser@1234?");
+        //            await userManager.AddToRoleAsync(newAppUser, UserRoles.User);
+        //        }
+        //    }
+        //}
 
 //    }
 //}

@@ -1,10 +1,21 @@
 ﻿using DoAnCoSoTL.Models;
+using Microsoft.CodeAnalysis.Differencing;
 
 namespace DoAnCoSoTL.Repositories
 {
     public class CinemaRepository : ICinemaRepository
     {
         MovieContext db;
+        private async Task<string> SaveImage(IFormFile image)
+        {
+            var savePath = Path.Combine("wwwroot/images", image.FileName); // Thay  đổi đường dẫn theo cấu hình của bạn 
+            using (var fileStream = new FileStream(savePath, FileMode.Create))
+            {
+                await image.CopyToAsync(fileStream);
+            }
+            return "/images/" + image.FileName; // Trả về đường dẫn tương đối }
+
+        }
         public CinemaRepository(MovieContext _db)
         {
             db = _db;
@@ -36,43 +47,32 @@ namespace DoAnCoSoTL.Repositories
             return raws;
         }
 
-        public async Task<int> insert(Cinema newCinema, List<IFormFile> Image)
-        {
-            foreach (var item in Image)
+        public async Task<int> insert(Cinema newCinema, IFormFile Image)
+        {  
+            if (Image != null)
             {
-                if (item.Length > 0)
-                {
-                    using (var stream = new MemoryStream())
-                    {
-                        await item.CopyToAsync(stream);
-                        newCinema.Image = stream.ToArray();
-                    }
-                }
+                // Lưu hình ảnh đại diện tham khảo bài 02 hàm SaveImage
+                newCinema.Image = await SaveImage(Image);
             }
-            
+
             db.Cinemas.Add(newCinema);
             int raws = db.SaveChanges();
             return raws;
         }
 
-        public async Task<int> update(Cinema EditCin, int id, List<IFormFile> Image)
+        public async Task<int> update(Cinema EditCin, int id, IFormFile Image)
         {
             var cinema = db.Cinemas.SingleOrDefault(c => c.Id == id);
-            foreach (var item in Image)
+            if (Image != null)
             {
-                if (item.Length > 0)
-                {
-                    using (var stream = new MemoryStream())
-                    {
-                        await item.CopyToAsync(stream);
-                        EditCin.Image = stream.ToArray();
-                    }
-                }
+                // Lưu hình ảnh đại diện tham khảo bài 02 hàm SaveImage
+                EditCin.Image = await SaveImage(Image);
             }
-            
+
+
             cinema.Name = EditCin.Name;
             cinema.Location = EditCin.Location;
-            if (Image.Count!= 0)
+            if (Image!= null)
                 cinema.Image = EditCin.Image;
             cinema.Location = EditCin.Location;
             int raws = db.SaveChanges();

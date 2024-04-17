@@ -1,86 +1,50 @@
 ﻿using DoAnCoSoTL.Models;
 using DoAnCoSoTL.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace DoAnCoSoTL.Repositories
 {
-    public class CategoryRepository :ICategoryRepository
+    public class CategoryRepository : ICategoryRepository
     {
         MovieContext db;
         public CategoryRepository(MovieContext _db)
         {
             db = _db;
         }
-        public List<Category> GetAll()
+     
+        public async Task<IEnumerable<Category>> GetAllAsync()
         {
-            var category = db.Categories.ToList();
-            return category;
+            return await db.Categories.ToListAsync();
         }
-        public Category GetById(int id)
+        public async Task<Category> GetByIdAsync(int id)
         {
-            return db.Categories.SingleOrDefault(c => c.Id == id);
-        }
-
-        public Category GetByName(string name)
-        {
-            return db.Categories.SingleOrDefault(c => c.Name == name);
+            return await db.Categories.FindAsync(id);
         }
 
-        public async Task<int> insert(Category newCategory,List<IFormFile> Image)
+        public async Task<Category> GetByNameAsync(string name)
         {
-            foreach (var item in Image)
-            {
-                if (item.Length > 0)
-                {
-                    using (var stream = new MemoryStream())
-                    {
-                        await item.CopyToAsync(stream);
-                        newCategory.Image = stream.ToArray();
-                    }
+            return await db.Categories.FindAsync(name);
+        }
 
-                }
-            }
+        public async Task InsertAsync(Category newCategory)
+        {
             db.Categories.Add(newCategory);
-            int raws = db.SaveChanges();
-            return raws;
+            await db.SaveChangesAsync();
         }
-        public async Task<int> update(Category editCategory,List<IFormFile> Image)
+        public async Task UpdateAsync(Category editCategory)
         {
-            var category = db.Categories.SingleOrDefault(c => c.Id == editCategory.Id);
-            foreach (var item in Image)
-            {
-                if (item.Length > 0)
-                {
-                    using (var stream = new MemoryStream())
-                    {
-                        await item.CopyToAsync(stream);
-                        editCategory.Image = stream.ToArray();
-                    }
-                }
-            }
-           
-            category.Name=editCategory.Name;
-            if (Image.Count > 0 )
-            {
-                category.Image = editCategory.Image;
-            }
-            category.Description=editCategory.Description;
-
-
-
-
-            int raws = db.SaveChanges();
-            return raws;
+            db.Categories.Update(editCategory);
+            await db.SaveChangesAsync();
         }
-        public int delete(int id)
+        public async Task DeleteAsync(int id)
         {
-            Category delCategory = db.Categories.SingleOrDefault(c => c.Id == id);
-            db.Categories.Remove(delCategory);
-            int raws = db.SaveChanges();
-            return raws;
+            var category = await db.Categories.FindAsync(id);
+            db.Categories.Remove(category);
+            await db.SaveChangesAsync();
         }
 
-        
 
-       
+
+
     }
 }

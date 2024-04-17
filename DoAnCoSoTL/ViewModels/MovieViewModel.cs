@@ -49,7 +49,7 @@ namespace DoAnCoSoTL.ViewModels
         [Display(Name = "Select a producer")]
         [Required(ErrorMessage = "Movie producer is required")]
         public int Producer_Id { get; set; }
-        public byte[] Image { get; set; }
+        public string? ImageUrl { get; set; }
         public string Trailer {get; set; }
     }
 }

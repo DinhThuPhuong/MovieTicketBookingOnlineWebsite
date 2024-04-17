@@ -9,7 +9,7 @@ namespace DoAnCoSoTL.Repositories
         List<Actor> GetAll();
         Actor GetById(int id);
         Actor GetByName(string name);
-     Task< int> insert(Actor newActor,List<IFormFile> Image);
-        Task<int> update(Actor EditActor, int id, List<IFormFile> Image);
+     Task< int> insert(Actor newActor,IFormFile Image);
+        Task<int> update(Actor EditActor, int id, IFormFile Image);
     }
 }

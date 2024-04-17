@@ -9,7 +9,7 @@ namespace DoAnCoSoTL.Repositories
         List<Producer> GetAll();
         Producer GetById(int id);
         Producer GetByName(string name);
-        Task<int> insert(Producer newProducer, List<IFormFile> Image);
-        Task<int> update(Producer EditProducer, int id, List<IFormFile> Image);
+        Task<int> insert(Producer newProducer, IFormFile Image);
+        Task<int> update(Producer EditProducer, int id, IFormFile Image);
     }
 }

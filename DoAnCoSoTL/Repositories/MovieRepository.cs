@@ -1,6 +1,7 @@
 ﻿using DoAnCoSoTL.Models;
 using DoAnCoSoTL.Repositories;
 using DoAnCoSoTL.ViewModels;
+using Microsoft.EntityFrameworkCore;
 
 public class MovieRepository : IMovieRepository
 {
@@ -9,152 +10,61 @@ public class MovieRepository : IMovieRepository
     {
         db = _db;
     }
-    public List<Movie> GetAll()
+    public async Task<IEnumerable<Movie>> GetAllAsync()
     {
-        var movies = db.Movies.ToList();
-        return movies;
+        return await db.Movies.ToListAsync();
     }
-    public Movie GetById(Guid id)
+    public async Task<Movie> GetByIdAsync(Guid id)
     {
         return db.Movies.SingleOrDefault(c => c.Id == id);
     }
+    //public MovieViewModel GetMovieByIdAdmin(Guid id)
+    //{
+
+    //    var movie = db.Movies.SingleOrDefault(c => c.Id == id);
+
+    //    MovieViewModel movieModel = new MovieViewModel();
+
+    //    movieModel.Name = movie.Name;
+    //    movieModel.Description = movie.Description;
+    //    movieModel.StartDate = movie.StartDate;
+    //    movieModel.EndDate = movie.EndDate;
+    //    movieModel.Price = movie.Price;
+    //    movieModel.Rate = (int)movie.Rate;
+    //    return movieModel;
+    //}
 
 
-    public MovieViewModel GetMovieByIdAdmin(Guid id)
+    //public async Task<Movie> GetByNameAsync(string name)
+    //{
+    //    return db.Movies.SingleOrDefault(c => c.Name == name);
+    //}
+
+    public async Task InsertAsync(Movie movie)
     {
-
-        var movie = db.Movies.SingleOrDefault(c => c.Id == id);
-
-        MovieViewModel movieModel = new MovieViewModel();
-
-        movieModel.Name = movie.Name;
-        movieModel.Description = movie.Description;
-        movieModel.StartDate = movie.StartDate;
-        movieModel.EndDate = movie.EndDate;
-        movieModel.Price = movie.Price;
-        movieModel.Rate = (int)movie.Rate;
-
-
-
-        return movieModel;
+        db.Movies.Add(movie);
+        await db.SaveChangesAsync();
+        
     }
-
-
-
-    public Movie GetByName(string name)
-    {
-        return db.Movies.SingleOrDefault(c => c.Name == name);
-    }
-
-    public async Task<int> Insert(MovieViewModel movievm, List<IFormFile> Image)
-    {
-        foreach (var item in Image)
-        {
-            if (item.Length > 0)
-            {
-                using (var stream = new MemoryStream())
-                {
-                    await item.CopyToAsync(stream);
-                    movievm.Image = stream.ToArray();
-                }
-            }
-        }
-        //Adding to movie table
-        var newGuid = Guid.NewGuid();
-        db.Movies.Add(new Movie()
-        {
-            Name = movievm.Name,
-            Id = newGuid,
-            StartDate = movievm.StartDate,
-            EndDate = movievm.EndDate,
-            Price = movievm.Price,
-            Description = movievm.Description,
-            Cat_Id = movievm.Category_Id,
-            Rate = movievm.Rate,
-            Producer_Id = movievm.Producer_Id,
-            Image = movievm.Image,
-            Trailer = movievm.Trailer
-
-        });
-        //Adding to actor movies table
-        foreach (var id in movievm.ActorIds)
-        {
-            db.MovieActors.Add(new MovieActor()
-            {
-                MovieId = newGuid,
-                ActorId = id
-            });
-        }
-        //adding to cinema movies table
-        for (var i = 0; i < movievm.CinemaIds.Count; i++)
-        {
-            db.MovieInCinemas.Add(new MovieInCinema()
-            {
-                Quantity = movievm.Quantities[i],
-                MovieId = newGuid,
-                CinemaId = movievm.CinemaIds[i]
-            });
-        }
-
-        return db.SaveChanges();
-
-    }
-    public async Task<int> update(MovieViewModel editMovie, Guid Mid, List<IFormFile> Image)
+    public async Task UpdateAsync(Movie editMovie, Guid Mid)
     {
         var movie = db.Movies.SingleOrDefault(c => c.Id == Mid);
-        foreach (var item in Image)
+        if(movie != null)
         {
-            if (item.Length > 0)
-            {
-                using (var stream = new MemoryStream())
-                {
-                    await item.CopyToAsync(stream);
-                    editMovie.Image = stream.ToArray();
-                }
-            }
-        }
-        movie.Name = editMovie.Name;
-        movie.Id = Mid;
-        movie.Description = editMovie.Description;
-        movie.StartDate = editMovie.StartDate;
-        movie.EndDate = editMovie.EndDate;
-        movie.Price = editMovie.Price;
-        if (Image.Count != 0)
-            movie.Image = editMovie.Image;
-        movie.Rate = editMovie.Rate;
-        movie.Cat_Id = editMovie.Category_Id;
-        movie.Producer_Id = editMovie.Producer_Id;
+            db.Movies.Update(movie);
+            await db.SaveChangesAsync();
 
-        if (editMovie.ActorIds != null)
-        {
-            foreach (var id in editMovie.ActorIds)
-            {
-                db.MovieActors.Update(new MovieActor()
-                {
-                    MovieId = Mid,
-                    ActorId = id
-                });
-            }
         }
-        //adding to cinema movies table
-        if (editMovie.CinemaIds != null)
-            foreach (var id in editMovie.CinemaIds)
-            {
-                db.MovieInCinemas.Add(new MovieInCinema()
-                {
-                    MovieId = Mid,
-                    CinemaId = id
-                });
-            }
-        int raws = db.SaveChanges();
-        return raws;
+       
     }
-    public int delete(Guid id)
+    public async Task DeleteAsync(Guid id)
     {
-        Movie delMovie = db.Movies.SingleOrDefault(c => c.Id == id);
-        db.Movies.Remove(delMovie);
-        int raws = db.SaveChanges();
-        return raws;
+        var movie = await db.Movies.SingleOrDefaultAsync(c => c.Id == id);
+        if(movie != null )
+        {
+            db.Movies.Remove(movie);
+            await db.SaveChangesAsync();
+        }    
     }
 }
 

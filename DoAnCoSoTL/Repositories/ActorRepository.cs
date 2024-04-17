@@ -25,51 +25,54 @@ namespace DoAnCoSoTL.Repositories
             return db.Actors.SingleOrDefault(n => n.Name == name);
         }
 
-        public Actor GetByImage(byte[] image)
+        public Actor GetByImage(string image)
         {
             return db.Actors.SingleOrDefault(n => n.Image == image);
         }
-        public async Task<int> insert(Actor newActor, List<IFormFile> Image)
+
+
+        public async Task<int> insert(Actor newActor, IFormFile Image)
         {
-            foreach (var item in Image)
+            if (Image != null && Image.Length > 0)
             {
-                if (item.Length > 0)
+                using (var stream = new MemoryStream())
                 {
-                    using (var stream = new MemoryStream())
-                    {
-                        await item.CopyToAsync(stream);
-                        newActor.Image = stream.ToArray();
-                    }
+                    await Image.CopyToAsync(stream);
+                    newActor.Image = Convert.ToBase64String(stream.ToArray());
                 }
             }
             db.Actors.Add(newActor);
             int raws = db.SaveChanges();
             return raws;
         }
-        public async Task<int> update(Actor EditActor, int id, List<IFormFile> Image)
+
+
+
+        public async Task<int> update(Actor EditActor, int id, IFormFile Image)
         {
             var Actor = db.Actors.SingleOrDefault(n => n.Id == id);
-            foreach (var item in Image)
+
+            if (Image != null && Image.Length > 0)
             {
-                if (item.Length > 0)
+                using (var stream = new MemoryStream())
                 {
-                    using (var stream = new MemoryStream())
-                    {
-                        await item.CopyToAsync(stream);
-                        EditActor.Image = stream.ToArray();
-                    }
+                    await Image.CopyToAsync(stream);
+                    EditActor.Image = Convert.ToBase64String(stream.ToArray());
                 }
             }
+
             Actor.Id = EditActor.Id;
             Actor.Name = EditActor.Name;
-            if (Image.Count!= 0)
+            if (Image != null && Image.Length > 0)
             {
                 Actor.Image = EditActor.Image;
             }
             Actor.Bio = EditActor.Bio;
+
             int raws = db.SaveChanges();
             return raws;
         }
+
         public int delete(int id)
         {
             Actor DelAct = db.Actors.SingleOrDefault(n => n.Id == id);
