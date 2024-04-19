@@ -4,12 +4,14 @@ namespace DoAnCoSoTL.Repositories
 {
     public interface ICinemaRepository
     {
-        int delete(int id);
-        List<Cinema> GetAll();
-        Cinema GetById(int id);
-        Cinema GetByLocation(string location);
-        Cinema GetByName(string name);
-       Task<int> insert(Cinema newCinema, IFormFile Image);
-        Task<int> update(Cinema EditCin, int id, IFormFile Image);
+        Task<Cinema> GetByNameAsync(string name);
+        Task<IEnumerable<Cinema>> GetAllAsync();
+        Task<Cinema> GetByIdAsync(int id);
+        Task<Cinema> GetByLocationAsync(string location);
+        Task InsertAsync(Cinema newCinema);
+
+        Task UpdateAsync(Cinema editCinema);
+        Task DeleteAsync(int id);
     }
+    
 }

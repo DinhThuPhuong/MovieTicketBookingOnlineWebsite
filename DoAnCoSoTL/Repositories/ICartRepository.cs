@@ -2,11 +2,13 @@
 
 namespace DoAnCoSoTL.Repositories
 {
+
     public interface ICartRepository
     {
-        public List<Cart> GetData(Cart cart);
-  
-        public void Insert(Cart mic);
-        public void Delete(Cart cart);
+        Task<IEnumerable<Cart>> GetAllAsync();
+        Task<IEnumerable<Cart>> GetDataAsync(Cart cart);
+        Task InsertAsync(Cart newCart);
+        Task UpdateAsync(Cart editCart);
+        Task DeleteAsync(int id);
     }
 }

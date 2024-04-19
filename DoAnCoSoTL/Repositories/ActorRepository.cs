@@ -1,85 +1,50 @@
 ﻿using DoAnCoSoTL.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DoAnCoSoTL.Repositories
 {
     public class ActorRepository : IActorRepository
     {
-       
-        
+
+
         MovieContext db;
         public ActorRepository(MovieContext _db)
         {
             db = _db;
         }
-        public List<Actor> GetAll()
+        public async Task<IEnumerable<Actor>> GetAllAsync()
         {
-            var Actors = db.Actors.ToList();
-            return Actors;
+            return await db.Actors.ToListAsync();
         }
-        public Actor GetById(int id)
+        public async Task<Actor> GetByIdAsync(int id)
         {
-            return db.Actors.SingleOrDefault(n => n.Id == id);
+            return await db.Actors.SingleOrDefaultAsync(p => p.Id == id);
         }
-        public Actor GetByName(string name)
+        public async Task<Actor> GetByNameAsync(string name)
         {
-            return db.Actors.SingleOrDefault(n => n.Name == name);
+            return await db.Actors.FindAsync(name);
+        }
+        public async Task InsertAsync(Actor actor)
+        {
+            db.Actors.Add(actor);
+            await db.SaveChangesAsync();
         }
 
-        public Actor GetByImage(string image)
+        public async Task UpdateAsync(Actor newActor)
         {
-            return db.Actors.SingleOrDefault(n => n.Image == image);
-        }
 
-
-        public async Task<int> insert(Actor newActor, IFormFile Image)
-        {
-            if (Image != null && Image.Length > 0)
-            {
-                using (var stream = new MemoryStream())
-                {
-                    await Image.CopyToAsync(stream);
-                    newActor.Image = Convert.ToBase64String(stream.ToArray());
-                }
-            }
-            db.Actors.Add(newActor);
-            int raws = db.SaveChanges();
-            return raws;
+            db.Actors.Update(newActor);
+            await db.SaveChangesAsync();
         }
 
 
-
-        public async Task<int> update(Actor EditActor, int id, IFormFile Image)
+        public async Task DeleteAsync(int id)
         {
-            var Actor = db.Actors.SingleOrDefault(n => n.Id == id);
+            var actor = await db.Actors.SingleOrDefaultAsync(p => p.Id == id);
+            db.Actors.Remove(actor);
+            await db.SaveChangesAsync();
 
-            if (Image != null && Image.Length > 0)
-            {
-                using (var stream = new MemoryStream())
-                {
-                    await Image.CopyToAsync(stream);
-                    EditActor.Image = Convert.ToBase64String(stream.ToArray());
-                }
-            }
 
-            Actor.Id = EditActor.Id;
-            Actor.Name = EditActor.Name;
-            if (Image != null && Image.Length > 0)
-            {
-                Actor.Image = EditActor.Image;
-            }
-            Actor.Bio = EditActor.Bio;
-
-            int raws = db.SaveChanges();
-            return raws;
         }
-
-        public int delete(int id)
-        {
-            Actor DelAct = db.Actors.SingleOrDefault(n => n.Id == id);
-            db.Actors.Remove(DelAct);
-            int raws = db.SaveChanges();
-            return raws;
-        }
-
     }
 }

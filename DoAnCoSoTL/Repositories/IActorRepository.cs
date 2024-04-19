@@ -5,11 +5,11 @@ namespace DoAnCoSoTL.Repositories
     public interface IActorRepository
     {
        
-        int delete(int id);
-        List<Actor> GetAll();
-        Actor GetById(int id);
-        Actor GetByName(string name);
-     Task< int> insert(Actor newActor,IFormFile Image);
-        Task<int> update(Actor EditActor, int id, IFormFile Image);
+        Task DeleteAsync(int id);
+        Task<IEnumerable<Actor>> GetAllAsync();
+        Task <Actor> GetByIdAsync(int id);
+        Task <Actor> GetByNameAsync(string name);
+        Task InsertAsync(Actor newActor);
+        Task UpdateAsync(Actor EditActor);
     }
 }

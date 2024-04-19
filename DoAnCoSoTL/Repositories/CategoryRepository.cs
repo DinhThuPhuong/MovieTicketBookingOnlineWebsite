@@ -16,6 +16,7 @@ namespace DoAnCoSoTL.Repositories
         {
             return await db.Categories.ToListAsync();
         }
+
         public async Task<Category> GetByIdAsync(int id)
         {
             return await db.Categories.FindAsync(id);

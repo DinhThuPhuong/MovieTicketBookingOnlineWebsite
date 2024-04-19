@@ -137,8 +137,8 @@ namespace DoAnCoSoTL.Migrations
                     b.Property<string>("ApplicationUserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<Guid>("MovieId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("MovieId")
+                        .HasColumnType("int");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -207,8 +207,11 @@ namespace DoAnCoSoTL.Migrations
 
             modelBuilder.Entity("DoAnCoSoTL.Models.Movie", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("Cat_Id")
                         .HasColumnType("int");
@@ -263,8 +266,8 @@ namespace DoAnCoSoTL.Migrations
                     b.Property<int>("ActorId")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("MovieId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("MovieId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -286,8 +289,8 @@ namespace DoAnCoSoTL.Migrations
                     b.Property<int>("CinemaId")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("MovieId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("MovieId")
+                        .HasColumnType("int");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -312,8 +315,8 @@ namespace DoAnCoSoTL.Migrations
                     b.Property<string>("ApplicationUserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<Guid>("MovieId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("MovieId")
+                        .HasColumnType("int");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");

@@ -5,15 +5,12 @@ namespace DoAnCoSoTL.Repositories
 {
     public interface IMovieRepository
     {
-
-        Task DeleteAsync(Guid id);
+        Task<Movie> GetByNameAsync(string name);
         Task<IEnumerable<Movie>> GetAllAsync();
-        //MovieViewModel GetMovieByIdAdmin(Guid id);
-        Task <Movie> GetByIdAsync(Guid id);
-        //Task<Movie> GetByName(string name);
-        Task InsertAsync(Movie movie);
-        Task UpdateAsync(Movie editMovie, Guid Mid);
-
+        Task<Movie> GetByIdAsync(int id);
+        Task InsertAsync( MovieViewModel movievm, IFormFile Image);
+        Task UpdateAsync(Movie editMovie);
+        Task DeleteAsync(int id);
 
     }
 }

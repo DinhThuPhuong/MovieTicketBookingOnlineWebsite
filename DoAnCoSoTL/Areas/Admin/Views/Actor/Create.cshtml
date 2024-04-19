@@ -1,0 +1,25 @@
+﻿@model DoAnCoSoTL.Models.Actor
+
+@{
+    Layout = "_AdminLayout";
+}
+<h2>Add Actor</h2>
+<form asp-action="Create" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Bio"></label>
+        <input asp-for="Bio" class="form-control" />
+        <span asp-validation-for="Bio" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Image">Actor Image</label>
+        <input type="file" asp-for="Image" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Add</button>
+    <button asp-action="Index" class="btn btn-success">Back</button>
+</form>
+

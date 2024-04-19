@@ -1,4 +1,5 @@
 ﻿using DoAnCoSoTL.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DoAnCoSoTL.Repositories
 { 
@@ -9,10 +10,22 @@ namespace DoAnCoSoTL.Repositories
         {
            this.db = db;
         }
-        public List<MovieActor> GetAll()
+        public async Task<IEnumerable<MovieActor>> GetAllAsync()
         {
-            var MovieActor = db.MovieActors.ToList();
-            return MovieActor;
+            return await db.MovieActors.ToListAsync();
+
         }
+        public async Task InsertAsync(MovieActor actor)
+        {
+            db.MovieActors.Add(actor);
+            await db.SaveChangesAsync();
+        }
+        public async Task DeletetAsync(int id)
+        {
+            var movie = db.MovieActors.FirstOrDefault(a => a.Id == id);
+            db.MovieActors.Remove(movie);   
+            await db.SaveChangesAsync();
+        }
+
     }
 }

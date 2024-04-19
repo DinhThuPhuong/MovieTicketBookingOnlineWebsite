@@ -1,82 +1,55 @@
 ﻿using DoAnCoSoTL.Models;
 using Microsoft.CodeAnalysis.Differencing;
+using Microsoft.EntityFrameworkCore;
 
 namespace DoAnCoSoTL.Repositories
 {
     public class CinemaRepository : ICinemaRepository
     {
         MovieContext db;
-        private async Task<string> SaveImage(IFormFile image)
-        {
-            var savePath = Path.Combine("wwwroot/images", image.FileName); // Thay  đổi đường dẫn theo cấu hình của bạn 
-            using (var fileStream = new FileStream(savePath, FileMode.Create))
-            {
-                await image.CopyToAsync(fileStream);
-            }
-            return "/images/" + image.FileName; // Trả về đường dẫn tương đối }
-
-        }
         public CinemaRepository(MovieContext _db)
         {
             db = _db;
         }
-        public List<Cinema> GetAll()
+
+        public async Task<IEnumerable<Cinema>> GetAllAsync()
         {
-            var cinemas = db.Cinemas.ToList();
-            return cinemas;
+            return await db.Cinemas.ToListAsync();
         }
-        public Cinema GetById(int id)
+        public async Task<Cinema> GetByIdAsync(int id)
         {
-            return db.Cinemas.SingleOrDefault(c => c.Id == id);
-        }
-        public Cinema GetByName(string name)
-        {
-            return db.Cinemas.SingleOrDefault(c => c.Name == name);
-        }
-        public Cinema GetByLocation(string location)
-        {
-            return db.Cinemas.SingleOrDefault(c => c.Location == location);
-        }
-       
-        
-        public int delete(int id)
-        {
-            Cinema delcin = db.Cinemas.SingleOrDefault(c => c.Id == id);
-            db.Cinemas.Remove(delcin);
-            int raws = db.SaveChanges();
-            return raws;
+            return await db.Cinemas.FindAsync(id);
         }
 
-        public async Task<int> insert(Cinema newCinema, IFormFile Image)
-        {  
-            if (Image != null)
-            {
-                // Lưu hình ảnh đại diện tham khảo bài 02 hàm SaveImage
-                newCinema.Image = await SaveImage(Image);
-            }
+        public async Task<Cinema> GetByNameAsync(string name)
+        {
+            return await db.Cinemas.FindAsync(name);
+        }
 
+        public async Task InsertAsync(Cinema newCinema)
+        {
             db.Cinemas.Add(newCinema);
-            int raws = db.SaveChanges();
-            return raws;
+            await db.SaveChangesAsync();
         }
-
-        public async Task<int> update(Cinema EditCin, int id, IFormFile Image)
+        public async Task UpdateAsync(Cinema editCinema)
         {
-            var cinema = db.Cinemas.SingleOrDefault(c => c.Id == id);
-            if (Image != null)
-            {
-                // Lưu hình ảnh đại diện tham khảo bài 02 hàm SaveImage
-                EditCin.Image = await SaveImage(Image);
-            }
-
-
-            cinema.Name = EditCin.Name;
-            cinema.Location = EditCin.Location;
-            if (Image!= null)
-                cinema.Image = EditCin.Image;
-            cinema.Location = EditCin.Location;
-            int raws = db.SaveChanges();
-            return raws;
+            db.Cinemas.Update(editCinema);
+            await db.SaveChangesAsync();
         }
+        public async Task DeleteAsync(int id)
+        {
+            var cinema = await db.Cinemas.FindAsync(id);
+            db.Cinemas.Remove(cinema);
+            await db.SaveChangesAsync();
+        }
+        public async Task<Cinema> GetByLocationAsync(string location)
+        {
+            return await db.Cinemas.FindAsync(location);
+        }
+        
+
+
+
     }
 }
+

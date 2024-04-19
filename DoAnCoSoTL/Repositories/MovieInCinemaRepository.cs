@@ -1,5 +1,6 @@
 ﻿using DoAnCoSoTL.Models;
 using DoAnCoSoTL.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace DoAnCoSoTL.Repositories
 {
@@ -11,38 +12,36 @@ namespace DoAnCoSoTL.Repositories
            this.db = db;
         }
 
-        public List<MovieInCinema> GetAll()
+        public async Task<IEnumerable<MovieInCinema>> GetAllAsync()
         {
-            var Movies = db.MovieInCinemas.ToList();
-            return Movies;
+            return await db.MovieInCinemas.ToListAsync();
         }
 
-        public MovieInCinema GetById(int id)
+
+        public async Task<MovieInCinema> GetByIdAsync(int id)
         {
-            var Movie = db.MovieInCinemas.SingleOrDefault(w=>w.Id==id);
-            return Movie;
+            return await db.MovieInCinemas.SingleOrDefaultAsync(p => p.Id == id);
+
         }
 
-        public void Insert(List<MovieInCinema> mic)
+        public async Task InsertAsync(IEnumerable<MovieInCinema> mic)
         {
-            foreach(var item in mic)
-            db.MovieInCinemas.Add(item);
-            db.SaveChanges();
+            await db.MovieInCinemas.AddRangeAsync(mic);
+            await db.SaveChangesAsync();
         }
 
-        public void Update(int id, MovieInCinema mic)
+        public async Task Update(int id, MovieInCinema mic)
         {
             var oldMovie = db.MovieInCinemas.SingleOrDefault(w => w.Id == id);
-            oldMovie.CinemaId = mic.CinemaId;
-            oldMovie.MovieId = mic.MovieId;
-            oldMovie.Quantity = mic.Quantity;
+            await db.SaveChangesAsync();
 
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
             var movie = db.MovieInCinemas.SingleOrDefault(w => w.Id == id);
             db.MovieInCinemas.Remove(movie);
+            await db.SaveChangesAsync();
         }
     }
 }

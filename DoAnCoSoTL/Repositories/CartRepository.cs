@@ -1,4 +1,5 @@
 ﻿using DoAnCoSoTL.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DoAnCoSoTL.Repositories
 {
@@ -9,31 +10,38 @@ namespace DoAnCoSoTL.Repositories
         {
             this.db = db;
         }
-        public void Delete(Cart cart)
+        public async Task DeleteAsync(int id)
         {
-            var movie = db.Cart.Where(w => w.UserId == cart.UserId).SingleOrDefault(w=>w.MovieId==cart.MovieId);
-            db.Cart.Remove(movie);
-            db.SaveChanges();
+            var cartToDelete = await db.Cart.FirstOrDefaultAsync(c => c.Id == id);
+
+            if (cartToDelete != null)
+            {
+                db.Cart.Remove(cartToDelete);
+                await db.SaveChangesAsync();
+            }
+        }
+        public async Task<IEnumerable<Cart>> GetAllAsync()
+        {
+            return await db.Cart.ToListAsync();
         }
 
-        public List<Cart> GetAll(Cart carts)
+        public async Task UpdateAsync(Cart editCart)
         {
-            var cart = db.Cart.Where(w=>w.UserId== carts.UserId).ToList();
-            return cart;
+            db.Cart.Update(editCart);
+            await db.SaveChangesAsync();
+        }
+        public async Task<IEnumerable<Cart>> GetDataAsync(Cart cart)
+        {
+            var carts = await db.Cart
+                .Where(w => w.UserId == cart.UserId && w.MovieId == cart.MovieId)
+                .ToListAsync();
+            return carts;
+        }
+        public async Task InsertAsync(Cart cart)
+        {
+            await db.Cart.AddAsync(cart);
+            await db.SaveChangesAsync();
         }
 
-        public List<Cart> GetData(Cart carts)
-        {
-            var cart = db.Cart.Where(w => w.UserId == carts.UserId).Where(w => w.MovieId == carts.MovieId).ToList();
-            return cart;
-        }
-
-        public void Insert(Cart cart)
-        {
-          
-           
-                db.Cart.Add(cart);
-            db.SaveChanges();
-        }
     }
 }

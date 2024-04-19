@@ -54,12 +54,12 @@
                 <div class="menu-inner">
                     <nav>
                         <ul class="metismenu" id="menu">
-                            <li><a asp-action="GetMoviesAdmin" asp-controller="Movie">Movies</a></li>
+                            <li><a <a asp-area="Admin" asp-action="Index" asp-controller="Movie">Movies</a></li>
                             <li><a asp-action="UpdateAdminform" asp-controller="UpdateProfile" asp-route-id="@user.Id">Profile</a></li>
-                            <li><a asp-action="AdminCinemas" asp-controller="Cinema">Cinemas</a></li>
-                            <li><a asp-action="AdminActors" asp-controller="Actor">Actors</a></li>
-                            <li><a  asp-area ="Admin" asp-action="Index" asp-controller="Category">Categories</a></li>
-                            <li><a asp-action="AdminProducers" asp-controller="Producer">Producers</a></li>
+                            <li><a asp-area="Admin" asp-action="Index" asp-controller="Cinema">Cinemas</a></li>
+                            <li><a asp-area="Admin" asp-action="Index" asp-controller="Actor">Actors</a></li>
+                            <li><a asp-area="Admin" asp-action="Index" asp-controller="Category">Categories</a></li>
+                            <li><a asp-area="Admin" asp-action="Index" asp-controller="Producer">Producers</a></li>
 
                         </ul>
                     </nav>
@@ -247,16 +247,16 @@
                             @* @if (@user.Image == null)
                             {
 
-                                <img src="~/images/placeholder.jpg"
-                                     class="avatar user-thumb" alt="avatar" />
+                            <img src="~/images/placeholder.jpg"
+                            class="avatar user-thumb" alt="avatar" />
                             }
                             else
                             {
-                                var base64 = Convert.ToBase64String(@user.Image);
-                                var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                            var base64 = Convert.ToBase64String(@user.Image);
+                            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
 
-                                <img src="@imgSrc" class="avatar user-thumb" alt="avatar"
-                                     asp-action="UpdateAdminform" asp-controller="UpdateProfile" asp-route-id="@user.Id" />
+                            <img src="@imgSrc" class="avatar user-thumb" alt="avatar"
+                            asp-action="UpdateAdminform" asp-controller="UpdateProfile" asp-route-id="@user.Id" />
                             } *@
                             <h4 class="user-name dropdown-toggle" data-toggle="dropdown">@user.FullName <i class="fa fa-angle-down"></i></h4>
                             <div class="dropdown-menu">
@@ -311,6 +311,6 @@
     <!-- others plugins -->
     <script src="/assets/js/plugins.js"></script>
     <script src="/assets/js/scripts.js"></script>
-   
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

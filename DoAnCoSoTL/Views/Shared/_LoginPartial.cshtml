@@ -18,14 +18,10 @@
     else
     {
         <li class="nav-item">
-            <button class="btn btn-light mr-2 ml-2 btn-sm" type="button">
-                <a class="nav-link text-dark hover-text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Đăng nhập</a>
-            </button>
+            <a class="btn btn-light mr-2 ml-2 btn-sm" asp-area="Identity" asp-page="/Account/Login">Đăng nhập</a>
         </li>
         <li class="nav-item">
-            <button class="btn btn-outline-light btn-sm" type="button">
-                <a class="nav-link text-white hover-text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Đăng ký</a>
-            </button>
+            <a class="btn btn-outline-light btn-sm" asp-area="Identity" asp-page="/Account/Register">Đăng ký</a>
         </li>
     }
 </ul>

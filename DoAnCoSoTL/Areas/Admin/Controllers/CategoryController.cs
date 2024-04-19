@@ -56,30 +56,6 @@ namespace DoAnCoSoTL.Areas.Admin.Controllers
             }
             return RedirectToAction("Create");
         }
-
-
-
-        //public async Task<IActionResult> UpdateCategory(Category editCategory, List<IFormFile> Image)
-        //{
-        //    var category = await db.Categories.SingleOrDefault(c => c.Id == editCategory.Id);
-        //    if (ModelState.IsValid)
-        //    {
-        //        foreach (var item in Image)
-        //        {
-        //            if (item.Length > 0)
-        //            {
-        //                using (var stream = new MemoryStream())
-        //                {
-        //                    await item.CopyToAsync(stream);
-        //                    editCategory.Image = stream.ToArray();
-        //                }
-        //            }
-        //            await _categoryRepository.UpdateAsync(editCategory);
-        //            return RedirectToAction(nameof(Index));
-        //        }
-        //    }
-        //    return RedirectToAction("UpdateCategoryForm", editCategory);
-        //}
         public async Task <IActionResult> Update(int id)
         {
             var category = await _categoryRepository.GetByIdAsync(id);

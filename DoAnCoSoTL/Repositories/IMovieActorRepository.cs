@@ -4,6 +4,9 @@ namespace DoAnCoSoTL.Repositories
 {
     public interface IMovieActorRepository
     {
-        public List<MovieActor> GetAll();
+        Task<IEnumerable<MovieActor>> GetAllAsync();
+        Task InsertAsync(MovieActor actor);
+        Task DeletetAsync(int id);
+
     }
 }

@@ -73,12 +73,20 @@ app.UseEndpoints(endpoints =>
         pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
     );
 
-    endpoints.MapRazorPages(); // Cấu hình tuyến đường cho trang Razor Pages
+    // Tuyến đường cho action "Delete" trong controller "Category"
+    endpoints.MapControllerRoute(
+        name: "DeleteCategory",
+        pattern: "Admin/Category/Delete/{id?}", // Đặt mẫu URL cho action "Delete"
+        defaults: new { controller = "Category", action = "Delete" } // Chỉ định controller và action
+    );
+
+    // Tuyến đường mặc định
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}"
+    );
+
+    // Nếu không có tuyến đường nào khớp, hãy sử dụng app.Run()
+    endpoints.MapFallbackToController("Index", "Home");
 });
-
-
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-
 app.Run();

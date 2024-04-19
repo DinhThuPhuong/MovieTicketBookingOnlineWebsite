@@ -7,9 +7,10 @@ namespace DoAnCoSoTL.Models
 {
     public class Movie
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] // Đánh dấu Id là tự động tăng
+        public int Id { get; set; }
         [Required]
-        public Guid Id { get; set; }
         public string Name { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }

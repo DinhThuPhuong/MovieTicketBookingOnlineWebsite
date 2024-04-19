@@ -377,6 +377,10 @@
       "PackagePath": "staticwebassets\\images\\Animation.jpg"
     },
     {
+      "Id": "C:\\Users\\Admin\\Desktop\\DoAnCoSoTL\\DoAnCoSoTL\\wwwroot\\images\\Category-Khoa hoc vien tuong.jpg",
+      "PackagePath": "staticwebassets\\images\\Category-Khoa hoc vien tuong.jpg"
+    },
+    {
       "Id": "C:\\Users\\Admin\\Desktop\\DoAnCoSoTL\\DoAnCoSoTL\\wwwroot\\images\\Cinema\\Galaxy.jpg",
       "PackagePath": "staticwebassets\\images\\Cinema\\Galaxy.jpg"
     },
@@ -401,12 +405,28 @@
       "PackagePath": "staticwebassets\\images\\Horror.jpg"
     },
     {
+      "Id": "C:\\Users\\Admin\\Desktop\\DoAnCoSoTL\\DoAnCoSoTL\\wwwroot\\images\\James Cameron - Avatar 2.jpg",
+      "PackagePath": "staticwebassets\\images\\James Cameron - Avatar 2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Desktop\\DoAnCoSoTL\\DoAnCoSoTL\\wwwroot\\images\\Phương Anh Đào.jpg",
+      "PackagePath": "staticwebassets\\images\\Phương Anh Đào.jpg"
+    },
+    {
       "Id": "C:\\Users\\Admin\\Desktop\\DoAnCoSoTL\\DoAnCoSoTL\\wwwroot\\images\\Romance.jpg",
       "PackagePath": "staticwebassets\\images\\Romance.jpg"
     },
     {
+      "Id": "C:\\Users\\Admin\\Desktop\\DoAnCoSoTL\\DoAnCoSoTL\\wwwroot\\images\\Taylor Swift.jpg",
+      "PackagePath": "staticwebassets\\images\\Taylor Swift.jpg"
+    },
+    {
       "Id": "C:\\Users\\Admin\\Desktop\\DoAnCoSoTL\\DoAnCoSoTL\\wwwroot\\images\\Thriller.jpg",
       "PackagePath": "staticwebassets\\images\\Thriller.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Desktop\\DoAnCoSoTL\\DoAnCoSoTL\\wwwroot\\images\\Tran thanh.jpg",
+      "PackagePath": "staticwebassets\\images\\Tran thanh.jpg"
     },
     {
       "Id": "C:\\Users\\Admin\\Desktop\\DoAnCoSoTL\\DoAnCoSoTL\\wwwroot\\images\\actor-1.jpeg",
@@ -499,6 +519,10 @@
     {
       "Id": "C:\\Users\\Admin\\Desktop\\DoAnCoSoTL\\DoAnCoSoTL\\wwwroot\\images\\logo2.png",
       "PackagePath": "staticwebassets\\images\\logo2.png"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Desktop\\DoAnCoSoTL\\DoAnCoSoTL\\wwwroot\\images\\lotte cinema di an.png",
+      "PackagePath": "staticwebassets\\images\\lotte cinema di an.png"
     },
     {
       "Id": "C:\\Users\\Admin\\Desktop\\DoAnCoSoTL\\DoAnCoSoTL\\wwwroot\\images\\movie-1.jpg",
@@ -599,6 +623,10 @@
     {
       "Id": "C:\\Users\\Admin\\Desktop\\DoAnCoSoTL\\DoAnCoSoTL\\wwwroot\\images\\producer_2.jpg",
       "PackagePath": "staticwebassets\\images\\producer_2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Desktop\\DoAnCoSoTL\\DoAnCoSoTL\\wwwroot\\images\\taylor swift1.jpg",
+      "PackagePath": "staticwebassets\\images\\taylor swift1.jpg"
     },
     {
       "Id": "C:\\Users\\Admin\\Desktop\\DoAnCoSoTL\\DoAnCoSoTL\\wwwroot\\images\\uploads\\ads1(1).png",
