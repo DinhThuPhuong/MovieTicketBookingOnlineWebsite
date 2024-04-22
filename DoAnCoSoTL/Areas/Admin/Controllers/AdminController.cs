@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace DoAnCoSoTL.Areas.Admin.Controllers
 {
 
-    [Area("Admin")]
-    [Authorize(Roles = SD.Role_Admin)]
+    //[Area("Admin")]
+    //[Authorize(Roles = SD.Role_Admin)]
     public class AdminController : Controller
         {
             private readonly UserManager<ApplicationUser> _userManager;

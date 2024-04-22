@@ -10,7 +10,7 @@ namespace DoAnCoSoTL.Models
         [ForeignKey("Cinema")]
         public int CinemaId { get; set; }
         [ForeignKey("Movie")]
-        public int MovieId { get; set; }
+        public Guid MovieId { get; set; }
         public virtual Movie Movie { get; set; }
         public virtual Cinema Cinema { get; set; }
     }

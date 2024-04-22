@@ -137,8 +137,8 @@ namespace DoAnCoSoTL.Migrations
                     b.Property<string>("ApplicationUserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("MovieId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("MovieId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -207,11 +207,8 @@ namespace DoAnCoSoTL.Migrations
 
             modelBuilder.Entity("DoAnCoSoTL.Models.Movie", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Cat_Id")
                         .HasColumnType("int");
@@ -219,6 +216,9 @@ namespace DoAnCoSoTL.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DurationMinutes")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
@@ -266,8 +266,8 @@ namespace DoAnCoSoTL.Migrations
                     b.Property<int>("ActorId")
                         .HasColumnType("int");
 
-                    b.Property<int>("MovieId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("MovieId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -289,8 +289,8 @@ namespace DoAnCoSoTL.Migrations
                     b.Property<int>("CinemaId")
                         .HasColumnType("int");
 
-                    b.Property<int>("MovieId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("MovieId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -315,8 +315,8 @@ namespace DoAnCoSoTL.Migrations
                     b.Property<string>("ApplicationUserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("MovieId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("MovieId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -332,6 +332,38 @@ namespace DoAnCoSoTL.Migrations
                     b.HasIndex("MovieId");
 
                     b.ToTable("MovieOrders");
+                });
+
+            modelBuilder.Entity("DoAnCoSoTL.Models.MovieShowtime", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AvailableTickets")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CinemaId")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("MovieId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Showtime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("TicketPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CinemaId");
+
+                    b.HasIndex("MovieId");
+
+                    b.ToTable("MovieShowtime");
                 });
 
             modelBuilder.Entity("DoAnCoSoTL.Models.Producer", b =>
@@ -578,6 +610,25 @@ namespace DoAnCoSoTL.Migrations
                     b.Navigation("Movie");
                 });
 
+            modelBuilder.Entity("DoAnCoSoTL.Models.MovieShowtime", b =>
+                {
+                    b.HasOne("DoAnCoSoTL.Models.Cinema", "Cinema")
+                        .WithMany("MovieShowtimes")
+                        .HasForeignKey("CinemaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DoAnCoSoTL.Models.Movie", "Movie")
+                        .WithMany("MovieShowtimes")
+                        .HasForeignKey("MovieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cinema");
+
+                    b.Navigation("Movie");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -648,6 +699,8 @@ namespace DoAnCoSoTL.Migrations
 
             modelBuilder.Entity("DoAnCoSoTL.Models.Cinema", b =>
                 {
+                    b.Navigation("MovieShowtimes");
+
                     b.Navigation("MoviesInCinema");
                 });
 
@@ -658,6 +711,8 @@ namespace DoAnCoSoTL.Migrations
                     b.Navigation("MovieActors");
 
                     b.Navigation("MovieOrders");
+
+                    b.Navigation("MovieShowtimes");
 
                     b.Navigation("MoviesInCinema");
                 });

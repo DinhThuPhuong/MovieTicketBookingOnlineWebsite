@@ -33,17 +33,17 @@ public class MovieRepository : IMovieRepository
     {
         return await db.Movies.FindAsync(name);
     }
-
     public async Task InsertAsync(MovieViewModel movievm, IFormFile Image)
     {
         if (Image != null)
         {
-            // Lưu hình ảnh đại diện
-            movievm.Image = await SaveImage(Image);
+            movievm.Image = await SaveImage(Image); // Phương thức xử lý hình ảnh đã được tách ra
         }
-
+        var newGuid = Guid.NewGuid();
+        // Kiểm tra tính hợp lệ của dữ liệu đầu vào
         var movie = new Movie()
         {
+            Id = newGuid,
             Name = movievm.Name,
             StartDate = movievm.StartDate,
             EndDate = movievm.EndDate,
@@ -58,22 +58,24 @@ public class MovieRepository : IMovieRepository
 
         db.Movies.Add(movie);
 
-        // Thêm các bản ghi liên quan vào cơ sở dữ liệu
+        // Thêm liên kết với diễn viên vào cơ sở dữ liệu
+        // Tạo một Dictionary để lưu trữ cặp key-value (cinemaId, quantity)
+        //Adding to actor movies table
         foreach (var id in movievm.ActorIds)
         {
             db.MovieActors.Add(new MovieActor()
             {
-                Movie = movie,
+                MovieId = newGuid,
                 ActorId = id
             });
         }
-
+        //adding to cinema movies table
         for (var i = 0; i < movievm.CinemaIds.Count; i++)
         {
             db.MovieInCinemas.Add(new MovieInCinema()
             {
                 Quantity = movievm.Quantities[i],
-                Movie = movie,
+                MovieId = newGuid,
                 CinemaId = movievm.CinemaIds[i]
             });
         }
@@ -82,6 +84,55 @@ public class MovieRepository : IMovieRepository
         await db.SaveChangesAsync();
     }
 
+
+    //    public async Task InsertAsync(MovieViewModel movievm, IFormFile Image)
+    //{
+    //    if (Image != null)
+    //    {
+    //        movievm.Image = await SaveImage(Image); // Phương thức xử lý hình ảnh đã được tách ra
+    //    }
+
+    //    // Kiểm tra tính hợp lệ của dữ liệu đầu vào
+    //        var movie = new Movie()
+    //        {
+    //            Id = Guid.NewGuid(),
+    //            Name = movievm.Name,
+    //            StartDate = movievm.StartDate,
+    //            EndDate = movievm.EndDate,
+    //            Price = movievm.Price,
+    //            Description = movievm.Description,
+    //            Cat_Id = movievm.Category_Id,
+    //            Rate = movievm.Rate,
+    //            Producer_Id = movievm.Producer_Id,
+    //            Image = movievm.Image,
+    //            Trailer = movievm.Trailer
+    //        };
+
+    //        db.Movies.Add(movie);
+
+    //        // Thêm liên kết với diễn viên và rạp chiếu vào cơ sở dữ liệu
+    //        foreach (var id in movievm.ActorIds)
+    //        {
+    //            db.MovieActors.Add(new MovieActor()
+    //            {
+    //                MovieId = movie.Id,
+    //                ActorId = id
+    //            });
+    //        }
+
+    //        foreach (var cinemaId in movievm.CinemaIds)
+    //        {
+    //            db.MovieInCinemas.Add(new MovieInCinema()
+    //            {
+    //                Quantity = movievm.Quantities[movievm.CinemaIds.IndexOf(cinemaId)],
+    //                MovieId = movie.Id,
+    //                CinemaId = cinemaId
+    //            });
+    //        }
+
+    //        // Lưu các thay đổi vào cơ sở dữ liệu
+    //        await db.SaveChangesAsync();
+    //}
 
     public async Task UpdateAsync(Movie editMovie)
     {

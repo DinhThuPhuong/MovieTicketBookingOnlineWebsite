@@ -39,6 +39,28 @@ namespace DoAnCoSoTL.Areas.Admin.Controllers
             var movies = await _movieRepository.GetAllAsync();
             return View(movies);
         }
+        private string GetMovieStatus(DateTime releaseDate)
+        {
+            DateTime currentDate = DateTime.Now;
+
+            // Số ngày tối đa mà phim được xem là phim sắp ra mắt
+            int daysUntilRelease = 7;
+
+            // Kiểm tra nếu ngày hiện tại lớn hơn ngày khởi chiếu
+            if (currentDate > releaseDate)
+            {
+                return "Đang chiếu";
+            }
+            // Kiểm tra nếu ngày hiện tại gần hơn một số ngày nhất định so với ngày khởi chiếu
+            else if ((releaseDate - currentDate).TotalDays <= daysUntilRelease)
+            {
+                return "Sắp ra mắt";
+            }
+            else
+            {
+                return "Sắp chiếu";
+            }
+        }
 
         private async Task<string> SaveImage(IFormFile image)
         {
@@ -59,31 +81,80 @@ namespace DoAnCoSoTL.Areas.Admin.Controllers
 
             return View(new MovieViewModel());
         }
-        //action xử lý thêm category
+        //action xử lý thêm movie
+
         [HttpPost]
-
-        public async Task<IActionResult> Create(MovieViewModel newMovie, IFormFile Image)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(MovieViewModel movievm, IFormFile Image)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                if (Image != null)
+                try
                 {
-                    // Lưu hình ảnh đại diện
-                    newMovie.Image = await SaveImage(Image);
+                    await _movieRepository.InsertAsync(movievm, Image); // Gọi InsertAsync khi ModelState.IsValid
+                    return RedirectToAction("Index", "Movie");
                 }
-
-                await _movieRepository.InsertAsync(newMovie, Image);
-                return RedirectToAction(nameof(Index));
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError(string.Empty, "An error occurred while saving data: " + ex.Message);
+                }
             }
 
-            // Load danh sách rạp chiếu phim, danh mục, diễn viên và nhà sản xuất để hiển thị trong dropdownlist
-            ViewBag.Cinemas = new SelectList(_cinemaRepository.GetAllAsync().Result, "Id", "Name");
-            ViewBag.Categories = new SelectList(_categoryRepository.GetAllAsync().Result, "Id", "Name");
-            ViewBag.Actors = new SelectList(_actorRepository.GetAllAsync().Result, "Id", "Name");
-            ViewBag.Producers = new SelectList(_producerRepository.GetAllAsync().Result, "Id", "Name");
-
-            return View(newMovie);
+            // Nếu ModelState không hợp lệ hoặc có lỗi, bạn có thể hiển thị lại view Create với dữ liệu hiện tại và thông báo lỗi
+            ViewBag.Cinemas = new SelectList(_db.Cinemas.ToList(), "Id", "Name");
+            ViewBag.Categories = new SelectList(_db.Categories.ToList(), "Id", "Name");
+            ViewBag.Actors = new SelectList(_db.Actors.ToList(), "Id", "Name");
+            ViewBag.Producers = new SelectList(_db.Producers.ToList(), "Id", "Name");
+            return View("Create", movievm);
         }
+
+
+
+        //[HttpPost]
+        //public async Task<IActionResult> AddTicketQuantities(int cinemas, int[] quantities)
+        //{
+        //    try
+        //    {
+        //        // Kiểm tra xem có rạp chiếu và số lượng vé được gửi từ client không
+        //        if (cinemas != null && quantities != null)
+        //        {
+        //            // Lặp qua từng cặp rạp chiếu và số lượng vé để thêm vào cơ sở dữ liệu
+        //            for (int i = 0; i < cinemas; i++)
+        //            {
+        //                // Thêm thông tin vào cơ sở dữ liệu hoặc xử lý logic phù hợp
+        //                // Ví dụ:
+        //                var movieInCinema = new MovieInCinema()
+        //                {
+        //                    CinemaId = i, // Id của rạp chiếu
+        //                    Quantity = quantities[i], // Số lượng vé
+        //                                              // Các thông tin khác nếu cần
+        //                };
+
+        //                // Lưu thông tin vào cơ sở dữ liệu
+        //                await _movieincinemaRepository.InsertAsync(movieInCinema);
+        //            }
+
+        //            // Tạo ViewModel để trả về PartialView
+        //            var viewModel = new MovieViewModel(); // Thay YourViewModel bằng ViewModel thực tế của bạn
+
+        //            // Trả về PartialView để cập nhật giao diện người dùng
+        //            return PartialView("_TicketQuantitiesPartial", viewModel);
+        //        }
+        //        else
+        //        {
+        //            // Nếu không có dữ liệu từ client hoặc không đúng định dạng
+        //            return BadRequest("Invalid data format");
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Xử lý ngoại lệ nếu cần
+        //        return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
+        //    }
+        //}
+
+
+
 
 
 
