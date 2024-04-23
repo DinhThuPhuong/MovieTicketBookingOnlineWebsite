@@ -13,26 +13,26 @@ namespace DoAnCoSoTL.Areas.Admin.Controllers
     [Authorize(Roles = SD.Role_Admin)]
     public class MovieController : Controller
     {
-        private readonly IMovieActorRepository _movieactorRepository;
-        private readonly IMovieInCinemaRepository _movieincinemaRepository;
+        private readonly IMovieActorRepository _movieActorRepository;
+        private readonly IMovieInCinemaRepository _moviesInCinemaRepository;
         private readonly ICinemaRepository _cinemaRepository;
         private readonly IProducerRepository _producerRepository;
         private readonly IActorRepository _actorRepository;
         private readonly ICategoryRepository _categoryRepository;
         private readonly IMovieRepository _movieRepository;
         MovieContext _db;
-        public MovieController(ICategoryRepository categoryRepository, IMovieRepository movieRepository, MovieContext db, 
-            IMovieActorRepository movieactorRepository, IMovieInCinemaRepository movieincinemaRepository, 
-            ICinemaRepository cinemaRepository, IProducerRepository producerRepository, IActorRepository actorRepository)
+        public MovieController(ICategoryRepository categoryRepository, IMovieRepository movieRepository, MovieContext db,
+            IMovieActorRepository movieactorRepository,
+            ICinemaRepository cinemaRepository, IProducerRepository producerRepository, IActorRepository actorRepository, IMovieInCinemaRepository movieInCinemaRepository)
         {
             _categoryRepository = categoryRepository;
             _db = db;
             _movieRepository = movieRepository;
-            _movieactorRepository = movieactorRepository;
-            _movieincinemaRepository = movieincinemaRepository;
+            _movieActorRepository = movieactorRepository;
             _producerRepository = producerRepository;
             _actorRepository = actorRepository;
             _cinemaRepository = cinemaRepository;
+            _moviesInCinemaRepository = movieInCinemaRepository;
         }
         public async Task<IActionResult> Index()
         {
@@ -87,11 +87,48 @@ namespace DoAnCoSoTL.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(MovieViewModel movievm, IFormFile Image)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 try
                 {
-                    await _movieRepository.InsertAsync(movievm, Image); // Gọi InsertAsync khi ModelState.IsValid
+                    var movie = new Movie
+                    {
+                        Id = Guid.NewGuid(),
+                        Name = movievm.Name,
+                        Description = movievm.Description,
+                        Price = movievm.Price,
+                        Rate = movievm.Rate,
+                        StartDate = movievm.StartDate,
+                        EndDate = movievm.EndDate,
+                        Cat_Id = movievm.Category_Id,
+                        Producer_Id = movievm.Producer_Id,
+                        Trailer = movievm.Trailer,
+                        DurationMinutes = movievm.DurationMinutes,
+                    };
+
+                    if (Image != null)
+                    {
+                        movie.Image = await SaveImage(Image);
+                    }
+
+                    await _movieRepository.InsertAsync(movie);
+
+                    if (movievm.ActorIds != null && movievm.ActorIds.Any())
+                    {
+                        foreach (var actorId in movievm.ActorIds)
+                        {
+                            await _movieActorRepository.InsertMovieActorAsync(movie.Id, actorId);
+                        }
+                    }
+
+                    if (movievm.CinemaIds != null && movievm.CinemaIds.Any())
+                    {
+                        foreach (var cinemaId in movievm.CinemaIds)
+                        {
+                            await _moviesInCinemaRepository.InsertMoviesInCinemaAsync(movie.Id, cinemaId);
+                        }
+                    }
+
                     return RedirectToAction("Index", "Movie");
                 }
                 catch (Exception ex)
@@ -110,145 +147,96 @@ namespace DoAnCoSoTL.Areas.Admin.Controllers
 
 
 
-        //[HttpPost]
-        //public async Task<IActionResult> AddTicketQuantities(int cinemas, int[] quantities)
-        //{
-        //    try
-        //    {
-        //        // Kiểm tra xem có rạp chiếu và số lượng vé được gửi từ client không
-        //        if (cinemas != null && quantities != null)
-        //        {
-        //            // Lặp qua từng cặp rạp chiếu và số lượng vé để thêm vào cơ sở dữ liệu
-        //            for (int i = 0; i < cinemas; i++)
-        //            {
-        //                // Thêm thông tin vào cơ sở dữ liệu hoặc xử lý logic phù hợp
-        //                // Ví dụ:
-        //                var movieInCinema = new MovieInCinema()
-        //                {
-        //                    CinemaId = i, // Id của rạp chiếu
-        //                    Quantity = quantities[i], // Số lượng vé
-        //                                              // Các thông tin khác nếu cần
-        //                };
-
-        //                // Lưu thông tin vào cơ sở dữ liệu
-        //                await _movieincinemaRepository.InsertAsync(movieInCinema);
-        //            }
-
-        //            // Tạo ViewModel để trả về PartialView
-        //            var viewModel = new MovieViewModel(); // Thay YourViewModel bằng ViewModel thực tế của bạn
-
-        //            // Trả về PartialView để cập nhật giao diện người dùng
-        //            return PartialView("_TicketQuantitiesPartial", viewModel);
-        //        }
-        //        else
-        //        {
-        //            // Nếu không có dữ liệu từ client hoặc không đúng định dạng
-        //            return BadRequest("Invalid data format");
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Xử lý ngoại lệ nếu cần
-        //        return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
-        //    }
-        //}
 
 
 
 
 
 
-        public async Task<IActionResult> Update(int id)
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(Guid id, MovieViewModel movievm, IFormFile Image)
         {
             var movie = await _movieRepository.GetByIdAsync(id);
             if (movie == null)
             {
                 return NotFound();
             }
-
-            // Check if Image is null
-            if (movie.Image != null)
+            ModelState.Remove("Image");
+            if (ModelState.IsValid)
             {
-                movie.Image = "default.jpg"; // Set a default image path or handle accordingly
+                try
+                {
+                    //var movie = await _movieRepository.GetByIdAsync(id);
+                    //if (movie == null)
+                    //{
+                    //    return NotFound();
+                    //}
+
+                    movie.Name = movievm.Name;
+                    movie.Description = movievm.Description;
+                    movie.Price = movievm.Price;
+                    movie.Rate = movievm.Rate;
+                    movie.StartDate = movievm.StartDate;
+                    movie.EndDate = movievm.EndDate;
+                    movie.Cat_Id = movievm.Category_Id;
+                    movie.Producer_Id = movievm.Producer_Id;
+                    movie.Trailer = movievm.Trailer;
+                    movie.DurationMinutes = movievm.DurationMinutes;
+                    if (Image != null)
+                    {
+                        movie.Image = await SaveImage(Image);
+                    }
+
+                    await _movieRepository.UpdateAsync(movie);
+
+                    // Xóa tất cả các liên kết diễn viên và rạp chiếu phim cũ
+                    await _movieActorRepository.DeleteByMovieIdAsync(id);
+                    await _moviesInCinemaRepository.DeleteByMovieIdAsync(id);
+
+                    // Thêm các liên kết diễn viên mới
+                    if (movievm.ActorIds != null && movievm.ActorIds.Any())
+                    {
+                        foreach (var actorId in movievm.ActorIds)
+                        {
+                            await _movieActorRepository.InsertMovieActorAsync(movie.Id, actorId);
+                        }
+                    }
+
+                    // Thêm các liên kết rạp chiếu phim mới
+                    if (movievm.CinemaIds != null && movievm.CinemaIds.Any())
+                    {
+                        foreach (var cinemaId in movievm.CinemaIds)
+                        {
+                            await _moviesInCinemaRepository.InsertMoviesInCinemaAsync(movie.Id, cinemaId);
+                        }
+                    }
+
+                    return RedirectToAction("Index", "Movie");
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError(string.Empty, "An error occurred while updating data: " + ex.Message);
+                }
             }
 
-            return View(movie);
+            // Nếu ModelState không hợp lệ hoặc có lỗi, bạn có thể hiển thị lại view Update với dữ liệu hiện tại và thông báo lỗi
+            ViewBag.Cinemas = new SelectList(_db.Cinemas.ToList(), "Id", "Name");
+            ViewBag.Categories = new SelectList(_db.Categories.ToList(), "Id", "Name");
+            ViewBag.Actors = new SelectList(_db.Actors.ToList(), "Id", "Name");
+            ViewBag.Producers = new SelectList(_db.Producers.ToList(), "Id", "Name");
+            return View("Update", movievm);
         }
 
-        // Xử lý cập nhật sản phẩm
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Update(int Mid, MovieViewModel movieVM, IFormFile imageUrl)
-        //{
-        //    var movie = _db.Movies.SingleOrDefault(c => c.Id == Mid);
-        //    if (movie == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    ModelState.Remove("ImageUrl");
-        //    if (ModelState.IsValid)
-        //    {
-        //        var existingMovie = await _movieRepository.GetByIdAsync(Mid);
 
 
-        //        existingMovie.Name = movieVM.Name;
-        //        existingMovie.Id = Mid;
-        //        existingMovie.Description = movieVM.Description;
-        //        existingMovie.StartDate = movieVM.StartDate;
-        //        existingMovie.EndDate = movieVM.EndDate;
-        //        existingMovie.Price = movieVM.Price;
-        //        existingMovie.Rate = movieVM.Rate;
-        //        existingMovie.Cat_Id = movieVM.Category_Id;
-        //        existingMovie.Producer_Id = movieVM.Producer_Id;
-        //        existingMovie.Trailer = movieVM.Trailer;
-        //        if (imageUrl != null)
-        //        {
-        //            existingMovie.Image = await SaveImage(imageUrl);
-        //        }
-
-        //        if (movieVM.ActorIds != null)
-        //        {
-        //            foreach (var id in movieVM.ActorIds)
-        //            {
-        //                _db.MovieActors.Update(new MovieActor()
-        //                {
-        //                    MovieId = Mid,
-        //                    ActorId = id
-        //                });
-        //            }
-        //        }
-        //        //adding to cinema movies table
-        //        if (movieVM.CinemaIds != null)
-        //        {
-        //            foreach (var id in movieVM.CinemaIds)
-        //            {
-        //                _db.MovieInCinemas.Add(new MovieInCinema()
-        //                {
-        //                    MovieId = Mid,
-        //                    CinemaId = id
-        //                });
-        //            }
-        //        }
-        //        await _movieRepository.UpdateAsync(existingMovie);
-        //        return RedirectToAction(nameof(Index));
-        //    }
-
-        //    //Nếu ModelState không hợp lệ, cần cung cấp lại dữ liệu cho view
-        //    ViewBag.Actors = await _actorRepository.GetAllAsync();
-        //    ViewBag.Cinemas = await _cinemaRepository.GetAllAsync();
-        //    ViewBag.Categories = await _categoryRepository.GetAllAsync();
-        //    ViewBag.Producers = await _producerRepository.GetAllAsync();
-
-        //    return View(movieVM);
-        //}
-        // Xử lý xóa sản phẩm
-        [HttpPost]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             await _movieRepository.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
         }
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(Guid id)
         {
             Movie movies = await _movieRepository.GetByIdAsync(id);
             return View("Details", movies);

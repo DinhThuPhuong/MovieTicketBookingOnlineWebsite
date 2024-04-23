@@ -27,6 +27,7 @@ namespace DoAnCoSoTL.Models
         public string Trailer { get; set; }
 
         public double Rate { get; set; }
+        public int DurationMinutes { get; set; } 
 
         [ForeignKey("Category")]
         public int Cat_Id { get; set; }
@@ -38,16 +39,15 @@ namespace DoAnCoSoTL.Models
 
         public virtual Producer Producer { get; set; }
 
-        public virtual List<MovieOrder> MovieOrders { get; set; }
+        //public virtual List<MovieOrder> MovieOrders { get; set; }
 
-        public virtual List<MovieInCinema> MoviesInCinema { get; set; }
+        // public virtual List<MovieInCinema> MoviesInCinema { get; set; }
 
-        public virtual List<Cart> Carts { get; set; }
+        //public virtual List<Cart> Carts { get; set; }
+        public ICollection<MoviesInCinema> MoviesInCinema { get; set; }
+        public ICollection<Screening> Screenings { get; set; }
+        public ICollection<MovieActor> MovieActors { get; set; }
 
-        public virtual List<MovieActor> MovieActors { get; set; }
-
-        public int DurationMinutes { get; set; } // Thêm trường thời lượng chiếu vào đây
-
-        public virtual ICollection<MovieShowtime> MovieShowtimes { get; set; }
+       // public virtual ICollection<MovieShowtime> MovieShowtimes { get; set; }
     }
 }

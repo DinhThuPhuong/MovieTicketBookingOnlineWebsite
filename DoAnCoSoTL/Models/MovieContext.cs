@@ -14,8 +14,9 @@ namespace DoAnCoSoTL.Models
         public virtual DbSet<Producer> Producers { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<MovieActor> MovieActors { get; set; }
-        public virtual DbSet<MovieInCinema> MovieInCinemas { get; set; }
+        public virtual DbSet<MoviesInCinema> MovieInCinemas { get; set; }
         public virtual DbSet<Cart> Cart { get; set; }
+        public DbSet<Screening> Screenings { get; set; }
         public virtual DbSet<MovieOrder> MovieOrders { get; set; }
 
         //public MovieContext() { }

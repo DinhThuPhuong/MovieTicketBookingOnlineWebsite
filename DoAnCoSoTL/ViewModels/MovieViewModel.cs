@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace DoAnCoSoTL.ViewModels
 {
     public class MovieViewModel
     {
-
         [Display(Name = "Movie name")]
         [Required(ErrorMessage = "Name is required")]
         public string Name { get; set; }
@@ -24,7 +26,7 @@ namespace DoAnCoSoTL.ViewModels
 
         [Display(Name = "Movie start date")]
         [Required(ErrorMessage = "Start date is required")]
-        [Remote(action:"StartDate", controller:"Validation", ErrorMessage ="Start Date Should not be before today" )]
+        [Remote(action: "StartDate", controller: "Validation", ErrorMessage = "Start Date Should not be before today")]
         public DateTime StartDate { get; set; }
 
         [Display(Name = "Movie end date")]
@@ -36,20 +38,31 @@ namespace DoAnCoSoTL.ViewModels
         [Required(ErrorMessage = "Movie category is required")]
         public int Category_Id { get; set; }
 
-        //Relationships
+        // Danh sách các diễn viên
         [Display(Name = "Select actor(s)")]
         [Required(ErrorMessage = "Movie actor(s) is required")]
         public List<int> ActorIds { get; set; }
 
-        [Display(Name = "Select Cienams")]
-        [Required(ErrorMessage = "Movie cinema is required")]
+        // Danh sách các rạp chiếu phim
+        [Display(Name = "Select cinemas")]
+        [Required(ErrorMessage = "Movie cinemas are required")]
         public List<int> CinemaIds { get; set; }
-        public List<int> Quantities { get; set; }
 
         [Display(Name = "Select a producer")]
         [Required(ErrorMessage = "Movie producer is required")]
         public int Producer_Id { get; set; }
+        [Display(Name = "DurationMinutes")]
+        [Required(ErrorMessage = "DurationMinutes is required")]
+        public int DurationMinutes { get; set; }
+
         public string? Image { get; set; }
-        public string Trailer {get; set; }
+
+        public string Trailer { get; set; }
+
+        // Danh sách các diễn viên để chọn
+        public List<SelectListItem> AvailableActors { get; set; }
+
+        // Danh sách các rạp chiếu phim để chọn
+        public List<SelectListItem> AvailableCinemas { get; set; }
     }
 }

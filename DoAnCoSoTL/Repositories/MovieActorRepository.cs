@@ -15,17 +15,36 @@ namespace DoAnCoSoTL.Repositories
             return await db.MovieActors.ToListAsync();
 
         }
-        public async Task InsertAsync(MovieActor actor)
+        public async Task InsertMovieActorAsync(Guid movieId, int actorId)
         {
-            db.MovieActors.Add(actor);
+            var movieActor = new MovieActor
+            {
+                MovieId = movieId,
+                ActorId = actorId
+            };
+
+            await db.MovieActors.AddAsync(movieActor);
             await db.SaveChangesAsync();
         }
+        //public async Task InsertAsync(MovieActor actor)
+        //{
+        //    db.MovieActors.Add(actor);
+        //    await db.SaveChangesAsync();
+        //}
         public async Task DeletetAsync(int id)
         {
             var movie = db.MovieActors.FirstOrDefault(a => a.Id == id);
             db.MovieActors.Remove(movie);   
             await db.SaveChangesAsync();
         }
+        public async Task DeleteByMovieIdAsync(Guid id)
+        {
+            var movieActors = db.MovieActors.Where(movieActor => movieActor.MovieId == id);
+            db.MovieActors.RemoveRange(movieActors);
+            await db.SaveChangesAsync();
+        }
+
+
 
     }
 }

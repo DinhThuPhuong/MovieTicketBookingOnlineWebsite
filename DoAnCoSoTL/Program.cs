@@ -128,6 +128,7 @@ builder.Services.ConfigureApplicationCookie(options =>
 builder.Services.AddRazorPages();
 
 builder.Services.AddScoped<IActorRepository, ActorRepository>();
+builder.Services.AddScoped<IScreeningRepository, ScreeningRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ICartRepository, CartRepository>();
 builder.Services.AddScoped<ICinemaRepository, CinemaRepository>();

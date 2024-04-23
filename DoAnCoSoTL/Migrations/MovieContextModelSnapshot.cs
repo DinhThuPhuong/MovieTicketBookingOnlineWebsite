@@ -278,32 +278,6 @@ namespace DoAnCoSoTL.Migrations
                     b.ToTable("MovieActors");
                 });
 
-            modelBuilder.Entity("DoAnCoSoTL.Models.MovieInCinema", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CinemaId")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("MovieId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CinemaId");
-
-                    b.HasIndex("MovieId");
-
-                    b.ToTable("MovieInCinemas");
-                });
-
             modelBuilder.Entity("DoAnCoSoTL.Models.MovieOrder", b =>
                 {
                     b.Property<int>("Id")
@@ -334,7 +308,7 @@ namespace DoAnCoSoTL.Migrations
                     b.ToTable("MovieOrders");
                 });
 
-            modelBuilder.Entity("DoAnCoSoTL.Models.MovieShowtime", b =>
+            modelBuilder.Entity("DoAnCoSoTL.Models.MoviesInCinema", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -342,20 +316,11 @@ namespace DoAnCoSoTL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AvailableTickets")
-                        .HasColumnType("int");
-
                     b.Property<int>("CinemaId")
                         .HasColumnType("int");
 
                     b.Property<Guid>("MovieId")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("Showtime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<decimal>("TicketPrice")
-                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -363,7 +328,7 @@ namespace DoAnCoSoTL.Migrations
 
                     b.HasIndex("MovieId");
 
-                    b.ToTable("MovieShowtime");
+                    b.ToTable("MovieInCinemas");
                 });
 
             modelBuilder.Entity("DoAnCoSoTL.Models.Producer", b =>
@@ -388,6 +353,38 @@ namespace DoAnCoSoTL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Producers");
+                });
+
+            modelBuilder.Entity("DoAnCoSoTL.Models.Screening", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CinemaId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<TimeSpan>("EndTime")
+                        .HasColumnType("time");
+
+                    b.Property<Guid>("MovieId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<TimeSpan>("Time")
+                        .HasColumnType("time");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CinemaId");
+
+                    b.HasIndex("MovieId");
+
+                    b.ToTable("Screenings");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -530,7 +527,7 @@ namespace DoAnCoSoTL.Migrations
                         .HasForeignKey("ApplicationUserId");
 
                     b.HasOne("DoAnCoSoTL.Models.Movie", "Movie")
-                        .WithMany("Carts")
+                        .WithMany()
                         .HasForeignKey("MovieId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -576,10 +573,25 @@ namespace DoAnCoSoTL.Migrations
                     b.Navigation("Movie");
                 });
 
-            modelBuilder.Entity("DoAnCoSoTL.Models.MovieInCinema", b =>
+            modelBuilder.Entity("DoAnCoSoTL.Models.MovieOrder", b =>
+                {
+                    b.HasOne("ApplicationUser", null)
+                        .WithMany("MovieOrders")
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("DoAnCoSoTL.Models.Movie", "Movie")
+                        .WithMany()
+                        .HasForeignKey("MovieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Movie");
+                });
+
+            modelBuilder.Entity("DoAnCoSoTL.Models.MoviesInCinema", b =>
                 {
                     b.HasOne("DoAnCoSoTL.Models.Cinema", "Cinema")
-                        .WithMany("MoviesInCinema")
+                        .WithMany()
                         .HasForeignKey("CinemaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -595,31 +607,16 @@ namespace DoAnCoSoTL.Migrations
                     b.Navigation("Movie");
                 });
 
-            modelBuilder.Entity("DoAnCoSoTL.Models.MovieOrder", b =>
-                {
-                    b.HasOne("ApplicationUser", null)
-                        .WithMany("MovieOrders")
-                        .HasForeignKey("ApplicationUserId");
-
-                    b.HasOne("DoAnCoSoTL.Models.Movie", "Movie")
-                        .WithMany("MovieOrders")
-                        .HasForeignKey("MovieId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Movie");
-                });
-
-            modelBuilder.Entity("DoAnCoSoTL.Models.MovieShowtime", b =>
+            modelBuilder.Entity("DoAnCoSoTL.Models.Screening", b =>
                 {
                     b.HasOne("DoAnCoSoTL.Models.Cinema", "Cinema")
-                        .WithMany("MovieShowtimes")
+                        .WithMany("Screenings")
                         .HasForeignKey("CinemaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DoAnCoSoTL.Models.Movie", "Movie")
-                        .WithMany("MovieShowtimes")
+                        .WithMany("Screenings")
                         .HasForeignKey("MovieId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -699,22 +696,16 @@ namespace DoAnCoSoTL.Migrations
 
             modelBuilder.Entity("DoAnCoSoTL.Models.Cinema", b =>
                 {
-                    b.Navigation("MovieShowtimes");
-
-                    b.Navigation("MoviesInCinema");
+                    b.Navigation("Screenings");
                 });
 
             modelBuilder.Entity("DoAnCoSoTL.Models.Movie", b =>
                 {
-                    b.Navigation("Carts");
-
                     b.Navigation("MovieActors");
 
-                    b.Navigation("MovieOrders");
-
-                    b.Navigation("MovieShowtimes");
-
                     b.Navigation("MoviesInCinema");
+
+                    b.Navigation("Screenings");
                 });
 
             modelBuilder.Entity("DoAnCoSoTL.Models.Producer", b =>

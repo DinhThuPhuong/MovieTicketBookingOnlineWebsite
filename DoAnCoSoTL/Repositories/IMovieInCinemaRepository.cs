@@ -4,10 +4,12 @@ namespace DoAnCoSoTL.Repositories
 {
     public interface IMovieInCinemaRepository
     {
-        Task<IEnumerable<MovieInCinema>> GetAllAsync();
-        Task <MovieInCinema> GetByIdAsync(int id);
-        Task InsertAsync(IEnumerable<MovieInCinema> mic);
-        Task Update(int id,MovieInCinema mic);
+        Task<IEnumerable<MoviesInCinema>> GetAllAsync();
+        Task<MoviesInCinema> GetByIdAsync(int id);
+       // Task InsertAsync(IEnumerable<MoviesInCinema> mic);
+        Task Update(int id, MoviesInCinema mic);
         Task Delete(int id);
+        Task InsertMoviesInCinemaAsync(Guid movieId, int cinemaId);
+        Task DeleteByMovieIdAsync(Guid id);
     }
 }

@@ -1,0 +1,87 @@
+﻿@model DoAnCoSoTL.Models.Screening
+
+@{
+    Layout = "_AdminLayout";
+}
+
+<div class="container mt-5">
+    <h2>Create New Screening</h2>
+    <hr />
+    <form asp-action="Create" asp-controller="Screening" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <div class="form-group">
+                <label asp-for="MovieId" class="control-label"></label>
+                <select id="movieSelect" class="form-control" asp-for="MovieId" asp-items="@(new SelectList(ViewBag.Movies, "Value", "Text"))"></select>
+                <span asp-validation-for="MovieId" class="text-danger"></span>
+            </div>
+            <label asp-for="CinemaId" class="control-label"></label>
+            <select asp-for="CinemaId" class="form-control" asp-items="@(new SelectList(ViewBag.Cinemas, "Value", "Text"))"></select>
+            <span asp-validation-for="CinemaId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Date" class="control-label"></label>
+            <input id="screeningDate" asp-for="Date" class="form-control" />
+            <span asp-validation-for="Date" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Time" class="control-label"></label>
+            <input asp-for="Time" id="timeInput" class="form-control" type="time" />
+            <span asp-validation-for="Time" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="EndTime" class="control-label"></label>
+            <input asp-for="EndTime" id="endTimeInput" class="form-control" readonly />
+            <span asp-validation-for="EndTime" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+        <a asp-action="Index" class="btn btn-secondary">Back</a>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        // Function to calculate End Time based on Time and Movie Duration
+        // Function to calculate End Time based on Time and Movie Duration
+        function calculateEndTime() {
+            // Get the input values
+            var timeInput = document.getElementById('Time').value;
+            var durationMinutes = parseInt('@(Model.Movie?.DurationMinutes ?? 0)');
+
+            // Parse the time input to get hours and minutes
+            var timeParts = timeInput.split(':');
+            var hours = parseInt(timeParts[0]);
+            var minutes = parseInt(timeParts[1]);
+
+            // Check for PM time and adjust hours accordingly
+            if (timeInput.toLowerCase().indexOf('pm') > -1 && hours < 12) {
+                hours += 12;
+            } else if (timeInput.toLowerCase().indexOf('am') > -1 && hours == 12) {
+                hours = 0;
+            }
+
+            // Calculate the start time in minutes
+            var startTimeInMinutes = hours * 60 + minutes;
+
+            // Calculate the end time
+            var totalMinutes = startTimeInMinutes + durationMinutes;
+            var endHours = Math.floor(totalMinutes / 60);
+            var endMinutes = totalMinutes % 60;
+
+            // Format the end time
+            var formattedEndHours = (endHours < 10 ? '0' : '') + endHours;
+            var formattedEndMinutes = (endMinutes < 10 ? '0' : '') + endMinutes;
+
+            // Update the End Time input field
+            var endTimeInput = document.getElementById('EndTime');
+            endTimeInput.value = formattedEndHours + ':' + formattedEndMinutes;
+        }
+
+        // Hook into change event of Time input field
+        document.getElementById('Time').addEventListener('change', calculateEndTime);
+
+        // Initial calculation when the page loads
+        calculateEndTime();
+
+    </script>
+}

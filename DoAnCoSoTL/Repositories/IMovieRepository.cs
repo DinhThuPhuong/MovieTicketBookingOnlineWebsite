@@ -7,10 +7,11 @@ namespace DoAnCoSoTL.Repositories
     {
         Task<Movie> GetByNameAsync(string name);
         Task<IEnumerable<Movie>> GetAllAsync();
-        Task<Movie> GetByIdAsync(int id);
-        Task InsertAsync( MovieViewModel movievm, IFormFile Image);
+        Task<Movie> GetByIdAsync(Guid id);
+        Task InsertAsync( Movie movievm);
         Task UpdateAsync(Movie editMovie);
-        Task DeleteAsync(int id);
+        Task DeleteAsync(Guid id);
+        Task SaveChangesAsync();
 
     }
 }

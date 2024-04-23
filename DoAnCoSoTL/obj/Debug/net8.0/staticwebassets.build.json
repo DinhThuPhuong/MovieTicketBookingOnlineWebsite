@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "3bvypaaT/SJLH5k6LrLXQ3/PLjnPczVPjxHmSyK7gkE=",
+  "Hash": "m4y3cIS0cg84PQ0sOxKDuF0QtB0j2X4cMPZHsGpTdcU=",
   "Source": "DoAnCoSoTL",
   "BasePath": "_content/DoAnCoSoTL",
   "Mode": "Default",
@@ -4024,6 +4024,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\placeholder.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\Desktop\\DoAnCoSoTL\\DoAnCoSoTL\\wwwroot\\images\\posterMai.jpg",
+      "SourceId": "DoAnCoSoTL",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\DoAnCoSoTL\\DoAnCoSoTL\\wwwroot\\",
+      "BasePath": "_content/DoAnCoSoTL",
+      "RelativePath": "images/posterMai.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\posterMai.jpg"
     },
     {
       "Identity": "C:\\Users\\Admin\\Desktop\\DoAnCoSoTL\\DoAnCoSoTL\\wwwroot\\images\\producer_1.jpg",

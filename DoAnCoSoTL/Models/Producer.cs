@@ -10,6 +10,6 @@ namespace DoAnCoSoTL.Models
         public string Name { get; set; }
         public string? Image { get; set; }
         public string Bio { get; set; }
-        public virtual List<Movie> Movies { get; set; }
+        public ICollection<Movie> Movies { get; set; }
     }
 }
