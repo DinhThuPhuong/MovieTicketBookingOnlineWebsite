@@ -57,5 +57,19 @@ public class MovieRepository : IMovieRepository
         db.Movies.Remove(movie);
         await db.SaveChangesAsync();
     }
+    public async Task<IEnumerable<Movie>> GetProductByCategoryAsync(int id)
+    {
+        var list = db.Movies.Where(p => p.Cat_Id == id).ToList();
+        return list;
+    }
+    public async Task<IEnumerable<Movie>> SearchAsync(string keyword)
+    {
+        // Thực hiện tìm kiếm sản phẩm trong cơ sở dữ liệu
+        var searchResults = await db.Movies
+            .Where(p => p.Name.Contains(keyword)) // Tìm sản phẩm có tên chứa từ khóa
+            .ToListAsync();
+
+        return searchResults;
+    }
 
 }

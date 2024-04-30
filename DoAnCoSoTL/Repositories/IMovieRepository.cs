@@ -12,6 +12,8 @@ namespace DoAnCoSoTL.Repositories
         Task UpdateAsync(Movie editMovie);
         Task DeleteAsync(Guid id);
         Task SaveChangesAsync();
+        Task<IEnumerable<Movie>> SearchAsync(string keyword);
+        Task<IEnumerable<Movie>> GetProductByCategoryAsync(int id);
 
     }
 }

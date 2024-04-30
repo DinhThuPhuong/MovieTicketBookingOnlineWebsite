@@ -1,0 +1,169 @@
+﻿
+@model DoAnCoSoTL.Models.Movie
+
+<!-- Thêm CSS cho nút "Xem Trailer" và hình ảnh sản phẩm -->
+<style>
+    #watch-trailer-btn {
+        background-color: #4CAF50; /* Màu nền */
+        color: white; /* Màu chữ */
+    }
+
+    .product-image {
+        float: left; /* Đưa hình ảnh sang bên trái */
+        margin-right: 20px; /* Khoảng cách giữa hình ảnh và nội dung */
+    }
+
+        .product-image img {
+            max-width: 100%;
+            height: auto;
+        }
+
+    .product-details {
+        overflow: hidden; /* Ngăn chặn nội dung bên dưới hình ảnh bị tràn ra */
+    }
+
+    #video-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 9999;
+    }
+
+    #video-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 90%;
+        max-height: 90%;
+    }
+</style>
+
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!-- Product main img -->
+            <!-- /Product main img -->
+            <!-- Product thumb imgs -->
+            <div class="col-md-6 product-image">
+                <div id="product-main-img">
+                    <div class="product-preview">
+                        @if (!string.IsNullOrEmpty(Model.Image))
+                        {
+                            <img src="@Model.Image" alt="Product Image" />
+                        }
+                    </div>
+                </div>
+            </div>
+            <!-- /Product thumb imgs -->
+            <!-- Product details -->
+            <div class="col-md-5">
+                <div class="product-details">
+                    <h2 class="product-name">@Model.Name</h2>
+                    <div>
+                        <div class="product-rating">
+                            @for (int i = 0; i < Model.Rate; i++)
+                            {
+                                <i class="fa fa-star"></i>
+                            }
+                            @for (int i = 0; i < 5 - Model.Rate; i++)
+                            {
+                                <i class="fa fa-star-o"></i>
+                            }
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="product-price">$@Model.Price <del class="product-old-price">$@(@Model.Price + 10)</del></h3>
+                        <span class="product-available">In Stock</span>
+                    </div>
+                    <p>Description: @Model.Description</p>
+                    <div class="add-to-cart">
+                        <button id="watch-trailer-btn" class="add-to-cart-btn"><i class="fa fa-play-circle"></i> Xem Trailer</button>
+                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Mua vé </button>
+                    </div>
+                    <!-- Thêm nút "Xem Trailer" -->
+                    @* <div>
+                        <button id="watch-trailer-btn" class="add-to-cart-btn"><i class="fa fa-play-circle"></i> Xem Trailer</button>
+                    </div> *@
+                    <div id="video-overlay">
+                        <div id="video-container"></div>
+                    </div>
+
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                    <script>
+                        $(document).ready(function () {
+                            // Xử lý sự kiện click của nút "Xem Trailer"
+                            $('#watch-trailer-btn').on('click', function () {
+                                // Hiển thị overlay
+                                $('#video-overlay').fadeIn();
+
+                                // Nhúng video vào container
+                                var videoUrl = "@Model.Trailer";
+                                var videoId = videoUrl.substring(videoUrl.indexOf("=") + 1);
+                                var iframeCode = '<iframe width="100%" height="100%" src="https://www.youtube.com/embed/' + videoId + '" frameborder="0" allowfullscreen></iframe>';
+                                $('#video-container').html(iframeCode);
+
+                                // Thay đổi kích thước của video container
+                                $('#video-container').css({
+                                    'width': '80%', // Thay đổi kích thước chiều rộng
+                                    'height': '80%' // Thay đổi kích thước chiều cao
+                                });
+                            });
+
+                            // Xử lý sự kiện click của overlay để đóng video
+                            $('#video-overlay').on('click', function () {
+                                // Ẩn overlay
+                                $('#video-overlay').fadeOut();
+
+                                // Xóa iframe để dừng video
+                                $('#video-container').empty();
+                            });
+                        });
+                    </script>
+
+
+                    <ul class="product-links">
+                        <li>Thể loại :</li>
+                        <li><a href="#">@Model.Category?.Name</a></li>
+                    </ul>
+
+                    <ul class="product-links">
+                        <li>Share:</li>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#"><i class="fa fa-envelope"></i></a></li>
+                    </ul>
+                    <a asp-action="Index">Back to List</a>
+@* 
+                    @if (!string.IsNullOrEmpty(Model.Trailer))
+                    {
+                        // Giả sử Model.Trailer là URL YouTube
+                        var youtubeUrl = @Model.Trailer;
+                        var videoId = youtubeUrl.Substring(youtubeUrl.IndexOf("=") + 1);
+                        <iframe width="100%" height="400" src="https://www.youtube.com/embed/@videoId" frameborder="0" allowfullscreen></iframe>
+                    } *@
+                </div>
+            </div>
+            <!-- /Product details -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /SECTION -->
+
+<script src="~/User/js/bootstrap.min.js"></script>
+<script src="~/User/js/slick.min.js"></script>
+<script src="~/User/js/nouislider.min.js"></script>
+<script src="~/User/js/jquery.zoom.min.js"></script>
+<script src="~/User/js/main.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+

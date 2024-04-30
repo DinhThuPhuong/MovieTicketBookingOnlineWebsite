@@ -1,289 +1,221 @@
-﻿//using DoAnCoSoTL.Models;
+﻿using DoAnCoSoTL.Models;
+using DoAnCoSoTL.Repositories;
+using DoAnCoSoTL.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+
+namespace DoAnCoSoTL.Controllers
+{
+    public class MovieController : Controller
+    {
+        private readonly IMovieActorRepository _movieActorRepository;
+        private readonly IMovieInCinemaRepository _moviesInCinemaRepository;
+        private readonly ICinemaRepository _cinemaRepository;
+        private readonly IProducerRepository _producerRepository;
+        private readonly IActorRepository _actorRepository;
+        private readonly ICategoryRepository _categoryRepository;
+        private readonly IMovieRepository _movieRepository;
+        MovieContext _db;
+        public MovieController(ICategoryRepository categoryRepository, IMovieRepository movieRepository, MovieContext db,
+            IMovieActorRepository movieactorRepository,
+            ICinemaRepository cinemaRepository, IProducerRepository producerRepository, IActorRepository actorRepository, IMovieInCinemaRepository movieInCinemaRepository)
+        {
+            _categoryRepository = categoryRepository;
+            _db = db;
+            _movieRepository = movieRepository;
+            _movieActorRepository = movieactorRepository;
+            _producerRepository = producerRepository;
+            _actorRepository = actorRepository;
+            _cinemaRepository = cinemaRepository;
+            _moviesInCinemaRepository = movieInCinemaRepository;
+        }
+
+        static Guid iid;
+
+
+        #region User
+        #region Index
+        public async Task<IActionResult> Index()
+        {
+            var movies = await _movieRepository.GetAllAsync();
+            foreach (var movie in movies)
+            {
+                if (movie.Cat_Id != null)
+                {
+                    movie.Category = await _categoryRepository.GetByIdAsync(movie.Cat_Id);
+                }
+                //product.TotalQuantitySold = await _orderRepository.GetTotalQuantitySoldAsync(product.Id);
+            }
+            return View(movies);
+        }
+        [HttpPost]
+		public async Task<IActionResult> Index(int catid,string keywords)
+		{
+            var demoContext = _db.Movies.Include(p => p.Category).Where(p => p.Name.Contains(keywords)&& p.Cat_Id==catid);
+            return View(await demoContext.ToListAsync());
+        }
+		#endregion
+		#region Details
+		public async Task<IActionResult> Display(Guid id)
+        {
+            var movie = await _movieRepository.GetByIdAsync(id);
+            if (movie == null)
+            {
+                return NotFound();
+            }
+            if (movie.Cat_Id != null)
+            {
+                movie.Category = await _categoryRepository.GetByIdAsync(movie.Cat_Id);
+            }
+            return View(movie);
+        }
+        #endregion
+        #endregion
+        //public async Task<IActionResult> SearchResult(string keyword)
+        //{
+        //    if (string.IsNullOrEmpty(keyword))
+        //    {
+        //        // Nếu từ khóa tìm kiếm rỗng, trả về trang chính
+        //        return RedirectToAction("Index");
+        //    }
+
+        //    // Gọi hàm tìm kiếm sản phẩm dựa trên keyword từ repository
+        //    var searchResults = await _movieRepository.SearchAsync(keyword);
+        //    foreach (var product in searchResults)
+        //    {
+        //        if (product.Cat_Id != null)
+        //        {
+        //            product.Category = await _categoryRepository.GetByIdAsync(product.Cat_Id);
+        //        }
+        //    }
+
+        //    // Trả về view kết quả tìm kiếm và truyền dữ liệu tìm kiếm vào view
+        //    return View("SearchResult", searchResults);
+        //}
+        public async Task<IActionResult> SearchResult(string keyword, int catid = 0)
+        {
+            var searchResults = await _movieRepository.SearchAsync(keyword);
+
+            if (catid != 0)
+            {
+                searchResults = searchResults.Where(p => p.Cat_Id == catid);
+            }
+
+            return View("SearchResult", searchResults);
+        }
+
+
+        public IEnumerable<Movie> GetProductsByCategoryId(int categoryId)
+        {
+            // Truy vấn cơ sở dữ liệu để lấy danh sách sản phẩm có CategoryId tương ứng
+            // Ví dụ: Sử dụng Entity Framework Core để thực hiện truy vấn dữ liệu từ cơ sở dữ liệu
+            return _db.Movies.Where(p => p.Cat_Id == categoryId).ToList();
+        }
+        public async Task<IActionResult> FilterByCategory(int categoryId)
+        {
+            // Truy vấn cơ sở dữ liệu để lấy danh sách sản phẩm có CategoryId tương ứng
+            var movies = _db.Movies.Where(p => p.Cat_Id == categoryId).ToList();
+            foreach (var movie in movies)
+            {
+                if (movie.Cat_Id != null)
+                {
+                    movie.Category = await _categoryRepository.GetByIdAsync(movie.Cat_Id);
+                }
+            }
+            // Trả về một PartialView chứa danh sách sản phẩm đã lọc
+            return View("FilterByCategory", movies);
+        }
+
+    }
+}
+
+
+//search by name or actor-------------------
+
+
+//searcing--------------------------------------
+
+//using DoAnCoSoTL.Models;
 //using DoAnCoSoTL.Repositories;
-//using DoAnCoSoTL.ViewModels;
-//using Microsoft.AspNetCore.Authorization;
 //using Microsoft.AspNetCore.Mvc;
 //using Microsoft.AspNetCore.Mvc.Rendering;
 //using Microsoft.EntityFrameworkCore;
 
-//namespace DoAnCoSoTL.Controllers
+//namespace MovieTicketBookingOnlineWebsite1.Controllers
 //{
 //    public class MovieController : Controller
 //    {
-//        private readonly MovieContext db;
-//        IMovieRepository movieRepo;
-//        private readonly ICategoryRepository categoryRepo;
-//        private readonly ICinemaRepository cinemaRepo;
-//        private readonly IProducerRepository produerService;
-//        private readonly IActorRepository actorService;
-//        private readonly IMovieActorRepository movieactorService;
-//        private readonly IMovieInCinemaRepository movieincinemaService;
-//        private readonly ICartRepository cartservice;
-//        #region Constructor Injection
-//        public MovieController(MovieContext db, IMovieRepository movieRepo,
-//            ICategoryRepository categoryRepo, ICinemaRepository cinemaRepo,
-//            IProducerRepository produerService, IActorRepository actorService,
-//            IMovieActorRepository movieactorService, IMovieInCinemaRepository movieincinemaService, ICartRepository cartservice)
+//        private readonly IMovieRepository _movieRepository;
+//        private readonly ICategoryRepository _categoryRepository;
+//        private readonly MovieContext _dbContext;
+//        public MovieController(IMovieRepository movieRepository,
+//        ICategoryRepository categoryRepository,
+//        MovieContext dbContext)
 //        {
-//            this.db = db;
-//            this.movieRepo = movieRepo;
-//            this.categoryRepo = categoryRepo;
-//            this.cinemaRepo = cinemaRepo;
-//            this.produerService = produerService;
-//            this.actorService = actorService;
-//            this.movieactorService = movieactorService;
-//            this.movieincinemaService = movieincinemaService;
-//            this.cartservice = cartservice;
+//            _movieRepository = movieRepository;
+//            _categoryRepository = categoryRepository;
+//            _dbContext = dbContext;
 //        }
-//        #endregion
-//        static Guid iid;
-
-
-//        #region User
-//        #region Index
-//        public ActionResult Index()
+//        // Hiển thị danh sách film
+//        public async Task<IActionResult> Index()
 //        {
-
-
-//            MovieItemViewModel mivm = new MovieItemViewModel()
+//            var movies = await _movieRepository.GetAllAsync();
+//            return View(movies);
+//        }
+//        // Hiển thị thông tin chi tiết film
+//        public async Task<IActionResult> Display(Guid id)
+//        {
+//            var movie = await _movieRepository.GetByIdAsync(id);
+//            if (movie == null)
 //            {
-//                Movies = movieRepo.GetAll(),
-//                Producers = produerService.GetAll(),
-//                Cinemas = cinemaRepo.GetAll(),
-//                Actors = actorService.GetAll(),
-//                Categories = categoryRepo.GetAll(),
-//                MovieActors = movieactorService.GetAll()
-
-//            };
-
-//            return View("IndexUser", mivm);
+//                return NotFound();
+//            }
+//            return View(movie);
 //        }
-//        #endregion
-//        #region Details
-//        public ActionResult Details(Guid id)
+//        public async Task<IActionResult> SearchResult(string keyword)
 //        {
-//            Cart cart = new Cart();
-//            cart.UserId = HttpContext.Session.GetString("id");
-//            cart.MovieId = id;
-
-
-//            MovieDetailsViewModel mdvm = new MovieDetailsViewModel()
+//            if (string.IsNullOrEmpty(keyword))
 //            {
-//                UserId = HttpContext.Session.GetString("id"),
-//                Movie = movieRepo.GetById(id),
-//                MovieActors = movieactorService.GetAll().Where(w => w.MovieId == id).ToList(),
-//                MoviesInCinemas = movieincinemaService.GetAll().Where(w => w.MovieId == id).ToList(),
-//                carts = cartservice.GetData(cart),
-
-//            };
-
-//            return View("DetailsUser", mdvm);
-//        }
-//        #endregion
-//        #endregion
-//        #region Admin
-//        #region Index
-//        //[Authorize(Roles = "Admin")]
-//        public ActionResult GetMoviesAdmin()
-//        {
-//            List<Movie> MovieView = movieRepo.GetAll();
-
-//            return View("AdminMovie", MovieView);
-
-//        }
-//        #endregion
-//        #region Details
-//        //[Authorize(Roles = "Admin")]
-//        public ActionResult GetMoviesDetailsAdmin(Guid id)
-
-//        {
-//            MovieViewModel Moviemodel = movieRepo.GetMovieByIdAdmin(id);
-
-//            ViewBag.Cinemas = new SelectList(db.Cinemas.ToList(), "Id", "Name");
-//            ViewBag.Categories = new SelectList(db.Categories.ToList(), "Id", "Name");
-//            ViewBag.Actors = new SelectList(db.Actors.ToList(), "Id", "Name");
-//            ViewBag.Producers = new SelectList(db.Producers.ToList(), "Id", "Name");
-
-
-
-
-
-//            return View("MovieDetailsAdmin", Moviemodel);
-//        }
-//        #endregion
-//        #region Insert
-//        #region Get
-//        //[Authorize(Roles = "Admin")]
-//        //public IActionResult Create()
-//        //{
-//        //    ViewBag.Cinemas = new SelectList(db.Cinemas.ToList(), "Id", "Name");
-//        //    ViewBag.Categories = new SelectList(db.Categories.ToList(), "Id", "Name");
-//        //    ViewBag.Actors = new SelectList(db.Actors.ToList(), "Id", "Name");
-//        //    ViewBag.Producers = new SelectList(db.Producers.ToList(), "Id", "Name");
-
-//        //    return View(new MovieViewModel());
-
-//        //}
-//        [HttpPost]
-//        [ValidateAntiForgeryToken]
-//        [Authorize(Roles = "Admin")] // Chỉ cho phép quản trị viên thêm danh mục
-//        public IActionResult Create(Category newCategory, List<IFormFile> Image)
-//        {
-//            if (ModelState.IsValid)
-//            {
-//                // Gọi phương thức Insert từ repository để thêm danh mục mới
-//                categoryRepo.Insert(newCategory, Image);
-//                return RedirectToAction("AdminCategories"); // Chuyển hướng về trang danh sách danh mục
+//                // Nếu từ khóa tìm kiếm rỗng, trả về trang chính
+//                return RedirectToAction("Index");
 //            }
 
-//            // Nếu mô hình không hợp lệ, hiển thị lại form với các thông báo lỗi
-//            return View(newCategory);
-//        }
-
-//        #endregion
-//        #region Post
-//        [HttpPost]
-//        [ValidateAntiForgeryToken]
-//        public IActionResult Create(MovieViewModel movievm, List<IFormFile> Image)
-//        {
-//            if (ModelState.IsValid)
+//            // Gọi hàm tìm kiếm sản phẩm dựa trên keyword từ repository
+//            var searchResults = await _movieRepository.SearchAsync(keyword);
+//            foreach (var product in searchResults)
 //            {
-//                movieRepo.Insert(movievm, Image);
-//                return RedirectToAction("GetMoviesAdmin", "Movie");
-//            }
-
-
-//            ViewBag.Cinemas = new SelectList(db.Cinemas.ToList(), "Id", "Name");
-//            ViewBag.Categories = new SelectList(db.Categories.ToList(), "Id", "Name");
-//            ViewBag.Actors = new SelectList(db.Actors.ToList(), "Id", "Name");
-//            ViewBag.Producers = new SelectList(db.Producers.ToList(), "Id", "Name");
-//            return View(movievm);
-
-//        }
-//        #endregion
-//        #endregion
-//        #region Update
-//        #region Get
-//        //[Authorize(Roles = "Admin")]
-//        public ActionResult EditMovieFromAdmin(Guid id)
-
-//        {
-//            iid = id;
-//            MovieViewModel Moviemodel = movieRepo.GetMovieByIdAdmin(id);
-
-//            ViewBag.Cinemas = new SelectList(db.Cinemas.ToList(), "Id", "Name");
-//            ViewBag.Categories = new SelectList(db.Categories.ToList(), "Id", "Name");
-//            ViewBag.Actors = new SelectList(db.Actors.ToList(), "Id", "Name");
-//            ViewBag.Producers = new SelectList(db.Producers.ToList(), "Id", "Name");
-
-
-
-//            return View("Edit", Moviemodel);
-//        }
-//        #endregion
-//        #region Post
-//        [HttpPost]
-//        [ValidateAntiForgeryToken]
-//        //[Authorize(Roles = "Admin")]
-//        public ActionResult Edit(MovieViewModel editMovie, List<IFormFile> Image)
-//        {
-
-//            Task<int> numOfRowsUpdated = movieRepo.update(editMovie, iid, Image);
-//            return RedirectToAction("Getmoviesadmin");
-//        }
-//        #endregion
-//        #endregion
-//        #region Delete
-//        public ActionResult Delete(Guid id)
-//        {
-//            movieRepo.delete(id);
-//            return RedirectToAction("Getmoviesadmin");
-
-//        }
-
-//        #endregion
-//        #endregion
-//        #region Search
-//        #region Filter
-//        [HttpGet]
-//        public async Task<IActionResult> filterSearch(string MovieName)
-//        {
-//            ViewData["MovieName"] = MovieName;
-
-//            if (!string.IsNullOrEmpty(MovieName))
-//            {
-//                var movies = new MovieItemViewModel()
+//                if (product.Category.Id != null)
 //                {
-//                    Movies = db.Movies.Where(c => c.Name.Contains(MovieName)).ToList(),
-//                    Producers = produerService.GetAll(),
-//                    Cinemas = cinemaRepo.GetAll(),
-//                    Actors = actorService.GetAll(),
-//                    Categories = categoryRepo.GetAll(),
-//                    MovieActors = movieactorService.GetAll()
-//                };
-
-//                //movie = movie;
-//                return View("IndexUser", movies);
-
-
+//                    product.Category = await _categoryRepository.GetByIdAsync(product.Category.Id);
+//                }
 //            }
-//            return Content("nothing");
 
+//            // Trả về view kết quả tìm kiếm và truyền dữ liệu tìm kiếm vào view
+//            return View("SearchResult", searchResults);
 //        }
-//        #endregion
-//        #region By Name
-//        [HttpGet]
-//        public async Task<IActionResult> movieSearch(string Keyword)
+//        public IEnumerable<Movie> GetProductsByCategoryId(int categoryId)
 //        {
-//            ViewData["searching"] = Keyword;
-//            var movies = db.Movies.Select(x => x);
-//            if (!string.IsNullOrEmpty(Keyword))
-//            {
-//                movies = movies.Where(c => c.Name.Contains(Keyword));
-
-//            }
-//            return View(await movies.AsNoTracking().ToListAsync());
+//            // Truy vấn cơ sở dữ liệu để lấy danh sách sản phẩm có CategoryId tương ứng
+//            // Ví dụ: Sử dụng Entity Framework Core để thực hiện truy vấn dữ liệu từ cơ sở dữ liệu
+//            return _dbContext.Movies.Where(p => p.Category.Id == categoryId).ToList();
 //        }
-
-//        #endregion
-//        #region Another Search
-//        [HttpGet]
-//        [Authorize(Roles = "Admin")]
-//        public async Task<IActionResult> GetMoviesAdmin(string Keyword)
+//        public async Task<IActionResult> FilterByCategory(int categoryId)
 //        {
-//            ViewData["searching"] = Keyword;
-//            var movies = db.Movies.Select(x => x);
-//            if (!string.IsNullOrEmpty(Keyword))
+//            // Truy vấn cơ sở dữ liệu để lấy danh sách sản phẩm có CategoryId tương ứng
+//            var movies = _dbContext.Movies.Where(p => p.Category.Id == categoryId).ToList();
+//            foreach (var movie in movies)
 //            {
-//                movies = movies.Where(c => c.Name.Contains(Keyword));
-
+//                if (movie.Category.Id != null)
+//                {
+//                    movie.Category = await _categoryRepository.GetByIdAsync(movie.Category.Id);
+//                }
 //            }
-//            return View("AdminMovie", await movies.AsNoTracking().ToListAsync());
-//        }
-//        #endregion
-//        #region Add Cinema
-//        [HttpPost]
-//        [Authorize(Roles = "Admin")]
-//        public IActionResult AddCinema(List<string> cinemas)
-//        {
-//            var cinemaNames = new List<string>();
-//            foreach (string id in cinemas)
-//            {
-//                cinemaNames.Add(cinemaRepo.GetById(int.Parse(id)).Name);
-//            }
-//            ViewBag.Cinemas = cinemaNames;
-//            return PartialView("_AddCinema", new MovieViewModel());
+//            // Trả về một PartialView chứa danh sách sản phẩm đã lọc
+//            return View("FilterByCategory", movies);
 //        }
 //    }
 //}
-//        #endregion
-//#endregion
-
-
-////search by name or actor-------------------
-
-
-////searcing--------------------------------------
-
 
 

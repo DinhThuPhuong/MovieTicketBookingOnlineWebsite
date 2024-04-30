@@ -122,6 +122,10 @@ namespace DoAnCoSoTL.Areas.Admin.Controllers
 
 
 
+
+
+
+
         [HttpPost]
         public IActionResult GetSelectedCinemas(Guid movieId)
         {
