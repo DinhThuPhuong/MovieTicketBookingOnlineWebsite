@@ -23,6 +23,99 @@ public class MovieRepository : IMovieRepository
     {
         return await db.Movies.FindAsync(id);
     }
+    //public async Task<MovieViewModel> GetMovieByIdAdmin(Guid id)
+    //{
+    //    var movie = await db.Movies.SingleOrDefaultAsync(c => c.Id == id);
+
+    //    if (movie != null)
+    //    {
+    //        MovieViewModel movieModel = new MovieViewModel();
+    //        movieModel.Name = movie.Name;
+    //        movieModel.Description = movie.Description;
+    //        movieModel.StartDate = movie.StartDate;
+    //        movieModel.EndDate = movie.EndDate;
+    //        movieModel.Price = movie.Price;
+    //        movieModel.Rate = (int)movie.Rate;
+
+    //        return movieModel;
+    //    }
+
+    //    // Trả về null nếu không tìm thấy movie
+    //    return null;
+    //}
+    public MovieViewModel GetMovieByIdAdmin(Guid id)
+    {
+
+        var movie = db.Movies.SingleOrDefault(c => c.Id == id);
+        if (movie != null)
+        {
+
+
+            MovieViewModel movieModel = new MovieViewModel();
+
+            movieModel.Name = movie.Name;
+            movieModel.Description = movie.Description;
+            movieModel.StartDate = movie.StartDate;
+            movieModel.EndDate = movie.EndDate;
+            movieModel.Price = movie.Price;
+            movieModel.Rate = (int)movie.Rate;
+
+
+
+            return movieModel;
+        }
+        return null;
+    }
+    public async Task Update(MovieViewModel editMovie, Guid Mid, IFormFile Image)
+    {
+        var movie = db.Movies.SingleOrDefault(c => c.Id == Mid);
+        if (movie != null)
+        {
+
+
+
+
+            movie.Name = editMovie.Name;
+            movie.Id = Mid;
+            movie.Description = editMovie.Description;
+            movie.StartDate = editMovie.StartDate;
+            movie.EndDate = editMovie.EndDate;
+            movie.Price = editMovie.Price;
+            if (Image != null)
+            {
+                movie.Image = editMovie.Image;
+            }
+            movie.Rate = editMovie.Rate;
+            movie.Cat_Id = editMovie.Category_Id;
+            movie.Producer_Id = editMovie.Producer_Id;
+
+            if (editMovie.ActorIds != null)
+            {
+                foreach (var id in editMovie.ActorIds)
+                {
+                    db.MovieActors.Update(new MovieActor()
+                    {
+                        MovieId = Mid,
+                        ActorId = id
+                    });
+                }
+            }
+            //adding to cinema movies table
+            if (editMovie.CinemaIds != null)
+                foreach (var id in editMovie.CinemaIds)
+                {
+                    db.MovieInCinemas.Add(new MoviesInCinema()
+                    {
+                        MovieId = Mid,
+                        CinemaId = id
+                    });
+                }
+        }
+        db.Movies.Update(movie);
+        await db.SaveChangesAsync();
+
+    }
+       
     private async Task<string> SaveImage(IFormFile image)
     {
         var savePath = Path.Combine("wwwroot/images", image.FileName); // Thay  đổi đường dẫn theo cấu hình của bạn 

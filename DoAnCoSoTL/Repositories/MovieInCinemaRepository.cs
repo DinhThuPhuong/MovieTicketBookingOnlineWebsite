@@ -28,11 +28,14 @@ namespace DoAnCoSoTL.Repositories
         }
 
 
-        public async Task<MoviesInCinema> GetByIdAsync(int id)
+        public async Task<IEnumerable<Cinema>> GetCinemasByMovieId(Guid movieId)
         {
-            return await db.MovieInCinemas.SingleOrDefaultAsync(p => p.Id == id);
-
+            return await db.MovieInCinemas
+                .Where(mc => mc.MovieId == movieId)
+                .Select(mc => mc.Cinema)
+                .ToListAsync();
         }
+
 
         //public async Task InsertAsync(IEnumerable<MoviesInCinema> mic)
         //{
@@ -55,7 +58,7 @@ namespace DoAnCoSoTL.Repositories
         }
         public async Task DeleteByMovieIdAsync(Guid id)
         {
-            var movie = db.MovieInCinemas.Where(x=>x.MovieId == id).ToList();
+            var movie = db.MovieInCinemas.Where(x => x.MovieId == id).ToList();
             db.MovieInCinemas.RemoveRange(movie);
             await db.SaveChangesAsync();
         }

@@ -1,5 +1,4 @@
-﻿
-@model List<DoAnCoSoTL.Models.Movie>
+﻿@model List<DoAnCoSoTL.Models.Movie>
 
 @{
     Layout = "_AdminLayout";
@@ -38,10 +37,10 @@
                     <td>@i.StartDate</td>
                     <td>@i.EndDate</td>
                     <td>
-                        <a asp-action="Update" asp-route-id="@i.Id">
+                        <a href="~/Admin/Movie/Update" data-id="@i.Id">
                             <i class="fa fa-edit"></i>
                         </a>
-                            <a href="~/Admin/Movie/Delete" class="btn-delete" data-id="@i.Id"><i class="ti-trash"></i></a>
+                        <a href="~/Admin/Movie/Delete" class="btn-delete" data-id="@i.Id"><i class="ti-trash"></i></a>
                         <a asp-action="Details" asp-route-id="@i.Id">
                             <i class="fa fa-arrow-circle-right"></i>
                         </a>

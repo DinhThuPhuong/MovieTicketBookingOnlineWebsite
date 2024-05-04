@@ -5,6 +5,8 @@ namespace DoAnCoSoTL.Repositories
 {
     public interface IMovieRepository
     {
+        Task Update(MovieViewModel editMovie, Guid Mid, IFormFile Image);
+        MovieViewModel GetMovieByIdAdmin(Guid id);
         Task<Movie> GetByNameAsync(string name);
         Task<IEnumerable<Movie>> GetAllAsync();
         Task<Movie> GetByIdAsync(Guid id);

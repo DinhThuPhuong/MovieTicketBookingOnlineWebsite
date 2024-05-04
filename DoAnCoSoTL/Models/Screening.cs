@@ -15,10 +15,10 @@ namespace DoAnCoSoTL.Models
         [DateRange("Movie.StartDate", "Movie.EndDate", ErrorMessage = "The Screening Date must be within the Movie's start and end dates.")]
         public DateTime Date { get; set; }
 
-        public TimeSpan Time { get; set; }
+        public string Time { get; set; }
 
         [Display(Name = "End Time")]
-        public TimeSpan EndTime { get; set; }
+        public string EndTime { get; set; }
 
         [ForeignKey("Cinema")]
         public int CinemaId { get; set; }
@@ -45,24 +45,21 @@ namespace DoAnCoSoTL.Models
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             var screening = (Screening)validationContext.ObjectInstance;
-
-            // Kiểm tra xem Movie có tồn tại không
-            if (screening.Movie == null)
+            if (screening.Movie != null)
             {
-                return new ValidationResult($"Invalid Movie reference for the Screening.");
-            }
+                var startDateValue = screening.Movie.StartDate;
+                var endDateValue = screening.Movie.EndDate;
 
-            var startDateValue = screening.Movie.StartDate;
-            var endDateValue = screening.Movie.EndDate;
+                var dateValue = (DateTime)value;
 
-            var dateValue = (DateTime)value;
-
-            if (dateValue < startDateValue || dateValue > endDateValue)
-            {
-                return new ValidationResult($"The {validationContext.DisplayName} must be within the Movie's start and end dates.");
+                if (dateValue < startDateValue || dateValue > endDateValue)
+                {
+                    return new ValidationResult($"The {validationContext.DisplayName} must be within the Movie's start and end dates.");
+                }
             }
 
             return ValidationResult.Success;
         }
     }
 }
+

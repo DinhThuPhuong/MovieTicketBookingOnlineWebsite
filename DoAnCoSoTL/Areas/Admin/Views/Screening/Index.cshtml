@@ -34,8 +34,8 @@
                     <td>@screening.Movie.Name</td>
                     <td>@screening.Cinema.Name</td>
                     <td>@screening.Date.ToString("MM/dd/yyyy")</td>
-                    <td>@screening.Time.ToString("hh\\:mm")</td>
-                    <td>@screening.EndTime.ToString("hh\\:mm")</td>
+                    <td>@screening.Time</td>
+                    <td>@screening.EndTime</td>
                     <td>
                         <a asp-action="Update" asp-controller="Screening" asp-route-id="@screening.Id"><i class="fa fa-edit"></i></a>
                         <a href="javascript:void(0);" class="btn-delete" data-id="@screening.Id"><i class="ti-trash"></i></a>
