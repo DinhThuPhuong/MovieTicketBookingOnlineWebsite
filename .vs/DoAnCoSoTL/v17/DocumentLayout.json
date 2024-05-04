@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\Admin\\Desktop\\DoAnClone\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\admin\\desktop\\doanclone\\doancosotl\\repositories\\movierepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\repositories\\movierepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\admin\\desktop\\doanclone\\doancosotl\\areas\\admin\\views\\screening\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\areas\\admin\\views\\screening\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\admin\\desktop\\doanclone\\doancosotl\\areas\\admin\\controllers\\screeningcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\areas\\admin\\controllers\\screeningcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\admin\\desktop\\doanclone\\doancosotl\\repositories\\imovierepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\repositories\\imovierepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\admin\\desktop\\doanclone\\doancosotl\\areas\\admin\\controllers\\moviecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -17,14 +25,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\admin\\desktop\\doanclone\\doancosotl\\areas\\admin\\views\\screening\\update.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\areas\\admin\\views\\screening\\update.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\admin\\desktop\\doanclone\\doancosotl\\repositories\\imovierepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\repositories\\imovierepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\admin\\desktop\\doanclone\\doancosotl\\areas\\admin\\views\\screening\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\areas\\admin\\views\\screening\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\admin\\desktop\\doanclone\\doancosotl\\areas\\admin\\views\\movie\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -126,15 +126,28 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 7,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ScreeningController.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\DoAnClone\\DoAnCoSoTL\\Areas\\Admin\\Controllers\\ScreeningController.cs",
+              "RelativeDocumentMoniker": "DoAnCoSoTL\\Areas\\Admin\\Controllers\\ScreeningController.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\DoAnClone\\DoAnCoSoTL\\Areas\\Admin\\Controllers\\ScreeningController.cs",
+              "RelativeToolTip": "DoAnCoSoTL\\Areas\\Admin\\Controllers\\ScreeningController.cs",
+              "ViewState": "AQIAAHkAAAAAAAAAAAAkwIwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-04T08:24:47.731Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{0174dea2-fdbe-4ef1-8f99-c0beae78880f}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "IMovieRepository.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\DoAnClone\\DoAnCoSoTL\\Repositories\\IMovieRepository.cs",
               "RelativeDocumentMoniker": "DoAnCoSoTL\\Repositories\\IMovieRepository.cs",
@@ -147,20 +160,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MovieRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\DoAnClone\\DoAnCoSoTL\\Repositories\\MovieRepository.cs",
-              "RelativeDocumentMoniker": "DoAnCoSoTL\\Repositories\\MovieRepository.cs",
-              "ToolTip": "C:\\Users\\Admin\\Desktop\\DoAnClone\\DoAnCoSoTL\\Repositories\\MovieRepository.cs",
-              "RelativeToolTip": "DoAnCoSoTL\\Repositories\\MovieRepository.cs",
-              "ViewState": "AQIAAGMAAAAAAAAAAAAAAGsAAAAVAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-03T14:26:53.54Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Update.cshtml",
               "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\DoAnClone\\DoAnCoSoTL\\Areas\\Admin\\Views\\Movie\\Update.cshtml",
               "RelativeDocumentMoniker": "DoAnCoSoTL\\Areas\\Admin\\Views\\Movie\\Update.cshtml",
@@ -168,8 +168,7 @@
               "RelativeToolTip": "DoAnCoSoTL\\Areas\\Admin\\Views\\Movie\\Update.cshtml",
               "ViewState": "AQIAAFQAAAAAAAAAAAAAAAcAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-03T14:01:56.503Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-03T14:01:56.503Z"
             },
             {
               "$type": "Document",
@@ -197,7 +196,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Update.cshtml",
               "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\DoAnClone\\DoAnCoSoTL\\Areas\\Admin\\Views\\Screening\\Update.cshtml",
               "RelativeDocumentMoniker": "DoAnCoSoTL\\Areas\\Admin\\Views\\Screening\\Update.cshtml",
@@ -205,24 +204,24 @@
               "RelativeToolTip": "DoAnCoSoTL\\Areas\\Admin\\Views\\Screening\\Update.cshtml",
               "ViewState": "AQIAAIYAAAAAAAAAAAAAAB8BAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-03T13:21:13.617Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-03T13:21:13.617Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\DoAnClone\\DoAnCoSoTL\\Areas\\Admin\\Views\\Screening\\Create.cshtml",
               "RelativeDocumentMoniker": "DoAnCoSoTL\\Areas\\Admin\\Views\\Screening\\Create.cshtml",
               "ToolTip": "C:\\Users\\Admin\\Desktop\\DoAnClone\\DoAnCoSoTL\\Areas\\Admin\\Views\\Screening\\Create.cshtml",
               "RelativeToolTip": "DoAnCoSoTL\\Areas\\Admin\\Views\\Screening\\Create.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAAAAAA",
+              "ViewState": "AQIAAGUAAAAAAAAAAAAuwHQAAABcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-03T09:08:27.067Z"
+              "WhenOpened": "2024-05-03T09:08:27.067Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "MovieController.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\DoAnClone\\DoAnCoSoTL\\Areas\\Admin\\Controllers\\MovieController.cs",
               "RelativeDocumentMoniker": "DoAnCoSoTL\\Areas\\Admin\\Controllers\\MovieController.cs",
@@ -230,8 +229,7 @@
               "RelativeToolTip": "DoAnCoSoTL\\Areas\\Admin\\Controllers\\MovieController.cs",
               "ViewState": "AQIAAKEAAAAAAAAAAAAcwB8BAAA+AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-28T03:06:58.922Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-28T03:06:58.922Z"
             },
             {
               "$type": "Document",

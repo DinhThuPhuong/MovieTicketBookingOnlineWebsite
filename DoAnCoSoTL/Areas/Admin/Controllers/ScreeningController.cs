@@ -111,19 +111,40 @@ namespace DoAnCoSoTL.Areas.Admin.Controllers
                         }
                     }
 
-
+                    screening.Movie = movie;
                     var screeninglist = _screeningRepository.GetByMovieId(screening.MovieId).Result;
                     foreach (var item in screeninglist)
                     {
-                        if (item.CinemaId == screening.CinemaId && item.Time == screening.Time && item.Date == screening.Date)
+                        if (item.CinemaId == screening.CinemaId && item.Date == screening.Date)
                         {
-                            ModelState.AddModelError(string.Empty, "Lịch chiếu đã tồn tại");
-             
-                            ViewBag.Movies = new SelectList(moviek, "Id", "Name");
-                            return View(screening);
+                            if(item.Time == screening.Time)
+                            {
+                                string errorMessage = $"Lịch chiếu vào lúc {item.Time} tại rạp {screening.Movie.Name} đã tồn tại !!! Vui lòng chọn giờ chiếu khác";
+                                ModelState.AddModelError(string.Empty, errorMessage);
+
+                                ViewBag.Movies = new SelectList(moviek, "Id", "Name");
+                                return View(screening);
+
+                            }
+                            TimeSpan ts1 = TimeSpan.Parse(item.EndTime);
+                            TimeSpan ts2 = TimeSpan.Parse(screening.Time);
+                            TimeSpan difference = ts2 - ts1;
+
+                            if (ts1 >= ts2 || difference.TotalMinutes < 5)
+                            {
+                                string errorMessage = $"Thời gian lịch chiếu không phù hợp !!! Vui lòng chọn giờ chiếu khác";
+                                ModelState.AddModelError(string.Empty, errorMessage);
+
+                                ViewBag.Movies = new SelectList(moviek, "Id", "Name");
+                                return View(screening);
+                            }
+
+
                         }
+
+
                     }
-                    screening.Movie = movie;
+                    
                    
                     // Lưu đối tượng Screening vào cơ sở dữ liệu
                     await _screeningRepository.InsertScreeningAsync(screening);

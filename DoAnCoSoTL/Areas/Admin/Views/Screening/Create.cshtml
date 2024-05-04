@@ -111,10 +111,18 @@
                 });
             }
 
-            $('#MovieId').change(function () {
-                var selectedMovieId = $(this).val();
+            $(document).ready(function () {
+            // Function to update cinemas when movie selection changes
+            $('#MovieId').on('input', function () {
+                var selectedMovieId = $(this).val(); // Lấy movieId từ dropdown "Movie Name"
                 getFilmDates(selectedMovieId);
             });
+
+            // Lấy movieId từ dropdown "Movie Name" khi trang được tải ban đầu
+            var selectedMovieId = $('#MovieId').val();
+                getFilmDates(selectedMovieId); // Gửi yêu cầu AJAX để cập nhật danh sách rạp chiếu
+        });
+
 
             $(document).ready(function () {
                 $('#timeInput').change(function () {
@@ -153,10 +161,6 @@
                 var hours = parseInt(timeParts[0]);
                 var minutes = parseInt(timeParts[1]);
 
-                // var ampm = hours < 12 ? 'AM' : 'PM';
-                // hours = hours % 12;
-                // hours = hours ? hours : 12; // Nếu là 0 thì chuyển thành 12
-
                 var formattedTime = hours.toString().padStart(2, '0') + ':' + minutes.toString().padStart(2, '0');
 
                 return formattedTime;
@@ -176,18 +180,35 @@
                 }
             }
 
-            $('#screeningDate').change(function () {
-                var screeningDate = $(this).val();
-                var startDate = $('#startDate').val();
-                var endDate = $('#endDate').val();
+            $(document).ready(function () {
+                var isMessageVisible = false;
 
-                var isValidDate = validateScreeningDate(screeningDate, startDate, endDate);
-                if (!isValidDate) {
-                    $('#message').html('<div class="alert alert-danger" role="alert">Screening date must be within the start and end dates of the movie.</div>');
-                } else {
-                    $('#message').empty();
+                function validateScreeningDate(screeningDate, startDate, endDate) {
+                    var screeningDateObj = new Date(screeningDate);
+                    var startDateObj = new Date(startDate);
+                    var endDateObj = new Date(endDate);
+
+                    return screeningDateObj >= startDateObj && screeningDateObj <= endDateObj;
                 }
+
+                $('#screeningDate').change(function () {
+                    var screeningDate = $(this).val();
+                    var startDate = $('#startDate').val();
+                    var endDate = $('#endDate').val();
+
+                    var isValidDate = validateScreeningDate(screeningDate, startDate, endDate);
+                    if (!isValidDate) {
+                        $('#message').html('<div class="alert alert-danger" role="alert">Screening date must be within the start and end dates of the movie.</div>');
+                        isMessageVisible = true;
+                    } else {
+                        if (isMessageVisible) {
+                            $('#message').empty();
+                            isMessageVisible = false;
+                        }
+                    }
+                });
             });
+
         });
         // $(document).ready(function () {
         //     $('#MovieId').change(function () {
@@ -283,5 +304,3 @@
 
     </script>
 }
-
-
