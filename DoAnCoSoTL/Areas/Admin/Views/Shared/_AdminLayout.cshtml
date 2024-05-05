@@ -32,7 +32,12 @@
     <!-- modernizr css -->
     <script src="/assets/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
-
+<style>
+    .rounded-image {
+        border-radius: 30%; /* làm tròn hình ảnh */
+        overflow: hidden; /* ẩn phần dư thừa nếu có */
+    }
+</style>
 <body>
     <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -47,8 +52,9 @@
         <div class="sidebar-menu">
             <div class="sidebar-header">
                 <div class="logo">
-                    <a asp-action="Index" asp-controller="Home"><img src="/images/logo1.png" alt="logo"></a><p style="color:white; font-weight:bold; font-size:18px">&nbsp;&nbsp; ADMIN</p>
-
+                    <a href="~/Movie/Index">
+                        <img src="~/User/img/Panda.png" height="120px" width="240px" alt="" class="rounded-image">
+                    </a>
                 </div>
             </div>
             <div class="main-menu">

@@ -86,12 +86,8 @@
                     <p>Description: @Model.Description</p>
                     <div class="add-to-cart">
                         <button id="watch-trailer-btn" class="add-to-cart-btn"><i class="fa fa-play-circle"></i> Xem Trailer</button>
-                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Mua vé </button>
+                        <button id="buy-ticket-btn" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Mua vé </button>
                     </div>
-                    <!-- Thêm nút "Xem Trailer" -->
-                    @* <div>
-                        <button id="watch-trailer-btn" class="add-to-cart-btn"><i class="fa fa-play-circle"></i> Xem Trailer</button>
-                    </div> *@
                     <div id="video-overlay">
                         <div id="video-container"></div>
                     </div>
@@ -99,14 +95,26 @@
                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
                     <script>
                         $(document).ready(function () {
+
+                            // Xử lý sự kiện click của nút "Mua vé"
+                            $('#buy-ticket-btn').on('click', function () {
+                                // Lấy screeningId từ một Screening cụ thể của Movie
+                                var screeningId = '@ViewBag.ScreeningId';
+                                if (screeningId) {
+                                    window.location.href = '/Seat/ChooseSeat?screeningId=' + screeningId;
+                                } else {
+                                    console.error('No screening available for this movie.');
+                                }
+                            });
+
                             // Xử lý sự kiện click của nút "Xem Trailer"
                             $('#watch-trailer-btn').on('click', function () {
                                 // Hiển thị overlay
                                 $('#video-overlay').fadeIn();
 
                                 // Nhúng video vào container
-                                var videoUrl = "@Model.Trailer";
-                                var videoId = videoUrl.substring(videoUrl.indexOf("=") + 1);
+                                var videoUrl = '@Model.Trailer';
+                                var videoId = videoUrl.substring(videoUrl.indexOf('=') + 1);
                                 var iframeCode = '<iframe width="100%" height="100%" src="https://www.youtube.com/embed/' + videoId + '" frameborder="0" allowfullscreen></iframe>';
                                 $('#video-container').html(iframeCode);
 

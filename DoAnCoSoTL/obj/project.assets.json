@@ -8917,19 +8917,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Admin\\.nuget\\packages\\": {}
+    "C:\\Users\\FPT SHOP\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Admin\\Desktop\\DoAnClone\\DoAnCoSoTL\\DoAnCoSoTL.csproj",
+      "projectUniqueName": "C:\\Users\\FPT SHOP\\Source\\Repos\\MovieTicketBookingOnlineWebsite0505\\DoAnCoSoTL\\DoAnCoSoTL.csproj",
       "projectName": "DoAnCoSoTL",
-      "projectPath": "C:\\Users\\Admin\\Desktop\\DoAnClone\\DoAnCoSoTL\\DoAnCoSoTL.csproj",
-      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Admin\\Desktop\\DoAnClone\\DoAnCoSoTL\\obj\\",
+      "projectPath": "C:\\Users\\FPT SHOP\\Source\\Repos\\MovieTicketBookingOnlineWebsite0505\\DoAnCoSoTL\\DoAnCoSoTL.csproj",
+      "packagesPath": "C:\\Users\\FPT SHOP\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\FPT SHOP\\Source\\Repos\\MovieTicketBookingOnlineWebsite0505\\DoAnCoSoTL\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\FPT SHOP\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9014,7 +9014,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
