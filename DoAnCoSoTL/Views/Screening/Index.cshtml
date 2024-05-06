@@ -1,6 +1,6 @@
 ﻿@model List<DoAnCoSoTL.Models.Screening>
 
-<h1>List of Screenings</h1>
+@* <h1>List of Screenings</h1>
 
 @foreach (var screening in Model)
 {
@@ -11,7 +11,7 @@
         <p>Cinema: @screening.Cinema.Name</p>
         <a asp-action="Details" asp-route-id="@screening.Id">Select Screening</a>
     </div>
-}
+} *@
 
 <h2>Choose Cinema and Showtime:</h2>
 @foreach (var cinemaGroup in Model.GroupBy(s => s.CinemaId))

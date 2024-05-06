@@ -29,7 +29,7 @@
 					<form asp-controller="Movie" asp-action="SearchResult" method="get" class="search-form">
 						<div class="input-group">
 							<select class="input-select" name="catid">
-								<option value="0">All Categories</option>
+								<option value="0">Tất cả thể loại</option>
 								@if (Model != null)
 								{
 									foreach (var category in Model)
@@ -38,9 +38,9 @@
 									}
 								}
 							</select>
-							<input class="input" name="keyword" placeholder="Search here">
+							<input class="input" name="keyword" placeholder="Tìm kiếm tại đây">
 							<div class="input-group-append">
-								<button type="submit" class="search-btn">Search</button>
+								<button type="submit" class="search-btn">Tìm kiếm</button>
 							</div>
 						</div>
 					</form>

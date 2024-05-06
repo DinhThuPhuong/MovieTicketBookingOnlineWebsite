@@ -1,13 +1,39 @@
-﻿
+﻿@model IEnumerable<DoAnCoSoTL.Models.Movie>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products Display</title>
+    <title>Movies Display</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link type="text/css" rel="stylesheet" href="~/User/css/bootstrap.min.css" />
+
+    <!-- Slick -->
+    <link type="text/css" rel="stylesheet" href="~/User/css/slick.css" />
+    <link type="text/css" rel="stylesheet" href="~/User/css/slick-theme.css" />
+
+    
+    <!-- nouislider -->
+    <link type="text/css" rel="stylesheet" href="~/User/css/nouislider.min.css" />
+
+    <!-- Font Awesome Icon -->
+    <link rel="stylesheet" href="~/User/css/font-awesome.min.css">
+
+    <!-- Custom stlylesheet -->
+    <link type="text/css" rel="stylesheet" href="~/User/css/style.css" />
+
+
+    <link type="text/css" rel="stylesheet" href="~/User/css/custom-style.css" />
+
+
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -20,77 +46,172 @@
         }
 
         .card {
-            border: 1px solid white;
+            border: 1px solid #1e1f28; /* Đặt màu border cho card */
+            margin-bottom: 20px; /* Thêm margin để tạo khoảng cách giữa các card */
         }
 
-        .product-category,
-        .product-name a {
-            color: white;
+        .card {
+            display: inline-block; /* Đảm bảo card có thể co giãn theo kích thước của hình ảnh */
+            border: 2px solid #1e1f28; /* Đặt màu border cho card */
+            margin-bottom: 20px; /* Thêm margin để tạo khoảng cách giữa các card */
+            width: 255px; /* Chiều rộng cố định của card */
+            box-sizing: border-box; /* Đảm bảo border không tăng kích thước của card */
         }
 
-        .product .product-body .product-name > a:hover,
-        .product .product-body .product-name > a:focus {
-            color: #D10024;
+        .card .shop-img img {
+            display: block;
+            width: 100%; /* Hình ảnh sẽ căn chỉnh với chiều rộng của card */
+            height: auto; /* Đảm bảo tỉ lệ khung hình ảnh được bảo toàn */
         }
 
     </style>
 </head>
 <body>
 
-    <h1 class="text-center mt-4 mb-4">Movies</h1>
+    <h1 class="text-center mt-4 mb-4">Phim nổi bật</h1>
+    
+    <!-- Phim đang chiếu -->
+    <!-- SECTION -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <h2>Phim đang chiếu</h2>
+                <!-- Products tab & slick -->
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="products-tabs">
+                            <!-- tab -->
+                            <div id="tab1" class="tab-pane active">
+                                <div class="products-slick" data-nav="#slick-nav-1">
+                                    @foreach (var movie in Model)
+                                    {
+                                        @if (movie.StartDate <= DateTime.Now && movie.EndDate >= DateTime.Now)
+                                        {
+                                            <div class="col mb-4">
+                                                <div class="card">
 
-    <div class="col-md-12">
-        <div class="row">
-            <div class="products-tabs">
-                <!-- tab -->
-                <div id="tab1" class="tab-pane active">
-                    <div class="products-slick" data-nav="#slick-nav-1">
-                        <!-- product -->
-                        @foreach (var movie in Model)
-                        {
-                            <div class="col mb-4">
-                                <div class="card">
-                                    <div>
-                                        <p>   </p>
-                                    </div>
-                                    <div class="shop-img">
-                                        @if (!String.IsNullOrEmpty(movie.Image))
-                                        {
-                                            <img src="@movie.Image" alt="Product Image" style="width: 250px; height: 250px; display: block; margin: 0 auto;" />
+                                                    <div class="shop-img">
+                                                        @if (!String.IsNullOrEmpty(movie.Image))
+                                                        {
+                                                            <img src="@movie.Image" alt="Product Image" style="width: 250px; height: 250px; display: block; margin: 0 auto;" />
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="card-img-top text-center">No Image</div>
+                                                        }
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <p class="product-category">@movie.Category?.Name</p>
+                                                        <h3 class="product-name"><a asp-action="Display" asp-route-id="@movie.Id">@movie.Name</a></h3>
+
+                                                        <div class="star-rating">
+                                                            @for (int i = 0; i < movie.Rate; i++)
+                                                            {
+                                                                <i class="fa fa-star"></i>
+                                                            }
+                                                            @for (int i = 0; i < 5 - movie.Rate; i++)
+                                                            {
+                                                                <i class="fa fa-star-o"></i>
+                                                            }
+                                                        </div>
+                                                        <div>
+                                                            <p>   </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         }
-                                        else
-                                        {
-                                            <div class="card-img-top text-center">No Image</div>
-                                        }
-                                    </div>
-                                    <div class="card-body">
-                                        <p class="product-category">@movie.Category?.Name</p>
-                                        <h3 class="product-name"><a asp-action="Display" asp-route-id="@movie.Id">@movie.Name</a></h3>
-                                        
-                                        <div class="star-rating">
-                                            @for (int i = 0; i < movie.Rate; i++)
-                                            {
-                                                <i class="fa fa-star"></i>
-                                            }
-                                            @for (int i = 0; i < 5-movie.Rate; i++)
-                                            {
-                                                <i class="fa fa-star-o"></i>
-                                            }
-                                        </div>
-                                        <div>
-                                            <p>   </p>
-                                        </div>
-                                    </div>
+                                    }
                                 </div>
+                                <div id="slick-nav-1" class="products-slick-nav"></div>
                             </div>
-                        }
+                            <!-- /tab -->
+                        </div>
                     </div>
-                    <div id="slick-nav-1" class="products-slick-nav"></div>
                 </div>
-                <!-- /tab -->
+                <!-- Products tab & slick -->
             </div>
+            <!-- /row -->
         </div>
+        <!-- /container -->
     </div>
+    <!-- /SECTION -->
+
+
+    <!-- Phim sắp chiếu -->
+    <!-- SECTION -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+
+                <h2>Phim sắp chiếu</h2>
+                <!-- /section title -->
+                <!-- Products tab & slick -->
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="products-tabs">
+                            <!-- tab -->
+                            <div id="tab2" class="tab-pane fade in active">
+                                <div class="products-slick" data-nav="#slick-nav-2">
+                                    @foreach (var movie in Model)
+                                    {
+                                        @if (movie.StartDate > DateTime.Now)
+                                        {
+                                            <div class="col mb-4">
+                                                <div class="card">
+
+                                                    <div class="shop-img">
+                                                        @if (!String.IsNullOrEmpty(movie.Image))
+                                                        {
+                                                            <img src="@movie.Image" alt="Product Image" style="width: 250px; height: 250px; display: block; margin: 0 auto;" />
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="card-img-top text-center">No Image</div>
+                                                        }
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <p class="product-category">@movie.Category?.Name</p>
+                                                        <h3 class="product-name"><a asp-action="Display" asp-route-id="@movie.Id">@movie.Name</a></h3>
+
+                                                        <div class="star-rating">
+                                                            @for (int i = 0; i < movie.Rate; i++)
+                                                            {
+                                                                <i class="fa fa-star"></i>
+                                                            }
+                                                            @for (int i = 0; i < 5 - movie.Rate; i++)
+                                                            {
+                                                                <i class="fa fa-star-o"></i>
+                                                            }
+                                                        </div>
+                                                        <div>
+                                                            <p>   </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                                <div id="slick-nav-2" class="products-slick-nav"></div>
+                            </div>
+                            <!-- /tab -->
+                        </div>
+                    </div>
+                </div>
+                <!-- /Products tab & slick -->
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /SECTION -->
+    
+
     <script src="~/User/js/jquery.min.js"></script>
     <script src="~/User/js/bootstrap.min.js"></script>
     <script src="~/User/js/slick.min.js"></script>
@@ -129,6 +250,7 @@
                 ]
             });
         });
+
     </script>
 
 </body>
