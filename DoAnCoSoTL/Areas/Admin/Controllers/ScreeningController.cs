@@ -64,18 +64,18 @@ namespace DoAnCoSoTL.Areas.Admin.Controllers
 
             // Lấy danh sách rạp chiếu và danh sách phim từ cơ sở dữ liệu
             var cinemas = await _cinemaRepository.GetAllAsync();
-            var movies = await _movieRepository.GetAllAsync();
+            var list = _db.Movies.Where(x => x.EndDate >= DateTime.Today).ToList();
 
             // Kiểm tra xem có ít nhất một phim tồn tại trong danh sách phim không
-            if (movies.Any())
+            if (list.Any())
             {
-                var movieDurationMinutes = movies.First().DurationMinutes;
+                var movieDurationMinutes = list.First().DurationMinutes;
                 ViewBag.MovieDurationMinutes = movieDurationMinutes;
             }
 
             // Truyền danh sách rạp chiếu và danh sách phim vào ViewBag
             ViewBag.Cinemas = new SelectList(cinemas, "Id", "Name");
-            ViewBag.Movies = new SelectList(movies, "Id", "Name");
+            ViewBag.Movies = new SelectList(list, "Id", "Name");
 
             // Trả về view với đối tượng Screening mới
             return View(screening);
@@ -91,7 +91,8 @@ namespace DoAnCoSoTL.Areas.Admin.Controllers
                 try
                 {
                     // Lấy ngày bắt đầu và kết thúc của Movie
-                    var moviek = await _movieRepository.GetAllAsync();
+                    //var moviek = await _movieRepository.GetAllAsync();
+                    var list = _db.Movies.Where(x=>x.EndDate>= DateTime.Today).ToList();
                     var movie = await _movieRepository.GetByIdAsync(screening.MovieId);
                     if (movie == null)
                     {
@@ -106,13 +107,13 @@ namespace DoAnCoSoTL.Areas.Admin.Controllers
                         {
                             ModelState.AddModelError(string.Empty, "Ngày chiếu phim không hợp lệ");
                            
-                            ViewBag.Movies = new SelectList(moviek, "Id", "Name");
+                            ViewBag.Movies = new SelectList(list, "Id", "Name");
                             return View(screening);
                         }
                     }
 
                     screening.Movie = movie;
-                    var screeninglist = _screeningRepository.GetByMovieId(screening.MovieId).Result;
+                    var screeninglist = _screeningRepository.GetAllAsync().Result;
                     foreach (var item in screeninglist)
                     {
                         if (item.CinemaId == screening.CinemaId && item.Date == screening.Date)
@@ -122,7 +123,7 @@ namespace DoAnCoSoTL.Areas.Admin.Controllers
                                 string errorMessage = $"Lịch chiếu vào lúc {item.Time} tại rạp {screening.Movie.Name} đã tồn tại !!! Vui lòng chọn giờ chiếu khác";
                                 ModelState.AddModelError(string.Empty, errorMessage);
 
-                                ViewBag.Movies = new SelectList(moviek, "Id", "Name");
+                                ViewBag.Movies = new SelectList(list, "Id", "Name");
                                 return View(screening);
 
                             }
@@ -130,12 +131,12 @@ namespace DoAnCoSoTL.Areas.Admin.Controllers
                             TimeSpan ts2 = TimeSpan.Parse(screening.Time);
                             TimeSpan difference = ts2 - ts1;
 
-                            if (ts1 >= ts2 || difference.TotalMinutes < 5)
+                            if (ts1 >= ts2 || difference.TotalMinutes < 10)
                             {
                                 string errorMessage = $"Thời gian lịch chiếu không phù hợp !!! Vui lòng chọn giờ chiếu khác";
                                 ModelState.AddModelError(string.Empty, errorMessage);
 
-                                ViewBag.Movies = new SelectList(moviek, "Id", "Name");
+                                ViewBag.Movies = new SelectList(list, "Id", "Name");
                                 return View(screening);
                             }
 
@@ -178,11 +179,11 @@ namespace DoAnCoSoTL.Areas.Admin.Controllers
 
             // Lấy danh sách rạp chiếu và danh sách phim từ cơ sở dữ liệu
             var cinemas = await _cinemaRepository.GetAllAsync();
-            var movies = await _movieRepository.GetAllAsync();
+            var list = _db.Movies.Where(x => x.EndDate >= DateTime.Today).ToList();
 
             // Trả về view với thông tin của buổi chiếu và danh sách rạp chiếu, danh sách phim
             ViewBag.Cinemas = new SelectList(cinemas, "Id", "Name", screening.CinemaId);
-            ViewBag.Movies = new SelectList(movies, "Id", "Name", screening.MovieId);
+            ViewBag.Movies = new SelectList(list, "Id", "Name", screening.MovieId);
 
             return View(screening);
         }
@@ -285,7 +286,8 @@ namespace DoAnCoSoTL.Areas.Admin.Controllers
                         return NotFound();
                     }
 
-                    var moviek = await _movieRepository.GetAllAsync();
+                    //var moviek = await _movieRepository.GetAllAsync();
+                    var list = _db.Movies.Where(x => x.EndDate >= DateTime.Today).ToList();
                     var movie = await _movieRepository.GetByIdAsync(screening.MovieId);
                     if (movie == null)
                     {
@@ -300,27 +302,45 @@ namespace DoAnCoSoTL.Areas.Admin.Controllers
                         {
                             ModelState.AddModelError(string.Empty, "Ngày chiếu phim không hợp lệ");
 
-                            ViewBag.Movies = new SelectList(moviek, "Id", "Name");
+                            ViewBag.Movies = new SelectList(list, "Id", "Name");
                             return View(screening);
                         }
                     }
 
-
-                    var screeninglist = _screeningRepository.GetByMovieId(screening.MovieId).Result;
+                    screening.Movie = movie;
+                    var screeninglist = _screeningRepository.GetAllAsync().Result;
                     foreach (var item in screeninglist)
                     {
-                        if (item.CinemaId == screening.CinemaId && item.Time == screening.Time && item.Date == screening.Date)
+                        if (item.CinemaId == screening.CinemaId && item.Date == screening.Date)
                         {
-                            ModelState.AddModelError(string.Empty, "Lịch chiếu đã tồn tại");
+                            //if (item.Time == screening.Time)
+                            //{
+                            //    string errorMessage = $"Lịch chiếu vào lúc {item.Time} tại rạp {screening.Movie.Name} đã tồn tại !!! Vui lòng chọn giờ chiếu khác";
+                            //    ModelState.AddModelError(string.Empty, errorMessage);
 
-                            ViewBag.Movies = new SelectList(moviek, "Id", "Name");
-                            return View(screening);
+                            //    ViewBag.Movies = new SelectList(moviek, "Id", "Name");
+                            //    return View(screening);
+
+                            //}
+                            if (item.Id != screening.Id)
+                            {
+
+
+                                TimeSpan ts1 = TimeSpan.Parse(item.EndTime);
+                                TimeSpan ts2 = TimeSpan.Parse(screening.Time);
+                                TimeSpan difference = ts2 - ts1;
+
+                                if (ts1 >= ts2 || difference.TotalMinutes < 5)
+                                {
+                                    string errorMessage = $"Thời gian lịch chiếu không phù hợp !!! Vui lòng chọn giờ chiếu khác";
+                                    ModelState.AddModelError(string.Empty, errorMessage);
+
+                                    ViewBag.Movies = new SelectList(list, "Id", "Name");
+                                    return View(screening);
+                                }
+                            }
                         }
                     }
-                    // Lấy đối tượng Screening hiện tại từ cơ sở dữ liệu
-                 
-
-
                     // Cập nhật thông tin của đối tượng Screening
                     existingScreening.Time = screening.Time;
                     existingScreening.CinemaId = screening.CinemaId;

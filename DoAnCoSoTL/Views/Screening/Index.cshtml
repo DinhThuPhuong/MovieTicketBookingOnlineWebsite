@@ -1,0 +1,132 @@
+﻿@model List<DoAnCoSoTL.Models.Screening>
+
+<h1>List of Screenings</h1>
+
+@foreach (var screening in Model)
+{
+    <div>
+        <h4>@screening.Movie.Name</h4>
+        <p>Date: @screening.Date.ToShortDateString()</p>
+        <p>Time: @screening.Time - @screening.EndTime</p>
+        <p>Cinema: @screening.Cinema.Name</p>
+        <a asp-action="Details" asp-route-id="@screening.Id">Select Screening</a>
+    </div>
+}
+
+<h2>Choose Cinema and Showtime:</h2>
+@foreach (var cinemaGroup in Model.GroupBy(s => s.CinemaId))
+{
+    <h3>@cinemaGroup.First().Cinema.Name</h3> <!-- Tiêu đề là tên của rạp chiếu phim -->
+    @foreach (var dateGroup in cinemaGroup.GroupBy(s => s.Date))
+    {
+        <div>
+            <h4>Date: @dateGroup.Key.ToShortDateString()</h4>
+            <form asp-action="ChooseSeat" asp-route-screeningId="@dateGroup.First().Id">
+                @foreach (var timeSlot in GetTimeSlots(dateGroup))
+                {
+                    <button type="submit" class="btn btn-primary" name="timeSlot" value="@timeSlot">@timeSlot</button>
+                }
+            </form>
+        </div>
+    }
+}
+ @{
+    var today = DateTime.Today;
+    var screeningsToday = Model.Where(s => s.Date.Date == today);
+}
+
+@if (screeningsToday.Any())
+{
+    <h1>List of Screenings Today</h1>
+    @foreach (var screening in screeningsToday)
+    {
+        <div>
+            <h4>@screening.Movie.Name</h4>
+            <p>Date: @screening.Date.ToShortDateString()</p>
+            <p>Time: @screening.Time - @screening.EndTime</p>
+            <p>Cinema: @screening.Cinema.Name</p>
+            <a asp-action="Details" asp-route-id="@screening.Id">Select Screening</a>
+        </div>
+    }
+}
+else
+{
+    <h1>No Screenings Today</h1>
+} 
+
+@functions {
+    public List<string> GetTimeSlots(IEnumerable<DoAnCoSoTL.Models.Screening> screenings)
+    {
+        // Tạo danh sách các khung giờ từ danh sách lịch chiếu screenings
+        List<string> timeSlots = new List<string>();
+
+        // Gộp thời gian bắt đầu và kết thúc của các lịch chiếu cùng ngày vào một hàng
+        var timeSlotsGrouped = screenings.GroupBy(s => $"{s.Time} - {s.EndTime}");
+        foreach (var timeSlotGroup in timeSlotsGrouped)
+        {
+            timeSlots.Add(timeSlotGroup.Key);
+        }
+
+        return timeSlots;
+    }
+}
+
+ @* @model List<DoAnCoSoTL.Models.Screening>
+
+<style>
+    .cinema-container {
+        margin-bottom: 20px;
+    }
+
+    .date-group {
+        margin-bottom: 20px;
+    }
+
+    .time-slot {
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+</style>
+
+<h1>List of Screenings</h1>
+
+@foreach (var cinemaGroup in Model.GroupBy(s => s.CinemaId))
+{
+    <div class="cinema-container">
+        <h2>@cinemaGroup.First().Cinema.Name</h2> <!-- Tiêu đề là tên của rạp chiếu phim -->
+        <div class="date-group">
+            @foreach (var dateGroup in cinemaGroup.GroupBy(s => s.Date))
+            {
+                <div>
+                    <h4>Date: @dateGroup.Key.ToShortDateString()</h4>
+                    <div class="time-slots">
+                        @foreach (var timeSlot in GetTimeSlots(dateGroup))
+                        {
+                            <form asp-action="ChooseSeat" asp-route-screeningId="@dateGroup.First().Id">
+                                <button type="submit" class="btn btn-primary time-slot" name="timeSlot" value="@timeSlot">@timeSlot</button>
+                            </form>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+@functions {
+    public List<string> GetTimeSlots(IEnumerable<DoAnCoSoTL.Models.Screening> screenings)
+    {
+        // Tạo danh sách các khung giờ từ danh sách lịch chiếu screenings
+        List<string> timeSlots = new List<string>();
+
+        // Gộp thời gian bắt đầu và kết thúc của các lịch chiếu cùng ngày vào một hàng
+        var timeSlotsGrouped = screenings.GroupBy(s => $"{s.Time} - {s.EndTime}");
+        foreach (var timeSlotGroup in timeSlotsGrouped)
+        {
+            timeSlots.Add(timeSlotGroup.Key);
+        }
+
+        return timeSlots;
+    }
+} *@
+

@@ -93,45 +93,61 @@ namespace DoAnCoSoTL.Areas.Admin.Controllers
             {
                 try
                 {
-                    var movie = new Movie
+                    TimeSpan khoangCach = movievm.EndDate - movievm.StartDate;
+                    if (khoangCach.Days >= 10)
                     {
-                        Id = Guid.NewGuid(),
-                        Name = movievm.Name,
-                        Description = movievm.Description,
-                        Price = movievm.Price,
-                        Rate = movievm.Rate,
-                        StartDate = movievm.StartDate,
-                        EndDate = movievm.EndDate,
-                        Cat_Id = movievm.Category_Id,
-                        Producer_Id = movievm.Producer_Id,
-                        Trailer = movievm.Trailer,
-                        DurationMinutes = movievm.DurationMinutes,
-                    };
-
-                    if (Image != null)
-                    {
-                        movie.Image = await SaveImage(Image);
-                    }
-
-                    await _movieRepository.InsertAsync(movie);
-
-                    if (movievm.ActorIds != null && movievm.ActorIds.Any())
-                    {
-                        foreach (var actorId in movievm.ActorIds)
+                        var movie = new Movie
                         {
-                            await _movieActorRepository.InsertMovieActorAsync(movie.Id, actorId);
-                        }
-                    }
+                            Id = Guid.NewGuid(),
+                            Name = movievm.Name,
+                            Description = movievm.Description,
+                            Price = movievm.Price,
+                            Rate = movievm.Rate,
+                            StartDate = movievm.StartDate,
+                            EndDate = movievm.EndDate,
+                            Cat_Id = movievm.Category_Id,
+                            Producer_Id = movievm.Producer_Id,
+                            Trailer = movievm.Trailer,
+                            DurationMinutes = movievm.DurationMinutes,
+                        };
 
-                    if (movievm.CinemaIds != null && movievm.CinemaIds.Any())
-                    {
-                        foreach (var cinemaId in movievm.CinemaIds)
+                        if (Image != null)
                         {
-                            await _moviesInCinemaRepository.InsertMoviesInCinemaAsync(movie.Id, cinemaId);
+                            movie.Image = await SaveImage(Image);
                         }
-                    }
 
-                    return RedirectToAction("Index", "Movie");
+                        await _movieRepository.InsertAsync(movie);
+
+                        if (movievm.ActorIds != null && movievm.ActorIds.Any())
+                        {
+                            foreach (var actorId in movievm.ActorIds)
+                            {
+                                await _movieActorRepository.InsertMovieActorAsync(movie.Id, actorId);
+                            }
+                        }
+
+                        if (movievm.CinemaIds != null && movievm.CinemaIds.Any())
+                        {
+                            foreach (var cinemaId in movievm.CinemaIds)
+                            {
+                                await _moviesInCinemaRepository.InsertMoviesInCinemaAsync(movie.Id, cinemaId);
+                            }
+                        }
+
+                        return RedirectToAction("Index", "Movie");
+                    }
+                    else
+                    {
+                        string errorMessage = $"Thời gian chiếu của bộ phim phải lớn hơn hoặc bằng 10 ngày";
+                        ModelState.AddModelError(string.Empty, errorMessage);
+                        ViewBag.Cinemas = new SelectList(_db.Cinemas.ToList(), "Id", "Name");
+                        ViewBag.Categories = new SelectList(_db.Categories.ToList(), "Id", "Name");
+                        ViewBag.Actors = new SelectList(_db.Actors.ToList(), "Id", "Name");
+                        ViewBag.Producers = new SelectList(_db.Producers.ToList(), "Id", "Name");
+                        return View("Create", movievm);
+
+
+                    }
                 }
                 catch (Exception ex)
                 {

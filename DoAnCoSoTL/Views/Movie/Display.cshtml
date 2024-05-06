@@ -96,15 +96,12 @@
                     <script>
                         $(document).ready(function () {
 
-                            // Xử lý sự kiện click của nút "Mua vé"
-                            $('#buy-ticket-btn').on('click', function () {
-                                // Lấy screeningId từ một Screening cụ thể của Movie
-                                var screeningId = '@ViewBag.ScreeningId';
-                                if (screeningId) {
-                                    window.location.href = '/Seat/ChooseSeat?screeningId=' + screeningId;
-                                } else {
-                                    console.error('No screening available for this movie.');
-                                }
+                            $(document).ready(function () {
+                                $('#buy-ticket-btn').on('click', function () {
+                                    var movieId = '@Model.Id';
+                                    // Chuyển hướng đến trang chọn rạp và khung giờ chiếu với movieId đã chọn
+                                    window.location.href = '@Url.Action("Index", "Screening")' + '?movieId=' + movieId;
+                                });
                             });
 
                             // Xử lý sự kiện click của nút "Xem Trailer"
