@@ -1,0 +1,154 @@
+﻿<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+@{
+    ViewData["Title"] = "Choose Seat";
+}
+
+<h2>Choose Seat</h2>
+<p>Screening ID: @ViewData["ScreeningId"]</p>
+<p>Time Slot: @ViewData["TimeSlot"]</p>
+<a href="javascript:history.back()">Trờ về </a>
+
+<div class="screen-divider">
+    <hr class="divider-line">
+    <div class="screen-text">Màn hình</div>
+</div>
+
+<div class="seat-layout">
+    @for (int row = 1; row <= 8; row++)
+    {
+        <div class="seat-row">
+            @for (int seat = 1; seat <= 12; seat++)
+            {
+                <button class="seat" data-row="@((char)('A' + row - 1))" data-seat="@($"{(char)('A' + row - 1)}{seat}")">
+                    <span class="seat-text">@($"{(char)('A' + row - 1)}{seat}")</span>
+                </button>
+            }
+        </div>
+    }
+</div>
+
+<div class="legend" style="margin-bottom: 20px;">
+    <div class="legend-item">
+        <div class="seat-legend pink"></div>
+        <span>Ghế đã chọn</span>
+    </div>
+    <div class="legend-item">
+        <div class="seat-legend white"></div>
+        <span>Ghế trống</span>
+    </div>
+    <div class="legend-item">
+        <div class="seat-legend gray"></div>
+        <span>Ghế đã được đặt</span>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.seat').click(function () {
+            var isSelected = $(this).hasClass('selected');
+
+            // Kiểm tra xem nút đã được chọn trước đó chưa
+            if (!isSelected) {
+                // Nếu chưa được chọn, thêm lớp 'selected' để chuyển màu nền thành màu hồng
+                $(this).addClass('selected');
+            } else {
+                // Nếu đã được chọn, xóa lớp 'selected' để trở về màu nền mặc định
+                $(this).removeClass('selected');
+            }
+        });
+    });
+</script>
+
+
+<style>
+    .seat-layout {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .seat-row {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .row-number {
+        width: 30px;
+        text-align: center;
+    }
+
+    .seat {
+        width: 40px; /* Độ rộng của button */
+        height: 40px; /* Độ cao của button */
+        border: 1px solid #000;
+        background-color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+
+        .seat:hover {
+            background-color: #add8e6;
+        }
+
+        .seat.selected {
+            background-color: pink; /* Đặt màu hồng cho nút đã được chọn */
+        }
+
+    .seat-text {
+        font-size: 16px; /* Kích thước font của chữ trong button */
+    }
+
+    .screen-divider {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .divider-line {
+        width: 200px; /* Đặt độ rộng mong muốn của thanh ngang */
+        border: none;
+        border-top: 2px solid black;
+        margin-top: 10px;
+    }
+
+    .screen-text {
+        font-weight: bold;
+        margin-top: -30px; /* Điều chỉnh margin-top để chữ "Màn hình" nằm gần sát thanh ngang */
+        margin-bottom: 30px;
+    }
+
+    .legend {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .legend-item {
+        display: flex;
+        gap: 10px;
+    }
+
+    .seat-legend {
+        width: 20px;
+        height: 20px;
+        border: 1px solid #000;
+    }
+
+        .seat-legend.pink {
+            background-color: pink;
+        }
+
+        .seat-legend.white {
+            background-color: #fff;
+        }
+
+        .seat-legend.gray {
+            background-color: gray;
+        }
+</style>

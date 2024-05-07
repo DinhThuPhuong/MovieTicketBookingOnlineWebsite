@@ -1,6 +1,7 @@
 ﻿using DoAnCoSoTL.Models;
 using DoAnCoSoTL.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace DoAnCoSoTL.Controllers
 {
@@ -17,19 +18,20 @@ namespace DoAnCoSoTL.Controllers
             _movieRepository = movieRepository;
         }
 
-        // GET: Screening/Index
+        //GET: Screening/Index
         public async Task<IActionResult> Index(Guid movieId)
         {
             var screenings = _context.Screenings.Where(s => s.MovieId == movieId).ToList();
             foreach (var screening in screenings)
             {
-                screening.Movie =  await _movieRepository.GetByIdAsync(screening.MovieId);
+                screening.Movie = await _movieRepository.GetByIdAsync(screening.MovieId);
                 screening.Cinema = await _cinemaRepository.GetByIdAsync(screening.CinemaId);
 
             }
 
             return View(screenings);
         }
+
 
         // GET: Screening/Details/5
         public IActionResult Details(int? id)
@@ -47,5 +49,8 @@ namespace DoAnCoSoTL.Controllers
 
             return View(screening);
         }
+
+
+
     }
 }

@@ -8,10 +8,13 @@ namespace DoAnCoSoTL.Models
         public int Id { get; set; }
 
         [Required]
-        public string Row { get; set; }
+        public string SeatCode { get; set; } // Mã ghế kiểu string
 
-        [Required]
-        public int Number { get; set; }
+        //[Required]
+        //public string Row { get; set; }
+
+        //[Required]
+        //public int Number { get; set; }
 
         [Required]
         public bool IsAvailable { get; set; }

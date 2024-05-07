@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Aa2I5pyZnDUHU0gQOcUcsYY7ZSIosEZ38VjWczu9Hp68oiLT21bOIurFqIoZYhx3BU92MK1/JGR5GpFsX1haTg==",
+  "dgSpecHash": "knBdZQsUteX4z553KAAiZiwejx+z7AaqDCzdSpNqoKcZob/5ojInA52CxZXzRbY15w5cXkOuBop6GfNhfy/YQg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\FPT SHOP\\Source\\Repos\\MovieTicketBookingOnlineWebsite0605\\DoAnCoSoTL\\DoAnCoSoTL.csproj",
+  "projectFilePath": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite0605\\DoAnCoSoTL\\DoAnCoSoTL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\FPT SHOP\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\FPT SHOP\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
