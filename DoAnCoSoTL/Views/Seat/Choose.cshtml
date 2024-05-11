@@ -6,7 +6,9 @@
 <h2>Choose Seat</h2>
 <p>Screening ID: @ViewData["ScreeningId"]</p>
 <p>Time Slot: @ViewData["TimeSlot"]</p>
-<a href="javascript:history.back()">Trờ về </a>
+<div id="ticketPrice">Giá vé: $@ViewBag.TicketPrice</div>
+
+<a href="javascript:history.back()">Trở về</a>
 
 <div class="screen-divider">
     <hr class="divider-line">
@@ -17,10 +19,13 @@
     @for (int row = 1; row <= 8; row++)
     {
         <div class="seat-row">
-            @for (int seat = 1; seat <= 12; seat++)
+            @for (int seatNumber = 1; seatNumber <= 12; seatNumber++)
             {
-                <button class="seat" data-row="@((char)('A' + row - 1))" data-seat="@($"{(char)('A' + row - 1)}{seat}")">
-                    <span class="seat-text">@($"{(char)('A' + row - 1)}{seat}")</span>
+                var seatId = (row - 1) * 12 + seatNumber;
+                var isBooked = Model != null && Model.Contains(seatId); // Kiểm tra xem Model có null hay không trước khi sử dụng
+
+                <button class="seat @(isBooked ? "gray" : "")" @(isBooked ? "disabled" : "")>
+                    <span class="seat-text">@($"{(char)('A' + row - 1)}{seatNumber}")</span>
                 </button>
             }
         </div>
@@ -42,6 +47,18 @@
     </div>
 </div>
 
+<div id="selectedSeats">Số ghế đã chọn:</div> <!-- Phần tử để hiển thị số ghế đã chọn -->
+<form asp-controller="Seat" asp-action="BookTicket" method="post">
+    <input type="hidden" name="screeningId" value="@ViewData["ScreeningId"]" />
+    <input type="hidden" name="timeSlot" value="@ViewData["TimeSlot"]" />
+    @foreach (var seat in Model)
+    {
+        <input type="hidden" name="selectedSeatIds[]" value="@seat.Id" />
+    }
+    <button type="submit" class="btn btn-primary">Mua vé</button>
+</form>
+<div id="totalPrice">Tổng tiền: $0</div>
+
 <script>
     $(document).ready(function () {
         $('.seat').click(function () {
@@ -55,10 +72,51 @@
                 // Nếu đã được chọn, xóa lớp 'selected' để trở về màu nền mặc định
                 $(this).removeClass('selected');
             }
+            // Cập nhật tổng tiền khi người dùng chọn hoặc bỏ chọn ghế
+            updateTotalPrice();
+            updateSelectedSeats(); // Cập nhật số ghế đã chọn
         });
+
+        function updateTotalPrice() {
+            // Đếm số lượng ghế đã chọn
+            var selectedSeatCount = $('.seat.selected').length;
+
+            // Lấy giá vé từ dữ liệu được truyền từ server (phải đảm bảo rằng giá vé đã được gửi đến view)
+            var ticketPrice = @ViewBag.TicketPrice; // Điều này giả sử rằng giá vé được truyền từ ViewBag
+
+            // Tính tổng tiền
+            var totalPrice = selectedSeatCount * ticketPrice;
+
+            // Cập nhật nội dung của phần tử HTML hiển thị tổng tiền
+            $('#totalPrice').text('Tổng tiền: $' + totalPrice.toFixed(2));
+        }
+
+        function updateSelectedSeats() {
+            var selectedSeats = [];
+            $('.seat.selected').each(function () {
+                var seatText = $(this).find('.seat-text').text(); // Lấy nội dung của ghế đã chọn
+                selectedSeats.push(seatText); // Thêm vào mảng các ghế đã chọn
+            });
+
+            // Cập nhật nội dung của phần tử HTML hiển thị số ghế đã chọn
+            $('#selectedSeats').text('Số ghế đã chọn: ' + selectedSeats.join(', '));
+        }
+        function redirectToTicketDetails() {
+            // Lấy số ghế đã chọn
+            var selectedSeatIds = [];
+            $('.seat.selected').each(function () {
+                var seatText = $(this).find('.seat-text').text();
+                selectedSeatIds.push(seatText);
+            });
+
+            // Lấy tổng tiền
+            var totalPrice = parseFloat($('#totalPrice').text().replace('Tổng tiền: $', ''));
+
+            // Chuyển hướng đến trang TicketDetails với các tham số
+            window.location.href = '/Seat/TicketDetails?selectedSeatIds=' + selectedSeatIds.join(',') + '&totalPrice=' + totalPrice;
+        }
     });
 </script>
-
 
 <style>
     .seat-layout {

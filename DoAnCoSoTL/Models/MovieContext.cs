@@ -22,7 +22,8 @@ namespace DoAnCoSoTL.Models
         public DbSet<Screening> Screenings { get; set; }
         public virtual DbSet<MovieOrder> MovieOrders { get; set; }
         public DbSet<Seat> Seats { get; set; }
-
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
 
         //public MovieContext() { }
 

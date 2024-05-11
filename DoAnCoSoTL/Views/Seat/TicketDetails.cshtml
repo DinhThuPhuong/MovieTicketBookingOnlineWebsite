@@ -1,0 +1,7 @@
+﻿<h1>Thông tin vé</h1>
+<p>Tên phim: @ViewBag.MovieName</p>
+<p>Khung giờ chiếu: @ViewBag.TimeSlot</p>
+<p>Tên rạp: @ViewBag.CinemaName</p>
+<p>Địa chỉ rạp: @ViewBag.CinemaLocation</p>
+<p>Số ghế: @(ViewBag.SelectedSeats != null ? string.Join(", ", ViewBag.SelectedSeats) : "Không có ghế được chọn")</p>
+<p>Tổng tiền: $@ViewBag.TotalPrice</p>

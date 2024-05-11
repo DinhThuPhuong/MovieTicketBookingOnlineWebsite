@@ -10,11 +10,11 @@ namespace DoAnCoSoTL.Models
         [Required]
         public string SeatCode { get; set; } // Mã ghế kiểu string
 
-        //[Required]
-        //public string Row { get; set; }
+        [Required]
+        public string Row { get; set; }
 
-        //[Required]
-        //public int Number { get; set; }
+        [Required]
+        public int Number { get; set; }
 
         [Required]
         public bool IsAvailable { get; set; }
@@ -28,5 +28,8 @@ namespace DoAnCoSoTL.Models
         public virtual Cinema Cinema { get; set; }
 
         public virtual Screening Screening { get; set; }
+
+        // Thêm trường để xác định trạng thái của ghế (đã đặt hay chưa)
+        public bool IsBooked { get; set; }
     }
 }
