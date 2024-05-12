@@ -262,6 +262,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2NyZWVuaW5nXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/FPT SHOP/source/repos/MovieTicketBookingOnlineWebsite1005/DoAnCoSoTL/Views/SeatBookingCart/Checkout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VhdEJvb2tpbmdDYXJ0XENoZWNrb3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/FPT SHOP/source/repos/MovieTicketBookingOnlineWebsite1005/DoAnCoSoTL/Views/SeatBookingCart/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VhdEJvb2tpbmdDYXJ0XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/FPT SHOP/source/repos/MovieTicketBookingOnlineWebsite1005/DoAnCoSoTL/Views/SeatBookingCart/OrderCompleted.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VhdEJvb2tpbmdDYXJ0XE9yZGVyQ29tcGxldGVkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/FPT SHOP/source/repos/MovieTicketBookingOnlineWebsite1005/DoAnCoSoTL/Views/Seat/Choose.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VhdFxDaG9vc2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -280,18 +292,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/FPT SHOP/source/repos/MovieTicketBookingOnlineWebsite1005/DoAnCoSoTL/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/FPT SHOP/source/repos/MovieTicketBookingOnlineWebsite1005/DoAnCoSoTL/Views/Shared/SeatBookingCart/Checkout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFNlYXRCb29raW5nQ2FydFxDaGVja291dC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/FPT SHOP/source/repos/MovieTicketBookingOnlineWebsite1005/DoAnCoSoTL/Views/Shared/SeatBookingCart/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFNlYXRCb29raW5nQ2FydFxJbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/FPT SHOP/source/repos/MovieTicketBookingOnlineWebsite1005/DoAnCoSoTL/Views/Shared/SeatBookingCart/OrderCompleted.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFNlYXRCb29raW5nQ2FydFxPcmRlckNvbXBsZXRlZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/FPT SHOP/source/repos/MovieTicketBookingOnlineWebsite1005/DoAnCoSoTL/Views/Shared/_AdminLayout.cshtml]

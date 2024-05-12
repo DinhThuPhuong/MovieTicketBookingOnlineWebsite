@@ -3,8 +3,76 @@
   "WorkspaceRootPath": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Migrations\\20240511183241_AddTumLaTumLum2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DoAnCoSoTL\\Migrations\\20240511183241_AddTumLaTumLum2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\fpt shop\\source\\repos\\movieticketbookingonlinewebsite1005\\doancosotl\\views\\seat\\choose.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\views\\seat\\choose.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\fpt shop\\source\\repos\\movieticketbookingonlinewebsite1005\\doancosotl\\controllers\\seatbookingcartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\controllers\\seatbookingcartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\fpt shop\\source\\repos\\movieticketbookingonlinewebsite1005\\doancosotl\\controllers\\seatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\controllers\\seatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\fpt shop\\source\\repos\\movieticketbookingonlinewebsite1005\\doancosotl\\views\\seatbookingcart\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\views\\seatbookingcart\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\fpt shop\\source\\repos\\movieticketbookingonlinewebsite1005\\doancosotl\\views\\seat\\ticketdetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\views\\seat\\ticketdetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\fpt shop\\source\\repos\\movieticketbookingonlinewebsite1005\\doancosotl\\models\\moviecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\models\\moviecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\fpt shop\\source\\repos\\movieticketbookingonlinewebsite1005\\doancosotl\\models\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\models\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\fpt shop\\source\\repos\\movieticketbookingonlinewebsite1005\\doancosotl\\models\\seatcartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\models\\seatcartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\fpt shop\\source\\repos\\movieticketbookingonlinewebsite1005\\doancosotl\\extensions\\sessionextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\extensions\\sessionextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\fpt shop\\source\\repos\\movieticketbookingonlinewebsite1005\\doancosotl\\viewmodels\\moviedetailsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\viewmodels\\moviedetailsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\fpt shop\\source\\repos\\movieticketbookingonlinewebsite1005\\doancosotl\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\fpt shop\\source\\repos\\movieticketbookingonlinewebsite1005\\doancosotl\\repositories\\cartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\repositories\\cartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\fpt shop\\source\\repos\\movieticketbookingonlinewebsite1005\\doancosotl\\repositories\\icartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\repositories\\icartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\fpt shop\\source\\repos\\movieticketbookingonlinewebsite1005\\doancosotl\\models\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\models\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\fpt shop\\source\\repos\\movieticketbookingonlinewebsite1005\\doancosotl\\views\\seatbookingcart\\ordercompleted.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\views\\seatbookingcart\\ordercompleted.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\fpt shop\\source\\repos\\movieticketbookingonlinewebsite1005\\doancosotl\\repositories\\seatrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\repositories\\seatrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\fpt shop\\source\\repos\\movieticketbookingonlinewebsite1005\\doancosotl\\repositories\\iseatrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\repositories\\iseatrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\fpt shop\\source\\repos\\movieticketbookingonlinewebsite1005\\doancosotl\\views\\seatbookingcart\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\views\\seatbookingcart\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\fpt shop\\source\\repos\\movieticketbookingonlinewebsite1005\\doancosotl\\views\\orderlist\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -31,40 +99,8 @@
       "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\views\\orderlist\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\fpt shop\\source\\repos\\movieticketbookingonlinewebsite1005\\doancosotl\\views\\shared\\seatbookingcart\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\views\\shared\\seatbookingcart\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\fpt shop\\source\\repos\\movieticketbookingonlinewebsite1005\\doancosotl\\controllers\\seatbookingcartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\controllers\\seatbookingcartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\fpt shop\\source\\repos\\movieticketbookingonlinewebsite1005\\doancosotl\\views\\shared\\seatbookingcart\\ordercompleted.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\views\\shared\\seatbookingcart\\ordercompleted.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\fpt shop\\source\\repos\\movieticketbookingonlinewebsite1005\\doancosotl\\views\\shared\\seatbookingcart\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\views\\shared\\seatbookingcart\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\fpt shop\\source\\repos\\movieticketbookingonlinewebsite1005\\doancosotl\\models\\seatcartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\models\\seatcartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\fpt shop\\source\\repos\\movieticketbookingonlinewebsite1005\\doancosotl\\models\\seatbookingcart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\models\\seatbookingcart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\fpt shop\\source\\repos\\movieticketbookingonlinewebsite1005\\doancosotl\\repositories\\cartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\repositories\\cartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\fpt shop\\source\\repos\\movieticketbookingonlinewebsite1005\\doancosotl\\extensions\\sessionextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\extensions\\sessionextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\fpt shop\\source\\repos\\movieticketbookingonlinewebsite1005\\doancosotl\\repositories\\icartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\repositories\\icartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\fpt shop\\source\\repos\\movieticketbookingonlinewebsite1005\\doancosotl\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -87,16 +123,8 @@
       "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\views\\screening\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\fpt shop\\source\\repos\\movieticketbookingonlinewebsite1005\\doancosotl\\views\\seat\\choose.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\views\\seat\\choose.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\fpt shop\\source\\repos\\movieticketbookingonlinewebsite1005\\doancosotl\\models\\cinema.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\models\\cinema.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\fpt shop\\source\\repos\\movieticketbookingonlinewebsite1005\\doancosotl\\views\\seat\\ticketdetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\views\\seat\\ticketdetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\fpt shop\\source\\repos\\movieticketbookingonlinewebsite1005\\doancosotl\\views\\screening\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -107,20 +135,8 @@
       "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\controllers\\orderlistcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\fpt shop\\source\\repos\\movieticketbookingonlinewebsite1005\\doancosotl\\controllers\\seatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\controllers\\seatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\fpt shop\\source\\repos\\movieticketbookingonlinewebsite1005\\doancosotl\\repositories\\iorderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\repositories\\iorderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\fpt shop\\source\\repos\\movieticketbookingonlinewebsite1005\\doancosotl\\models\\moviecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\models\\moviecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\fpt shop\\source\\repos\\movieticketbookingonlinewebsite1005\\doancosotl\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|solutionrelative:doancosotl\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6362796A-82E9-4957-9A60-07714C412186}|DoAnCoSoTL\\DoAnCoSoTL.csproj|c:\\users\\fpt shop\\source\\repos\\movieticketbookingonlinewebsite1005\\doancosotl\\views\\movie\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -146,7 +162,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 29,
           "Children": [
             {
               "$type": "Bookmark",
@@ -154,38 +170,90 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "20240511183241_AddTumLaTumLum2.cs",
-              "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Migrations\\20240511183241_AddTumLaTumLum2.cs",
-              "RelativeDocumentMoniker": "DoAnCoSoTL\\Migrations\\20240511183241_AddTumLaTumLum2.cs",
-              "ToolTip": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Migrations\\20240511183241_AddTumLaTumLum2.cs",
-              "RelativeToolTip": "DoAnCoSoTL\\Migrations\\20240511183241_AddTumLaTumLum2.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "DocumentIndex": 9,
+              "Title": "MovieDetailsViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\ViewModels\\MovieDetailsViewModel.cs",
+              "RelativeDocumentMoniker": "DoAnCoSoTL\\ViewModels\\MovieDetailsViewModel.cs",
+              "ToolTip": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\ViewModels\\MovieDetailsViewModel.cs",
+              "RelativeToolTip": "DoAnCoSoTL\\ViewModels\\MovieDetailsViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-11T18:32:41.918Z",
+              "WhenOpened": "2024-05-12T13:25:18.882Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
+              "Title": "ApplicationUser.cs",
+              "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Models\\ApplicationUser.cs",
+              "RelativeDocumentMoniker": "DoAnCoSoTL\\Models\\ApplicationUser.cs",
+              "ToolTip": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Models\\ApplicationUser.cs",
+              "RelativeToolTip": "DoAnCoSoTL\\Models\\ApplicationUser.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-12T13:22:39.562Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Cart.cs",
+              "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Models\\Cart.cs",
+              "RelativeDocumentMoniker": "DoAnCoSoTL\\Models\\Cart.cs",
+              "ToolTip": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Models\\Cart.cs",
+              "RelativeToolTip": "DoAnCoSoTL\\Models\\Cart.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-12T13:22:08.334Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "SeatRepository.cs",
+              "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Repositories\\SeatRepository.cs",
+              "RelativeDocumentMoniker": "DoAnCoSoTL\\Repositories\\SeatRepository.cs",
+              "ToolTip": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Repositories\\SeatRepository.cs",
+              "RelativeToolTip": "DoAnCoSoTL\\Repositories\\SeatRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-12T11:15:05.474Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "ISeatRepository.cs",
+              "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Repositories\\ISeatRepository.cs",
+              "RelativeDocumentMoniker": "DoAnCoSoTL\\Repositories\\ISeatRepository.cs",
+              "ToolTip": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Repositories\\ISeatRepository.cs",
+              "RelativeToolTip": "DoAnCoSoTL\\Repositories\\ISeatRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-12T11:14:52.178Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
               "Title": "Checkout.cshtml",
-              "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Views\\Shared\\SeatBookingCart\\Checkout.cshtml",
-              "RelativeDocumentMoniker": "DoAnCoSoTL\\Views\\Shared\\SeatBookingCart\\Checkout.cshtml",
-              "ToolTip": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Views\\Shared\\SeatBookingCart\\Checkout.cshtml",
-              "RelativeToolTip": "DoAnCoSoTL\\Views\\Shared\\SeatBookingCart\\Checkout.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Views\\SeatBookingCart\\Checkout.cshtml",
+              "RelativeDocumentMoniker": "DoAnCoSoTL\\Views\\SeatBookingCart\\Checkout.cshtml",
+              "ToolTip": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Views\\SeatBookingCart\\Checkout.cshtml",
+              "RelativeToolTip": "DoAnCoSoTL\\Views\\SeatBookingCart\\Checkout.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAABQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-05-11T18:25:28.88Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 14,
               "Title": "OrderCompleted.cshtml",
-              "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Views\\Shared\\SeatBookingCart\\OrderCompleted.cshtml",
-              "RelativeDocumentMoniker": "DoAnCoSoTL\\Views\\Shared\\SeatBookingCart\\OrderCompleted.cshtml",
-              "ToolTip": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Views\\Shared\\SeatBookingCart\\OrderCompleted.cshtml",
-              "RelativeToolTip": "DoAnCoSoTL\\Views\\Shared\\SeatBookingCart\\OrderCompleted.cshtml",
+              "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Views\\SeatBookingCart\\OrderCompleted.cshtml",
+              "RelativeDocumentMoniker": "DoAnCoSoTL\\Views\\SeatBookingCart\\OrderCompleted.cshtml",
+              "ToolTip": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Views\\SeatBookingCart\\OrderCompleted.cshtml",
+              "RelativeToolTip": "DoAnCoSoTL\\Views\\SeatBookingCart\\OrderCompleted.cshtml",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-05-11T18:25:00.987Z",
@@ -193,33 +261,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 3,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Views\\Shared\\SeatBookingCart\\Index.cshtml",
-              "RelativeDocumentMoniker": "DoAnCoSoTL\\Views\\Shared\\SeatBookingCart\\Index.cshtml",
-              "ToolTip": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Views\\Shared\\SeatBookingCart\\Index.cshtml",
-              "RelativeToolTip": "DoAnCoSoTL\\Views\\Shared\\SeatBookingCart\\Index.cshtml",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAACkAAABvAAAA",
+              "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Views\\SeatBookingCart\\Index.cshtml",
+              "RelativeDocumentMoniker": "DoAnCoSoTL\\Views\\SeatBookingCart\\Index.cshtml",
+              "ToolTip": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Views\\SeatBookingCart\\Index.cshtml",
+              "RelativeToolTip": "DoAnCoSoTL\\Views\\SeatBookingCart\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACoAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-05-11T18:11:55.511Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 1,
               "Title": "SeatBookingCartController.cs",
               "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Controllers\\SeatBookingCartController.cs",
               "RelativeDocumentMoniker": "DoAnCoSoTL\\Controllers\\SeatBookingCartController.cs",
               "ToolTip": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Controllers\\SeatBookingCartController.cs",
               "RelativeToolTip": "DoAnCoSoTL\\Controllers\\SeatBookingCartController.cs",
-              "ViewState": "AQIAAEsAAAAAAAAAAAAAAFkAAAAmAAAA",
+              "ViewState": "AQIAAC8AAAAAAAAAAAAIwH0AAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-11T16:21:47.769Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 8,
               "Title": "SessionExtensions.cs",
               "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Extensions\\SessionExtensions.cs",
               "RelativeDocumentMoniker": "DoAnCoSoTL\\Extensions\\SessionExtensions.cs",
@@ -232,7 +300,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 24,
               "Title": "SeatBookingCart.cs",
               "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Models\\SeatBookingCart.cs",
               "RelativeDocumentMoniker": "DoAnCoSoTL\\Models\\SeatBookingCart.cs",
@@ -240,12 +308,11 @@
               "RelativeToolTip": "DoAnCoSoTL\\Models\\SeatBookingCart.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-11T16:15:59.242Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-11T16:15:59.242Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 7,
               "Title": "SeatCartItem.cs",
               "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Models\\SeatCartItem.cs",
               "RelativeDocumentMoniker": "DoAnCoSoTL\\Models\\SeatCartItem.cs",
@@ -258,33 +325,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 11,
               "Title": "CartRepository.cs",
               "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Repositories\\CartRepository.cs",
               "RelativeDocumentMoniker": "DoAnCoSoTL\\Repositories\\CartRepository.cs",
               "ToolTip": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Repositories\\CartRepository.cs",
               "RelativeToolTip": "DoAnCoSoTL\\Repositories\\CartRepository.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAABkAAAALAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-11T15:44:13.297Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 12,
               "Title": "ICartRepository.cs",
               "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Repositories\\ICartRepository.cs",
               "RelativeDocumentMoniker": "DoAnCoSoTL\\Repositories\\ICartRepository.cs",
               "ToolTip": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Repositories\\ICartRepository.cs",
               "RelativeToolTip": "DoAnCoSoTL\\Repositories\\ICartRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAADAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-11T15:43:53.475Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 25,
               "Title": "OrderController.cs",
               "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Controllers\\OrderController.cs",
               "RelativeDocumentMoniker": "DoAnCoSoTL\\Controllers\\OrderController.cs",
@@ -292,12 +359,11 @@
               "RelativeToolTip": "DoAnCoSoTL\\Controllers\\OrderController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAADAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-11T15:19:01.419Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-11T15:19:01.419Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 19,
               "Title": "Update.cshtml",
               "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Views\\OrderList\\Update.cshtml",
               "RelativeDocumentMoniker": "DoAnCoSoTL\\Views\\OrderList\\Update.cshtml",
@@ -305,12 +371,11 @@
               "RelativeToolTip": "DoAnCoSoTL\\Views\\OrderList\\Update.cshtml",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAKAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-11T14:58:01.011Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-11T14:58:01.011Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 18,
               "Title": "Delete.cshtml",
               "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Views\\OrderList\\Delete.cshtml",
               "RelativeDocumentMoniker": "DoAnCoSoTL\\Views\\OrderList\\Delete.cshtml",
@@ -318,12 +383,11 @@
               "RelativeToolTip": "DoAnCoSoTL\\Views\\OrderList\\Delete.cshtml",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-11T14:57:38.005Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-11T14:57:38.005Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 20,
               "Title": "Details.cshtml",
               "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Views\\OrderList\\Details.cshtml",
               "RelativeDocumentMoniker": "DoAnCoSoTL\\Views\\OrderList\\Details.cshtml",
@@ -331,12 +395,11 @@
               "RelativeToolTip": "DoAnCoSoTL\\Views\\OrderList\\Details.cshtml",
               "ViewState": "AQIAABUAAAAAAAAAAAAAABYAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-11T14:57:17.78Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-11T14:57:17.78Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 21,
               "Title": "Display.cshtml",
               "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Views\\OrderList\\Display.cshtml",
               "RelativeDocumentMoniker": "DoAnCoSoTL\\Views\\OrderList\\Display.cshtml",
@@ -344,12 +407,11 @@
               "RelativeToolTip": "DoAnCoSoTL\\Views\\OrderList\\Display.cshtml",
               "ViewState": "AQIAABUAAAAAAAAAAAAAABsAAABGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-11T14:56:47.254Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-11T14:56:47.254Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 23,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Views\\OrderList\\Index.cshtml",
               "RelativeDocumentMoniker": "DoAnCoSoTL\\Views\\OrderList\\Index.cshtml",
@@ -357,12 +419,11 @@
               "RelativeToolTip": "DoAnCoSoTL\\Views\\OrderList\\Index.cshtml",
               "ViewState": "AQIAACoAAAAAAAAAAAAAADIAAAAnAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-11T14:56:22.289Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-11T14:56:22.289Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 27,
               "Title": "EFOrderRepository.cs",
               "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Repositories\\EFOrderRepository.cs",
               "RelativeDocumentMoniker": "DoAnCoSoTL\\Repositories\\EFOrderRepository.cs",
@@ -370,12 +431,11 @@
               "RelativeToolTip": "DoAnCoSoTL\\Repositories\\EFOrderRepository.cs",
               "ViewState": "AQIAADMAAAAAAAAAAAAAAE4AAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-11T14:51:25.498Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-11T14:51:25.498Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 33,
               "Title": "IOrderRepository.cs",
               "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Repositories\\IOrderRepository.cs",
               "RelativeDocumentMoniker": "DoAnCoSoTL\\Repositories\\IOrderRepository.cs",
@@ -387,7 +447,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 30,
               "Title": "Cinema.cs",
               "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Models\\Cinema.cs",
               "RelativeDocumentMoniker": "DoAnCoSoTL\\Models\\Cinema.cs",
@@ -395,12 +455,11 @@
               "RelativeToolTip": "DoAnCoSoTL\\Models\\Cinema.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-11T14:40:13.032Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-11T14:40:13.032Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 32,
               "Title": "OrderListController.cs",
               "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Controllers\\OrderListController.cs",
               "RelativeDocumentMoniker": "DoAnCoSoTL\\Controllers\\OrderListController.cs",
@@ -408,24 +467,24 @@
               "RelativeToolTip": "DoAnCoSoTL\\Controllers\\OrderListController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAH0AAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-11T14:41:54.665Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-11T14:41:54.665Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 5,
               "Title": "MovieContext.cs",
               "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Models\\MovieContext.cs",
               "RelativeDocumentMoniker": "DoAnCoSoTL\\Models\\MovieContext.cs",
               "ToolTip": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Models\\MovieContext.cs",
               "RelativeToolTip": "DoAnCoSoTL\\Models\\MovieContext.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAA8AAAA",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABQAAAALAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-11T14:40:59.798Z"
+              "WhenOpened": "2024-05-11T14:40:59.798Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 22,
               "Title": "OrderDetail.cs",
               "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Models\\OrderDetail.cs",
               "RelativeDocumentMoniker": "DoAnCoSoTL\\Models\\OrderDetail.cs",
@@ -433,12 +492,11 @@
               "RelativeToolTip": "DoAnCoSoTL\\Models\\OrderDetail.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-11T14:39:21.768Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-11T14:39:21.768Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 26,
               "Title": "Order.cs",
               "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Models\\Order.cs",
               "RelativeDocumentMoniker": "DoAnCoSoTL\\Models\\Order.cs",
@@ -446,37 +504,37 @@
               "RelativeToolTip": "DoAnCoSoTL\\Models\\Order.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-11T14:38:34.326Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-11T14:38:34.326Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 10,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Program.cs",
               "RelativeDocumentMoniker": "DoAnCoSoTL\\Program.cs",
               "ToolTip": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Program.cs",
               "RelativeToolTip": "DoAnCoSoTL\\Program.cs",
-              "ViewState": "AQIAADUAAAAAAAAAAAAwwHIAAAAAAAAA",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAAACkAAAACAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-11T09:58:08.927Z"
+              "WhenOpened": "2024-05-11T09:58:08.927Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 0,
               "Title": "Choose.cshtml",
               "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Views\\Seat\\Choose.cshtml",
               "RelativeDocumentMoniker": "DoAnCoSoTL\\Views\\Seat\\Choose.cshtml",
               "ToolTip": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Views\\Seat\\Choose.cshtml",
               "RelativeToolTip": "DoAnCoSoTL\\Views\\Seat\\Choose.cshtml",
-              "ViewState": "AQIAAA8AAAAAAAAAAAAAABoAAABWAAAA",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAAFAAAABJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-05-11T09:32:44.751Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 34,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Views\\Movie\\Index.cshtml",
               "RelativeDocumentMoniker": "DoAnCoSoTL\\Views\\Movie\\Index.cshtml",
@@ -488,7 +546,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 4,
               "Title": "TicketDetails.cshtml",
               "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Views\\Seat\\TicketDetails.cshtml",
               "RelativeDocumentMoniker": "DoAnCoSoTL\\Views\\Seat\\TicketDetails.cshtml",
@@ -501,7 +559,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 35,
               "Title": "Display.cshtml",
               "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Views\\Movie\\Display.cshtml",
               "RelativeDocumentMoniker": "DoAnCoSoTL\\Views\\Movie\\Display.cshtml",
@@ -513,19 +571,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 2,
               "Title": "SeatController.cs",
               "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Controllers\\SeatController.cs",
               "RelativeDocumentMoniker": "DoAnCoSoTL\\Controllers\\SeatController.cs",
               "ToolTip": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Controllers\\SeatController.cs",
               "RelativeToolTip": "DoAnCoSoTL\\Controllers\\SeatController.cs",
-              "ViewState": "AQIAAFoAAAAAAAAAAAAAAFQAAABxAAAA",
+              "ViewState": "AQIAAFAAAAAAAAAAAAAIwI8AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-07T16:17:23.707Z"
+              "WhenOpened": "2024-05-07T16:17:23.707Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 28,
               "Title": "Seat.cs",
               "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Models\\Seat.cs",
               "RelativeDocumentMoniker": "DoAnCoSoTL\\Models\\Seat.cs",
@@ -533,12 +592,11 @@
               "RelativeToolTip": "DoAnCoSoTL\\Models\\Seat.cs",
               "ViewState": "AQIAAAMAAAAAAAAAAAAAAA4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-07T16:08:31.676Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-07T16:08:31.676Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 37,
               "Title": "_LayoutNew.cshtml",
               "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Views\\Shared\\_LayoutNew.cshtml",
               "RelativeDocumentMoniker": "DoAnCoSoTL\\Views\\Shared\\_LayoutNew.cshtml",
@@ -550,7 +608,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 29,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Views\\Screening\\Index.cshtml",
               "RelativeDocumentMoniker": "DoAnCoSoTL\\Views\\Screening\\Index.cshtml",
@@ -558,12 +616,11 @@
               "RelativeToolTip": "DoAnCoSoTL\\Views\\Screening\\Index.cshtml",
               "ViewState": "AQIAABoAAAAAAAAAAAAAAC8AAAA5AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-07T09:19:43.348Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-07T09:19:43.348Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 31,
               "Title": "Details.cshtml",
               "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Views\\Screening\\Details.cshtml",
               "RelativeDocumentMoniker": "DoAnCoSoTL\\Views\\Screening\\Details.cshtml",
@@ -571,12 +628,11 @@
               "RelativeToolTip": "DoAnCoSoTL\\Views\\Screening\\Details.cshtml",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-07T09:18:18.507Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-07T09:18:18.507Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 36,
               "Title": "ScreeningController.cs",
               "DocumentMoniker": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\Controllers\\ScreeningController.cs",
               "RelativeDocumentMoniker": "DoAnCoSoTL\\Controllers\\ScreeningController.cs",

@@ -1,13 +1,11 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using DoAnCoSoTL.Models;
 using DoAnCoSoTL.Repositories;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,7 +39,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddScoped<IActorRepository, ActorRepository>();
 builder.Services.AddScoped<IScreeningRepository, ScreeningRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-builder.Services.AddScoped<ICartRepository, CartRepository>();
+//builder.Services.AddScoped<ICartRepository, CartRepository>();
 builder.Services.AddScoped<ICinemaRepository, CinemaRepository>();
 builder.Services.AddScoped<IMovieActorRepository, MovieActorRepository>();
 builder.Services.AddScoped<IMovieInCinemaRepository, MovieInCinemaRepository>();
@@ -49,7 +47,7 @@ builder.Services.AddScoped<IMovieOrderRepository, MovieOrderRepository>();
 builder.Services.AddScoped<IMovieRepository, MovieRepository>();
 builder.Services.AddScoped<IProducerRepository, ProducerRepository>();
 builder.Services.AddScoped<IUpdateProfileRepository, UpdateProfileRepository>();
-
+builder.Services.AddScoped<ISeatRepository, SeatRepository>();
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -90,25 +88,22 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllerRoute(
-        name: "areas",
-        pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
-    );
+app.MapControllerRoute(
+    name: "areas",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+);
 
-    endpoints.MapControllerRoute(
-        name: "search",
-        pattern: "Movie/SearchResult",
-        defaults: new { controller = "Movie", action = "SearchResult" }
-    );
+app.MapControllerRoute(
+    name: "search",
+    pattern: "Movie/SearchResult",
+    defaults: new { controller = "Movie", action = "SearchResult" }
+);
 
-    endpoints.MapRazorPages();
+app.MapRazorPages();
 
-    endpoints.MapControllerRoute(
-        name: "default",
-        pattern: "{controller=Home}/{action=Index}/{id?}"
-    );
-});
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}"
+);
 
 app.Run();

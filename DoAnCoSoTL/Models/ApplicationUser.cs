@@ -10,7 +10,7 @@ public class ApplicationUser : IdentityUser
     public int? Age { get; set; }
     public string? Gender { get; set; }
     public virtual List<MovieOrder> MovieOrders { get; set; }
-    public virtual List<Cart> Carts { get; set; }
+    //public virtual List<Cart> Carts { get; set; }
 
     // Các thuộc tính khác tùy thuộc vào yêu cầu của ứng dụng
 

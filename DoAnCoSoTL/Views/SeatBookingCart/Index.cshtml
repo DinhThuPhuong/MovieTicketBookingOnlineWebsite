@@ -1,0 +1,42 @@
+﻿@model SeatBookingCart
+<h2>Giỏ hàng của bạn</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Tên Phim</th>
+            <th scope="col">Khung giờ</th>
+            <th scope="col">Rạp</th>
+            <th scope="col">Địa chỉ</th>
+            <th scope="col">Mã Ghế</th>
+            <th scope="col">Giá</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                
+                <td>@item.MovieName</td>
+                <td>@item.TimeSlot</td>
+                <td>@item.CinemaName</td>
+                <td>@item.CinemaLocation</td>
+                <td>@item.SeatId</td>
+                <td>@item.Price</td>
+                <td>
+                    @*  tạo ra một tham số route có tên là "productId" với giá trị là ID của sản phẩm *@
+                   @*  <button class="btn btn-outline-light" style="background-color: #FF9999; " type="submit">Lưu số lượng</button> *@
+                    <a class="btn btn-outline-light" style="background-color: #FF9999;" asp-action="RemoveFromCart" asp-route-productId="@item.SeatId">Xóa</a>
+                    @* Tham số route này sẽ được truyền đến hành động RemoveFromCart khi liên kết được nhấp. *@
+                </td>
+
+
+            </tr>
+
+
+        }
+    </tbody>
+</table>
+
+<a type="submit" class="btn btn-outline-light bg-blue"  asp-action="Checkout">Xác nhận thanh toán</a>
+
+<a class="btn btn-outline-light bg-blue " asp-area="" asp-controller="Movie" asp-action="Index">Về trang chính</a>

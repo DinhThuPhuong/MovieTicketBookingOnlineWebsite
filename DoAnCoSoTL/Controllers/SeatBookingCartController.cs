@@ -4,6 +4,7 @@ using DoAnCoSoTL.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace DoAnCoSoTL.Controllers
 {
@@ -23,31 +24,69 @@ namespace DoAnCoSoTL.Controllers
             _userManager = userManager;
             _seatRepository = seatRepository;
         }
+        //public async Task<IActionResult> AddToCart(int seatId)
+        //{
+        //    // Giả sử bạn có phương thức lấy thông tin sản phẩm từ productId
+        //    //var seat = await GetProductFromDatabase(seatId);
+        //    var seat = await _context.Seats
+        //    .Include(s => s.Screening)
+        //        .ThenInclude(s => s.Movie)
+        //    .Include(s => s.Cinema)
+        //    .FirstOrDefaultAsync(s => s.Id == seatId);
+        //    var cartItem = new SeatCartItem
+        //    {
+        //        SeatId = seatId,
+        //        MovieName = seat.Screening.Movie.Name,
+        //        CinemaName = seat.Cinema.Name,
+        //        CinemaLocation = seat.Cinema.Location,
+        //        TimeSlot = $"{seat.Screening.Time} - {seat.Screening.EndTime}", 
+        //        Price = (decimal)seat.Screening.Movie.Price
+
+        //    };
+        //    var cart = HttpContext.Session.GetObjectFromJson<SeatBookingCart>("Cart") ?? new SeatBookingCart();
+        //    cart.AddItem(cartItem);
+        //    HttpContext.Session.SetObjectAsJson("Cart", cart);
+        //    return RedirectToAction("Index");
+        //}
         public async Task<IActionResult> AddToCart(int seatId)
         {
-            // Giả sử bạn có phương thức lấy thông tin sản phẩm từ productId
             var seat = await GetProductFromDatabase(seatId);
 
-            var cartItem = new SeatCartItem
-            {
-                SeatId = seatId,
-                MovieName = seat.Screening.Movie.Name,
-                CinemaName = seat.Cinema.Name,
-                CinemaLocation = seat.Cinema.Location,
-                TimeSlot = $"{seat.Screening.Time} - {seat.Screening.EndTime}", 
-                Price = (decimal)seat.Screening.Movie.Price
+            var cartItem = new SeatCartItem();
 
-            };
+            if (seat != null && seat.Screening != null && seat.Screening.Movie != null && seat.Cinema != null)
+            {
+                cartItem = new SeatCartItem
+                {
+                    SeatId = seatId,
+                    MovieName = seat.Screening.Movie.Name,
+                    CinemaName = seat.Cinema.Name,
+                    CinemaLocation = seat.Cinema.Location,
+                    TimeSlot = $"{seat.Screening.Time} - {seat.Screening.EndTime}",
+                    Price = (decimal)seat.Screening.Movie.Price
+                };
+            }
+            else
+            {
+                // Xử lý trường hợp các đối tượng là null
+                // Ví dụ: Gán giá trị mặc định hoặc thông báo lỗi
+                TempData["ErrorMessage"] = "Không thể thêm vé vào giỏ hàng. Vui lòng thử lại sau.";
+                return RedirectToAction("Index");
+            }
+
             var cart = HttpContext.Session.GetObjectFromJson<SeatBookingCart>("Cart") ?? new SeatBookingCart();
             cart.AddItem(cartItem);
             HttpContext.Session.SetObjectAsJson("Cart", cart);
+
             return RedirectToAction("Index");
         }
+
         public IActionResult Index()
         {
             var cart = HttpContext.Session.GetObjectFromJson<SeatBookingCart>("Cart") ?? new SeatBookingCart();
             return View(cart);
         }
+
         // Các actions khác...
 
         public async Task<IActionResult> Checkout()
@@ -81,6 +120,7 @@ namespace DoAnCoSoTL.Controllers
             order.UserId = user.Id;
             order.OrderDate = DateTime.UtcNow;
             order.TotalPrice = cart.Items.Sum(i => i.Price );
+            
             
             order.OrderDetails = cart.Items.Select(i => new OrderDetail
             {

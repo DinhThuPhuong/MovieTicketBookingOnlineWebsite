@@ -15,7 +15,7 @@
     <div class="screen-text">Màn hình</div>
 </div>
 
-<div class="seat-layout">
+@* <div class="seat-layout">
     @for (int row = 1; row <= 8; row++)
     {
         <div class="seat-row">
@@ -25,6 +25,22 @@
                 var isBooked = Model != null && Model.Contains(seatId); // Kiểm tra xem Model có null hay không trước khi sử dụng
 
                 <button class="seat @(isBooked ? "gray" : "")" @(isBooked ? "disabled" : "")>
+                    <span class="seat-text">@($"{(char)('A' + row - 1)}{seatNumber}")</span>
+                </button>
+            }
+        </div>
+    }
+</div> *@
+<div class="seat-layout">
+    @for (int row = 1; row <= 8; row++)
+    {
+        <div class="seat-row">
+            @for (int seatNumber = 1; seatNumber <= 12; seatNumber++)
+            {
+                var seatId = (row - 1) * 12 + seatNumber;
+                var isBooked = Model != null && Model.Contains(seatId); // Kiểm tra xem Model có null hay không trước khi sử dụng
+
+                <button class="seat @(isBooked ? "gray" : "")" data-seat-id="@seatId" @(isBooked ? "disabled" : "")>
                     <span class="seat-text">@($"{(char)('A' + row - 1)}{seatNumber}")</span>
                 </button>
             }
@@ -48,7 +64,16 @@
 </div>
 
 <div id="selectedSeats">Số ghế đã chọn:</div> <!-- Phần tử để hiển thị số ghế đã chọn -->
-<form asp-controller="Seat" asp-action="BookTicket" method="post">
+@* <form asp-controller="Seat" asp-action="BookTicket" method="post">
+    <input type="hidden" name="screeningId" value="@ViewData["ScreeningId"]" />
+    <input type="hidden" name="timeSlot" value="@ViewData["TimeSlot"]" />
+    @foreach (var seat in Model)
+    {
+        <input type="hidden" name="selectedSeatIds[]" value="@seat.Id" />
+    }
+    <button type="submit" class="btn btn-primary">Mua vé</button>
+</form> *@
+<form asp-controller="SeatBookingCart" asp-action="AddToCart" method="post">
     <input type="hidden" name="screeningId" value="@ViewData["ScreeningId"]" />
     <input type="hidden" name="timeSlot" value="@ViewData["TimeSlot"]" />
     @foreach (var seat in Model)
@@ -57,32 +82,51 @@
     }
     <button type="submit" class="btn btn-primary">Mua vé</button>
 </form>
+
 <div id="totalPrice">Tổng tiền: $0</div>
 
 <script>
+    function addToCart(seatId) {
+        console.log('Adding seat to cart:', seatId); // Thêm console log này
+        $.post('/SeatBookingCart/AddToCart', { seatId: seatId }, function (data) {
+            // Xử lý kết quả từ server nếu cần
+            // Ví dụ: cập nhật giao diện người dùng
+        });
+    }
+
+    function removeFromCart(seatId) {
+        $.post('/SeatBookingCart/RemoveFromCart', { seatId: seatId }, function (data) {
+            // Xử lý kết quả từ server nếu cần
+            // Ví dụ: cập nhật giao diện người dùng
+        });
+    }
     $(document).ready(function () {
         $('.seat').click(function () {
             var isSelected = $(this).hasClass('selected');
+            var seatId = $(this).data('seat-id'); // Lấy seatId từ thuộc tính data-seat-id
 
             // Kiểm tra xem nút đã được chọn trước đó chưa
             if (!isSelected) {
                 // Nếu chưa được chọn, thêm lớp 'selected' để chuyển màu nền thành màu hồng
                 $(this).addClass('selected');
+                // Thực hiện chức năng thêm vào giỏ hàng
+                addToCart(seatId);
             } else {
                 // Nếu đã được chọn, xóa lớp 'selected' để trở về màu nền mặc định
                 $(this).removeClass('selected');
+                // Thực hiện chức năng loại bỏ khỏi giỏ hàng
+                removeFromCart(seatId);
             }
             // Cập nhật tổng tiền khi người dùng chọn hoặc bỏ chọn ghế
             updateTotalPrice();
             updateSelectedSeats(); // Cập nhật số ghế đã chọn
         });
-
         function updateTotalPrice() {
             // Đếm số lượng ghế đã chọn
             var selectedSeatCount = $('.seat.selected').length;
 
             // Lấy giá vé từ dữ liệu được truyền từ server (phải đảm bảo rằng giá vé đã được gửi đến view)
-            var ticketPrice = @ViewBag.TicketPrice; // Điều này giả sử rằng giá vé được truyền từ ViewBag
+            var ticketPrice = parseFloat($('#ticketPrice').text().replace('Giá vé: $', '')); // Sửa lỗi ở đây
 
             // Tính tổng tiền
             var totalPrice = selectedSeatCount * ticketPrice;
@@ -101,6 +145,7 @@
             // Cập nhật nội dung của phần tử HTML hiển thị số ghế đã chọn
             $('#selectedSeats').text('Số ghế đã chọn: ' + selectedSeats.join(', '));
         }
+
         function redirectToTicketDetails() {
             // Lấy số ghế đã chọn
             var selectedSeatIds = [];
@@ -115,6 +160,20 @@
             // Chuyển hướng đến trang TicketDetails với các tham số
             window.location.href = '/Seat/TicketDetails?selectedSeatIds=' + selectedSeatIds.join(',') + '&totalPrice=' + totalPrice;
         }
+        // function addToCart(seatId) {
+        //     console.log('Adding seat to cart:', seatId); // Thêm console log này
+        //     $.post('/SeatBookingCart/AddToCart', { seatId: seatId }, function (data) {
+        //         // Xử lý kết quả từ server nếu cần
+        //         // Ví dụ: cập nhật giao diện người dùng
+        //     });
+        // }
+
+        // function removeFromCart(seatId) {
+        //     $.post('/SeatBookingCart/RemoveFromCart', { seatId: seatId }, function (data) {
+        //         // Xử lý kết quả từ server nếu cần
+        //         // Ví dụ: cập nhật giao diện người dùng
+        //     });
+        // }
     });
 </script>
 

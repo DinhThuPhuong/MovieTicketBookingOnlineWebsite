@@ -1,0 +1,15 @@
+﻿
+<form asp-action="Checkout" method="post">
+    <button type="submit" class="btn btn-outline-light bg-blue">Thanh toán</button>
+    <button type="button" class="btn btn-outline-light bg-blue" id="exitButton">Hủy mua vé</button>
+</form>
+<script>
+    
+    document.getElementById("exitButton").addEventListener("click", function() {
+        window.location.href = "/SeatBookingCart/Index"; // Thay đổi đường dẫn tương ứng với trang chính của bạn
+    });
+</script>
+
+    
+    
+

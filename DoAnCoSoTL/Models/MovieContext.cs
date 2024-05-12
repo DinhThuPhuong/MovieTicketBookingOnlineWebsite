@@ -18,13 +18,13 @@ namespace DoAnCoSoTL.Models
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<MovieActor> MovieActors { get; set; }
         public virtual DbSet<MoviesInCinema> MovieInCinemas { get; set; }
-        public virtual DbSet<Cart> Cart { get; set; }
+        //public virtual DbSet<Cart> Cart { get; set; }
         public DbSet<Screening> Screenings { get; set; }
         public virtual DbSet<MovieOrder> MovieOrders { get; set; }
         public DbSet<Seat> Seats { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
-
+        //public virtual DbSet<SeatCartItem> SeatCartItem { get; set; }
         //public MovieContext() { }
 
         public MovieContext(DbContextOptions<MovieContext> options) : base(options)

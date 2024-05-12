@@ -77,12 +77,13 @@ namespace DoAnCoSoTL.Controllers
             double ticketPrice = screening.Movie.Price;
             double totalPrice = ticketPrice * selectedSeatIds.Count;
 
-            // Truyền dữ liệu qua ViewBag để sử dụng trong TicketDetails
-            ViewBag.SelectedSeats = selectedSeatIds;
-            ViewBag.TotalPrice = totalPrice;
+            //// Truyền dữ liệu qua ViewBag để sử dụng trong TicketDetails
+            //ViewBag.SelectedSeats = selectedSeatIds;
+            //ViewBag.TotalPrice = totalPrice;
 
             //return RedirectToAction("TicketDetails", new { screeningId = screeningId, timeSlot = timeSlot });
-            return RedirectToAction("TicketDetails", new { screeningId = screeningId, timeSlot = timeSlot, selectedSeatIds = selectedSeatIds, totalPrice = totalPrice });
+            //return RedirectToAction("TicketDetails", new { screeningId = screeningId, timeSlot = timeSlot, selectedSeatIds = selectedSeatIds, totalPrice = totalPrice });
+            return RedirectToAction("Index", "SeatBookingCart", new { screeningId = screeningId, timeSlot = timeSlot, selectedSeatIds = selectedSeatIds });
         }
 
 
