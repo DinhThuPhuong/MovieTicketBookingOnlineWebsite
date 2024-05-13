@@ -1,4 +1,5 @@
-﻿<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+﻿@model List<DoAnCoSoTL.Models.Seat>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 @{
     ViewData["Title"] = "Choose Seat";
 }
@@ -31,7 +32,7 @@
         </div>
     }
 </div> *@
-<div class="seat-layout">
+@* <div class="seat-layout">
     @for (int row = 1; row <= 8; row++)
     {
         <div class="seat-row">
@@ -46,7 +47,36 @@
             }
         </div>
     }
+</div> *@
+@* <div class="seat-layout">
+    @foreach (var seat in Model)
+    {
+        <button class="seat" data-seat-id="@seat.Id">
+            <span class="seat-text">@seat.SeatCode</span>
+        </button>
+    }
+</div> *@
+<div class="seat-layout">
+    @for (int row = 1; row <= 8; row++)
+    {
+        <div class="seat-row">
+            @for (int seatNumber = 1; seatNumber <= 12; seatNumber++)
+            {
+                var seatId = (row - 1) * 12 + seatNumber;
+                string seatCode = $"{(char)('A' + row - 1)}{seatNumber}";
+                var seat = Model.FirstOrDefault(s => s.SeatCode == seatCode);
+                var isAvailable = seat != null && seat.IsAvailable; // Kiểm tra xem ghế có sẵn hay không
+                //var isFirstRow = row == 1; // Kiểm tra xem hàng đầu tiên không
+
+                <button class="seat @(isAvailable ? "" :  "gray disabled")" data-seat-id="@seatCode">
+                    <span class="seat-text">@($"{(char)('A' + row - 1)}{seatNumber}")</span>
+                </button>
+            }
+        </div>
+    }
 </div>
+
+
 
 <div class="legend" style="margin-bottom: 20px;">
     <div class="legend-item">
@@ -73,54 +103,64 @@
     }
     <button type="submit" class="btn btn-primary">Mua vé</button>
 </form> *@
-<form asp-controller="SeatBookingCart" asp-action="AddToCart" method="post">
+@* <form asp-controller="SeatBookingCart" asp-action="AddToCart" method="post">
     <input type="hidden" name="screeningId" value="@ViewData["ScreeningId"]" />
     <input type="hidden" name="timeSlot" value="@ViewData["TimeSlot"]" />
+
     @foreach (var seat in Model)
     {
         <input type="hidden" name="selectedSeatIds[]" value="@seat.Id" />
     }
     <button type="submit" class="btn btn-primary">Mua vé</button>
+</form> *@
+<form>
+    <button class="btn btn-primary" asp-area="" asp-controller="SeatBookingCart" asp-action="Index">
+        Mua vé
+    </button>
 </form>
-
 <div id="totalPrice">Tổng tiền: $0</div>
 
 <script>
-    function addToCart(seatId) {
-        console.log('Adding seat to cart:', seatId); // Thêm console log này
-        $.post('/SeatBookingCart/AddToCart', { seatId: seatId }, function (data) {
-            // Xử lý kết quả từ server nếu cần
-            // Ví dụ: cập nhật giao diện người dùng
-        });
-    }
-
-    function removeFromCart(seatId) {
-        $.post('/SeatBookingCart/RemoveFromCart', { seatId: seatId }, function (data) {
-            // Xử lý kết quả từ server nếu cần
-            // Ví dụ: cập nhật giao diện người dùng
-        });
-    }
     $(document).ready(function () {
-        $('.seat').click(function () {
-            var isSelected = $(this).hasClass('selected');
-            var seatId = $(this).data('seat-id'); // Lấy seatId từ thuộc tính data-seat-id
+        $('.seat').click(function (event) {
+            var isAvailable = !$(this).hasClass('gray');
+            var seatId = $(this).data('seat-id');
+            var screeningId = '@ViewData["ScreeningId"]'; // Get screeningId from ViewData
+            var timeSlot = '@ViewData["TimeSlot"]'; // Get timeSlot from ViewData
 
-            // Kiểm tra xem nút đã được chọn trước đó chưa
-            if (!isSelected) {
-                // Nếu chưa được chọn, thêm lớp 'selected' để chuyển màu nền thành màu hồng
-                $(this).addClass('selected');
-                // Thực hiện chức năng thêm vào giỏ hàng
-                addToCart(seatId);
-            } else {
-                // Nếu đã được chọn, xóa lớp 'selected' để trở về màu nền mặc định
-                $(this).removeClass('selected');
-                // Thực hiện chức năng loại bỏ khỏi giỏ hàng
-                removeFromCart(seatId);
+            if (isAvailable) {
+                $(this).toggleClass('selected');
+                if ($(this).hasClass('selected')) {
+                    addToCart(seatId, screeningId, timeSlot); // Pass screeningId and timeSlot to addToCart function
+                } else {
+                    removeFromCart(seatId);
+                }
             }
-            // Cập nhật tổng tiền khi người dùng chọn hoặc bỏ chọn ghế
+            event.preventDefault();
             updateTotalPrice();
-            updateSelectedSeats(); // Cập nhật số ghế đã chọn
+            updateSelectedSeats();
         });
+
+
+
+        function addToCart(seatId, screeningId, timeSlot) {
+            console.log('Adding seat to cart:', seatId);
+            $.post('/SeatBookingCart/AddToCart', { seatId: seatId, screeningId: screeningId, timeSlot: timeSlot }, function (data) {
+                // Do nothing after adding to cart
+            });
+        }
+
+
+
+
+        function removeFromCart(seatId) {
+            $.post('/SeatBookingCart/RemoveFromCart', { seatId: seatId }, function (data) {
+                // Xử lý kết quả từ server nếu cần
+                // Ví dụ: cập nhật giao diện người dùng
+                //location.reload();
+            });
+        }
+
         function updateTotalPrice() {
             // Đếm số lượng ghế đã chọn
             var selectedSeatCount = $('.seat.selected').length;
@@ -145,37 +185,9 @@
             // Cập nhật nội dung của phần tử HTML hiển thị số ghế đã chọn
             $('#selectedSeats').text('Số ghế đã chọn: ' + selectedSeats.join(', '));
         }
-
-        function redirectToTicketDetails() {
-            // Lấy số ghế đã chọn
-            var selectedSeatIds = [];
-            $('.seat.selected').each(function () {
-                var seatText = $(this).find('.seat-text').text();
-                selectedSeatIds.push(seatText);
-            });
-
-            // Lấy tổng tiền
-            var totalPrice = parseFloat($('#totalPrice').text().replace('Tổng tiền: $', ''));
-
-            // Chuyển hướng đến trang TicketDetails với các tham số
-            window.location.href = '/Seat/TicketDetails?selectedSeatIds=' + selectedSeatIds.join(',') + '&totalPrice=' + totalPrice;
-        }
-        // function addToCart(seatId) {
-        //     console.log('Adding seat to cart:', seatId); // Thêm console log này
-        //     $.post('/SeatBookingCart/AddToCart', { seatId: seatId }, function (data) {
-        //         // Xử lý kết quả từ server nếu cần
-        //         // Ví dụ: cập nhật giao diện người dùng
-        //     });
-        // }
-
-        // function removeFromCart(seatId) {
-        //     $.post('/SeatBookingCart/RemoveFromCart', { seatId: seatId }, function (data) {
-        //         // Xử lý kết quả từ server nếu cần
-        //         // Ví dụ: cập nhật giao diện người dùng
-        //     });
-        // }
     });
 </script>
+
 
 <style>
     .seat-layout {
@@ -214,6 +226,7 @@
         .seat.selected {
             background-color: pink; /* Đặt màu hồng cho nút đã được chọn */
         }
+
 
     .seat-text {
         font-size: 16px; /* Kích thước font của chữ trong button */
@@ -268,4 +281,9 @@
         .seat-legend.gray {
             background-color: gray;
         }
+
+    .seat.gray.disabled {
+        background-color: gray;
+        pointer-events: none; /* Ngăn chặn sự kiện click */
+    }
 </style>

@@ -20,6 +20,10 @@ namespace DoAnCoSoTL.Models
         [Display(Name = "End Time")]
         public string EndTime { get; set; }
 
+        [NotMapped] // Không ánh xạ thuộc tính này vào cơ sở dữ liệu
+        [Display(Name = "Time Slot")]
+        public string TimeSlot => $"{Time} - {EndTime}";
+
         [ForeignKey("Cinema")]
         public int CinemaId { get; set; }
 

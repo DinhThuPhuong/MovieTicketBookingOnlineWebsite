@@ -11,6 +11,7 @@
         public string TimeSlot { get; set; }
         public string CinemaName { get; set; }
         public string CinemaLocation { get; set; }
+        public string SeatCode { get; set; }
         public string ListSeat { get; set; }
         public int SeatId {  get; set; }
         public Order Order { get; set; }

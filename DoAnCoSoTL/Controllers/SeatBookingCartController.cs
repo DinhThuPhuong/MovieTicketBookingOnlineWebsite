@@ -48,36 +48,119 @@ namespace DoAnCoSoTL.Controllers
         //    HttpContext.Session.SetObjectAsJson("Cart", cart);
         //    return RedirectToAction("Index");
         //}
+        //public async Task<IActionResult> AddToCart(int seatId)
+        //{
+        //    var seat = await GetProductFromDatabase(seatId);
+
+        //    var cartItem = new SeatCartItem();
+
+        //    if (seat != null && seat.Screening != null && seat.Screening.Movie != null && seat.Cinema != null)
+        //    {
+        //        cartItem = new SeatCartItem
+        //        {
+        //            SeatId = seatId,
+        //            MovieName = seat.Screening.Movie.Name,
+        //            CinemaName = seat.Cinema.Name,
+        //            CinemaLocation = seat.Cinema.Location,
+        //            TimeSlot = $"{seat.Screening.Time} - {seat.Screening.EndTime}",
+        //            Price = (decimal)seat.Screening.Movie.Price
+        //        };
+        //    }
+        //    else
+        //    {
+        //        // Xử lý trường hợp các đối tượng là null
+        //        // Ví dụ: Gán giá trị mặc định hoặc thông báo lỗi
+        //        TempData["ErrorMessage"] = "Không thể thêm vé vào giỏ hàng. Vui lòng thử lại sau.";
+        //        return RedirectToAction("Index");
+        //    }
+
+        //    var cart = HttpContext.Session.GetObjectFromJson<SeatBookingCart>("Cart") ?? new SeatBookingCart();
+        //    cart.AddItem(cartItem);
+        //    HttpContext.Session.SetObjectAsJson("Cart", cart);
+
+        //    return RedirectToAction("Index");
+        //}
+        //public async Task<IActionResult> AddToCart(int seatId)
+        //{
+        //    var seat = await _seatRepository.GetByIdAsync(seatId);
+
+        //    var cartItem = new SeatCartItem();
+
+        //    if (seat != null && seat.Screening != null && seat.Screening.Movie != null && seat.Cinema != null)
+        //    {
+        //        cartItem = new SeatCartItem
+        //        {
+        //            SeatId = seatId,
+        //            MovieName = seat.Screening.Movie.Name,
+        //            CinemaName = seat.Cinema.Name,
+        //            CinemaLocation = seat.Cinema.Location,
+        //            TimeSlot = $"{seat.Screening.Time} - {seat.Screening.EndTime}",
+        //            SeatCode = seat.SeatCode,
+        //            Price = (decimal)seat.Screening.Movie.Price
+        //        };
+        //    }
+        //    else
+        //    {
+        //        // Xử lý trường hợp các đối tượng là null
+        //        // Ví dụ: Gán giá trị mặc định hoặc thông báo lỗi
+        //        TempData["ErrorMessage"] = "Không thể thêm vé vào giỏ hàng. Vui lòng thử lại sau.";
+        //        return RedirectToAction("Index");
+        //    }
+
+        //    var cart = HttpContext.Session.GetObjectFromJson<SeatBookingCart>("Cart") ?? new SeatBookingCart();
+        //    cart.AddItem(cartItem);
+        //    HttpContext.Session.SetObjectAsJson("Cart", cart);
+
+        //    return RedirectToAction("Index");
+        //}
+        //[HttpPost]
+        //public async Task<IActionResult> AddToCart(int seatId)
+        //{
+        //    var seat = await _seatRepository.GetByIdAsync(seatId);
+
+        //    if (seat != null)
+        //    {
+        //        var cartItem = new SeatCartItem
+        //        {
+        //            SeatId = seatId,
+        //            MovieName = seat.Screening.Movie.Name,
+        //            CinemaName = seat.Cinema.Name,
+        //            CinemaLocation = seat.Cinema.Location,
+        //            TimeSlot = $"{seat.Screening.Time} - {seat.Screening.EndTime}",
+        //            SeatCode = seat.SeatCode,
+        //            Price = (decimal)seat.Screening.Movie.Price
+        //        };
+
+        //        var cart = HttpContext.Session.GetObjectFromJson<SeatBookingCart>("Cart") ?? new SeatBookingCart();
+        //        cart.AddItem(cartItem);
+        //        HttpContext.Session.SetObjectAsJson("Cart", cart);
+        //    }
+        //    else
+        //    {
+        //        TempData["ErrorMessage"] = "Không thể thêm vé vào giỏ hàng. Vui lòng thử lại sau.";
+        //    }
+
+        //    return RedirectToAction("Choose", "Seat");
+        //}
         public async Task<IActionResult> AddToCart(int seatId)
         {
-            var seat = await GetProductFromDatabase(seatId);
+            // Giả sử bạn có phương thức lấy thông tin sản phẩm từ productId
+            var seat = await _seatRepository.GetByIdAsync(seatId);
 
-            var cartItem = new SeatCartItem();
 
-            if (seat != null && seat.Screening != null && seat.Screening.Movie != null && seat.Cinema != null)
+            var cartItem = new SeatCartItem
             {
-                cartItem = new SeatCartItem
-                {
-                    SeatId = seatId,
-                    MovieName = seat.Screening.Movie.Name,
-                    CinemaName = seat.Cinema.Name,
-                    CinemaLocation = seat.Cinema.Location,
-                    TimeSlot = $"{seat.Screening.Time} - {seat.Screening.EndTime}",
-                    Price = (decimal)seat.Screening.Movie.Price
-                };
-            }
-            else
-            {
-                // Xử lý trường hợp các đối tượng là null
-                // Ví dụ: Gán giá trị mặc định hoặc thông báo lỗi
-                TempData["ErrorMessage"] = "Không thể thêm vé vào giỏ hàng. Vui lòng thử lại sau.";
-                return RedirectToAction("Index");
-            }
-
+                SeatId = seatId,
+                MovieName = seat.Screening.Movie.Name,
+                CinemaName = seat.Cinema.Name,
+                CinemaLocation = seat.Cinema.Location,
+                TimeSlot = $"{seat.Screening.Time} - {seat.Screening.EndTime}",
+                SeatCode = seat.SeatCode,
+                Price = (decimal)seat.Screening.Movie.Price
+            };
             var cart = HttpContext.Session.GetObjectFromJson<SeatBookingCart>("Cart") ?? new SeatBookingCart();
             cart.AddItem(cartItem);
             HttpContext.Session.SetObjectAsJson("Cart", cart);
-
             return RedirectToAction("Index");
         }
 
@@ -129,6 +212,7 @@ namespace DoAnCoSoTL.Controllers
                 CinemaName = i.CinemaName,
                 TimeSlot = i.TimeSlot,
                 CinemaLocation = i.CinemaLocation,
+                SeatCode = i.SeatCode,
                 Price = i.Price
             }).ToList();
 

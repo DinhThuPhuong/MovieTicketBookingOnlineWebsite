@@ -10,17 +10,23 @@
     {
         <div>
             <h4>Date: @dateGroup.Key.ToShortDateString()</h4>
-            @foreach (var timeSlot in GetTimeSlots(dateGroup))
+            @foreach (var screening in dateGroup)
             {
-                <form asp-controller="Seat" asp-action="Choose" method="get">
-                    <input type="hidden" name="screeningId" value="@dateGroup.First().Id" />
-                    <input type="hidden" name="timeSlot" value="@timeSlot" />
-                    <button type="submit" class="btn btn-primary">@timeSlot</button>
-                </form>
+                var screenings = new List<DoAnCoSoTL.Models.Screening> { screening };
+                <!-- Thêm dòng này -->
+                @foreach (var timeSlot in GetTimeSlots(screenings))
+                {
+                    <form asp-controller="Seat" asp-action="Choose" method="get">
+                        <input type="hidden" name="screeningId" value="@screening.Id" />
+                        <input type="hidden" name="timeSlot" value="@timeSlot" />
+                        <button type="submit" class="btn btn-primary">@timeSlot</button>
+                    </form>
+                }
             }
         </div>
     }
 }
+
 
 @functions {
     public List<string> GetTimeSlots(IEnumerable<DoAnCoSoTL.Models.Screening> screenings)
@@ -44,6 +50,7 @@
 {
     <div>
         <h4>@screening.Movie.Name</h4>
+        <p>ScreeningId: @screening.Id</p>
         <p>Date: @screening.Date.ToShortDateString()</p>
         <p>Time: @screening.Time - @screening.EndTime</p>
         <p>Cinema: @screening.Cinema.Name</p>

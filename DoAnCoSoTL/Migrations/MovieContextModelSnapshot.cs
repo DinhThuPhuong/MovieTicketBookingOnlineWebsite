@@ -126,33 +126,6 @@ namespace DoAnCoSoTL.Migrations
                     b.ToTable("Actors");
                 });
 
-            modelBuilder.Entity("DoAnCoSoTL.Models.Cart", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<Guid>("MovieId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.HasIndex("MovieId");
-
-                    b.ToTable("Cart");
-                });
-
             modelBuilder.Entity("DoAnCoSoTL.Models.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -400,6 +373,10 @@ namespace DoAnCoSoTL.Migrations
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
+
+                    b.Property<string>("SeatCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("SeatId")
                         .HasColumnType("int");
@@ -652,21 +629,6 @@ namespace DoAnCoSoTL.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("DoAnCoSoTL.Models.Cart", b =>
-                {
-                    b.HasOne("ApplicationUser", null)
-                        .WithMany("Carts")
-                        .HasForeignKey("ApplicationUserId");
-
-                    b.HasOne("DoAnCoSoTL.Models.Movie", "Movie")
-                        .WithMany()
-                        .HasForeignKey("MovieId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Movie");
-                });
-
             modelBuilder.Entity("DoAnCoSoTL.Models.Movie", b =>
                 {
                     b.HasOne("DoAnCoSoTL.Models.Category", "Category")
@@ -876,8 +838,6 @@ namespace DoAnCoSoTL.Migrations
 
             modelBuilder.Entity("ApplicationUser", b =>
                 {
-                    b.Navigation("Carts");
-
                     b.Navigation("MovieOrders");
                 });
 

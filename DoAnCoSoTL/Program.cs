@@ -8,7 +8,12 @@ using DoAnCoSoTL.Repositories;
 using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(5);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<MovieContext>(options =>
@@ -24,10 +29,10 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 })
 .AddEntityFrameworkStores<MovieContext>();
 
-builder.Services.AddSession(options =>
-{
-    options.Cookie.IsEssential = true; // Make the session cookie essential
-});
+//builder.Services.AddSession(options =>
+//{
+//    options.Cookie.IsEssential = true; // Make the session cookie essential
+//});
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = "/Identity/Account/Login";
