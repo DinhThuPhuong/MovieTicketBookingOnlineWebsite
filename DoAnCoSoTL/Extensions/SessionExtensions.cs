@@ -15,8 +15,7 @@ namespace DoAnCoSoTL.Extensions
         key)
         {
             var value = session.GetString(key);
-            return value == null ? default :
-            JsonSerializer.Deserialize<T>(value);
+            return value == null ? default : JsonSerializer.Deserialize<T>(value);
         }
     }
 }

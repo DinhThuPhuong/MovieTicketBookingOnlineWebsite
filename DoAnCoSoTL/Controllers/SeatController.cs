@@ -1,4 +1,5 @@
-﻿using DoAnCoSoTL.Models;
+﻿using DoAnCoSoTL.Extensions;
+using DoAnCoSoTL.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,67 +20,30 @@ namespace DoAnCoSoTL.Controllers
         }
 
         // GET: Seat/Choose
-        //public IActionResult Choose(int screeningId, string timeSlot)
-        //{
-        //    var screening = _context.Screenings
-        //        .Include(s => s.Movie)
-        //        .FirstOrDefault(s => s.Id == screeningId);
 
-        //    if (screening == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    var seats = GenerateSeatsForScreening(screeningId);
-        //    ViewData["ScreeningId"] = screeningId;
-        //    ViewData["TimeSlot"] = timeSlot;
-        //    ViewBag.TicketPrice = screening.Movie.Price;
-
-        //    //var bookedSeatIds = _context.Seats
-        //    //    .Where(s => s.ScreeningId == screeningId && s.IsBooked)
-        //    //    .Select(s => s.Id)
-        //    //    .ToList();
-
-        //    //return View(bookedSeatIds);
-        //    return View();
-        //}
-        public IActionResult Choose(int screeningId, string timeSlot)
+        public IActionResult Choose(int screeningId, string timeSlot, Guid movieId)
         {
+            if (screeningId == 0 || movieId == Guid.Empty)
+            {
+                // Log hoặc xử lý lỗi ở đây
+                return BadRequest("Invalid parameters.");
+            }
+
             var seats = GenerateSeatsForScreening(screeningId);
+
+            var cart = HttpContext.Session.GetObjectFromJson<SeatBookingCart>("Cart") ?? new SeatBookingCart();
+            var selectedSeatIds = cart.Items.Select(item => item.SeatId).ToList();
 
             ViewData["ScreeningId"] = screeningId;
             ViewData["TimeSlot"] = timeSlot;
+            ViewData["MovieId"] = movieId;
+            ViewData["SelectedSeatIds"] = selectedSeatIds;
             ViewBag.TicketPrice = _context.Screenings.Include(s => s.Movie).FirstOrDefault(s => s.Id == screeningId)?.Movie?.Price ?? 0;
 
             return View(seats); // Pass the seats list to the view
         }
 
-        //    public IActionResult Choose(int screeningId, string timeSlot)
-        //    {
-        //        // Kiểm tra xem khung giờ chiếu và rạp có tồn tại trong cơ sở dữ liệu không
-        //        //var screening = _context.Screenings
-        //        //    .Include(s => s.Cinema)
-        //        //    .FirstOrDefault(s => s.Id == screeningId && s.TimeSlot == timeSlot);
-        //        var screening = _context.Screenings
-        //.Include(s => s.Cinema)
-        //.ToList() // Evaluate part of the query on the client side
-        //.FirstOrDefault(s => s.Id == screeningId && s.TimeSlot == timeSlot);
 
-        //        if (screening == null)
-        //        {
-        //            return NotFound();
-        //        }
-
-        //        // Tạo danh sách các ghế cho khung giờ và rạp đã chọn
-        //        var seats = GenerateSeatsForScreening(screeningId);
-
-        //        // Lưu danh sách các ghế vào ViewBag hoặc ViewData để truyền sang view
-        //        ViewData["ScreeningId"] = screeningId;
-        //        ViewData["TimeSlot"] = timeSlot;
-        //        ViewBag.Seats = seats;
-
-        //        // Trả về trang Choose với danh sách các ghế
-        //        return View();
-        //    }
 
         // Phương thức để tạo danh sách các ghế cho một khung giờ chiếu và lưu chúng vào cơ sở dữ liệu
         private List<Seat> GenerateSeatsForScreening(int screeningId)
@@ -136,27 +100,9 @@ namespace DoAnCoSoTL.Controllers
         }
 
 
-        //// POST: Seat/BookTicket
-        //[HttpPost]
-        //public async Task<IActionResult> BookTicket(int screeningId, string timeSlot, List<int> selectedSeatIds)
-        //{
-        //    var screening = await _context.Screenings
-        //        .Include(s => s.Movie)
-        //        .FirstOrDefaultAsync(s => s.Id == screeningId);
-
-        //    if (screening == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    double ticketPrice = screening.Movie.Price;
-        //    double totalPrice = ticketPrice * selectedSeatIds.Count;
-
-        //    return RedirectToAction("TicketDetails", new { screeningId = screeningId, timeSlot = timeSlot, selectedSeatIds = selectedSeatIds, totalPrice = totalPrice });
-        //}
         // POST: Seat/BookTicket
         [HttpPost]
-        public async Task<IActionResult> BookTicket(int screeningId, string timeSlot, List<string> selectedSeatIds)
+        public async Task<IActionResult> BookTicket(int screeningId, string timeSlot, List<string> selectedSeatIds, Guid movieId)
         {
             var screening = await _context.Screenings
                 .Include(s => s.Movie)
@@ -170,41 +116,13 @@ namespace DoAnCoSoTL.Controllers
             double ticketPrice = screening.Movie.Price;
             double totalPrice = ticketPrice * selectedSeatIds.Count;
 
-            //// Truyền dữ liệu qua ViewBag để sử dụng trong TicketDetails
-            //ViewBag.SelectedSeats = selectedSeatIds;
-            //ViewBag.TotalPrice = totalPrice;
-
-            //return RedirectToAction("TicketDetails", new { screeningId = screeningId, timeSlot = timeSlot });
-            //return RedirectToAction("TicketDetails", new { screeningId = screeningId, timeSlot = timeSlot, selectedSeatIds = selectedSeatIds, totalPrice = totalPrice });
-            return RedirectToAction("Index", "SeatBookingCart", new { screeningId = screeningId, timeSlot = timeSlot, selectedSeatIds = selectedSeatIds });
+            return RedirectToAction("Index", "SeatBookingCart", new { screeningId = screeningId, timeSlot = timeSlot, selectedSeatIds = string.Join(",", selectedSeatIds), movieId = movieId });
         }
 
 
 
-        //// GET: Seat/TicketDetails
-        //public IActionResult TicketDetails(int screeningId, string timeSlot, string selectedSeatIds, double totalPrice)
-        //{
-        //    var screening = _context.Screenings
-        //        .Include(s => s.Movie)
-        //        .Include(s => s.Cinema)
-        //        .FirstOrDefault(s => s.Id == screeningId);
 
-        //    if (screening == null)
-        //    {
-        //        return NotFound();
-        //    }
 
-        //    ViewBag.MovieName = screening.Movie.Name;
-        //    ViewBag.TimeSlot = timeSlot;
-        //    ViewBag.CinemaName = screening.Cinema.Name;
-        //    ViewBag.CinemaLocation = screening.Cinema.Location;
-        //    //ViewBag.SelectedSeats = selectedSeatIds;
-        //    //ViewBag.TotalPrice = totalPrice;
-        //    ViewBag.SelectedSeatIds = selectedSeatIds.Split(',');
-        //    ViewBag.TotalPrice = totalPrice;
-
-        //    return View();
-        //}
         // GET: Seat/TicketDetails
         public IActionResult TicketDetails(int screeningId, string timeSlot, string selectedSeatIds, double totalPrice)
         {

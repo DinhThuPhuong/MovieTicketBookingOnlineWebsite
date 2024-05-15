@@ -9080,11 +9080,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\DoAnCoSoTL.csproj",
+      "projectUniqueName": "C:\\Users\\FPT SHOP\\Source\\Repos\\MovieTicketBookingOnlineWebsite1605\\DoAnCoSoTL\\DoAnCoSoTL.csproj",
       "projectName": "DoAnCoSoTL",
-      "projectPath": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\DoAnCoSoTL.csproj",
+      "projectPath": "C:\\Users\\FPT SHOP\\Source\\Repos\\MovieTicketBookingOnlineWebsite1605\\DoAnCoSoTL\\DoAnCoSoTL.csproj",
       "packagesPath": "C:\\Users\\FPT SHOP\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\FPT SHOP\\source\\repos\\MovieTicketBookingOnlineWebsite1005\\DoAnCoSoTL\\obj\\",
+      "outputPath": "C:\\Users\\FPT SHOP\\Source\\Repos\\MovieTicketBookingOnlineWebsite1605\\DoAnCoSoTL\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\FPT SHOP\\AppData\\Roaming\\NuGet\\NuGet.Config",

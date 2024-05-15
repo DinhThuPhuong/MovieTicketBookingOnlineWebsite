@@ -28,6 +28,7 @@ namespace DoAnCoSoTL.Controllers
                 screening.Cinema = await _cinemaRepository.GetByIdAsync(screening.CinemaId);
 
             }
+            ViewBag.MovieId = movieId;
 
             return View(screenings);
         }

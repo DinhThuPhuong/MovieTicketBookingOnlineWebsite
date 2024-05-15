@@ -29,6 +29,7 @@
     </tbody>
 </table>
 
-<a type="submit" class="btn btn-outline-light bg-blue"  asp-action="Checkout">Xác nhận thanh toán</a>
+<a type="submit" class="btn btn-outline-light bg-blue" asp-action="Checkout">Xác nhận thanh toán</a>
 
-<a class="btn btn-outline-light bg-blue " asp-area="" asp-controller="Movie" asp-action="Index">Về trang chính</a>
+<a class="btn btn-outline-light bg-blue"
+   href="@Url.Action("Choose", "Seat", new { screeningId = ViewData["ScreeningId"], timeSlot = ViewData["TimeSlot"], movieId = ViewData["MovieId"] })">Trở về</a>
